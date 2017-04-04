@@ -1,0 +1,873 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="模拟,贪心,线段树," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="NOIP 模拟赛Author：HJWJBSR&amp;amp;duyege BlueBlue 是个动物学家，不仅喜欢研究猫和老鼠，还喜欢研究青蛙。 他最近开始研究青蛙过河的问题，可以简化成：数轴上$ 0 $为岸边，$L $为河对岸。$(0,L)$中间存在 n 个石子。已知青蛙一跳可以跳距离$ D$，而且不能沾水。求问能不能跳到河对岸。当然他觉得这个问题非常 naïve，于是在思考如果青蛙有 $m$ 个，且">
+<meta name="keywords" content="模拟,贪心,线段树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP模拟 2017/3/12">
+<meta property="og:url" content="http://pb0207.github.io/2017/03/12/NOIP模拟-2017-3-12/index.html">
+<meta property="og:site_name" content="pb0207">
+<meta property="og:description" content="NOIP 模拟赛Author：HJWJBSR&amp;amp;duyege BlueBlue 是个动物学家，不仅喜欢研究猫和老鼠，还喜欢研究青蛙。 他最近开始研究青蛙过河的问题，可以简化成：数轴上$ 0 $为岸边，$L $为河对岸。$(0,L)$中间存在 n 个石子。已知青蛙一跳可以跳距离$ D$，而且不能沾水。求问能不能跳到河对岸。当然他觉得这个问题非常 naïve，于是在思考如果青蛙有 $m$ 个，且">
+<meta property="og:updated_time" content="2017-03-16T01:49:09.361Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP模拟 2017/3/12">
+<meta name="twitter:description" content="NOIP 模拟赛Author：HJWJBSR&amp;amp;duyege BlueBlue 是个动物学家，不仅喜欢研究猫和老鼠，还喜欢研究青蛙。 他最近开始研究青蛙过河的问题，可以简化成：数轴上$ 0 $为岸边，$L $为河对岸。$(0,L)$中间存在 n 个石子。已知青蛙一跳可以跳距离$ D$，而且不能沾水。求问能不能跳到河对岸。当然他觉得这个问题非常 naïve，于是在思考如果青蛙有 $m$ 个，且">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pb0207.github.io/2017/03/12/NOIP模拟-2017-3-12/"/>
+
+
+
+
+
+  <title> NOIP模拟 2017/3/12 | pb0207 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pb0207</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/03/12/NOIP模拟-2017-3-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/genji.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pb0207">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NOIP模拟 2017/3/12
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-12T21:01:26+08:00">
+                2017-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NOIP模拟/" itemprop="url" rel="index">
+                    <span itemprop="name">NOIP模拟</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="NOIP-模拟赛"><a href="#NOIP-模拟赛" class="headerlink" title="NOIP 模拟赛"></a>NOIP 模拟赛</h1><h2 id="Author：HJWJBSR-amp-duyege"><a href="#Author：HJWJBSR-amp-duyege" class="headerlink" title="Author：HJWJBSR&amp;duyege"></a>Author：HJWJBSR&amp;duyege</h2><hr>
+<h2 id="Blue"><a href="#Blue" class="headerlink" title="Blue"></a>Blue</h2><p>Blue 是个动物学家，不仅喜欢研究猫和老鼠，还喜欢研究青蛙。</p>
+<p>他最近开始研究青蛙过河的问题，可以简化成：数轴上$ 0 $为岸边，$L $为河对岸。$(0,L)$中间存在 n 个石子。已知青蛙一跳可以跳距离$ D$，而且不能沾水。求问能不能跳到河对岸。当然他觉得这个问题非常 naïve，于是在思考如果青蛙有 $m$ 个，且石头被踩过之后就会沉下去，$m $个青蛙还能不能依次安全过河。如果不能则问最多能有多少个过河。</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行为一个正整数$ T $代表数据组数。每组数据第一行四个正整数：$n、m、D、L$。第二行 n 个升序正整数 $ai $代表第 $i $个石子坐标为 $ai$。保证没有重复且都小于$ L$。</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>$T$行”Excited”代表全部能过河或者一个整数代表有多少个能过河的。</p>
+<pre><code>对于 10%的数据保证 m=1.
+对于另外 10%的数据保证 D=L.
+对于另外 10%的数据保证 n=L-1.
+对于另外 30%的数据保证 n&lt;=100, L&lt;=10^5.
+对于 100%的数据保证 m&lt;=n&lt;=10^6,D&lt;=L&lt;=10^9.
+数据范围中的 n、m 皆代表题目描述中 n、m 的总和。
+</code></pre><h3 id="SAMPLE"><a href="#SAMPLE" class="headerlink" title="SAMPLE"></a>SAMPLE</h3><h4 id="INPUT"><a href="#INPUT" class="headerlink" title="INPUT"></a>INPUT</h4><pre><code>5
+10 9 16 30
+2 4 6 9 11 15 18 19 25 27 
+10 1 23 30
+10 11 13 14 15 16 18 26 27 29 
+10 7 28 30
+2 3 7 9 12 15 20 24 27 28 
+10 3 18 30
+1 6 9 14 18 19 22 27 28 29 
+10 7 10 30
+1 2 4 6 18 19 20 22 23 26 
+</code></pre><h4 id="OUTPUT"><a href="#OUTPUT" class="headerlink" title="OUTPUT"></a>OUTPUT</h4><pre><code>5
+Excited
+Excited
+Excited
+0
+</code></pre><hr>
+<p>既然作为第一题，绝对不会是DP，通常就是简单的贪心了。</p>
+<p>考试时想的比较多，由于需要求出人数，考虑到转化为二分判断可行性。判断还是用贪心，依次往后跳，记录下来最后看看有没有超过$D$的，复杂度$O(nlogn)$。</p>
+<p>然而正解是$O(n)$的直接贪心，对于每次跳，在每次跳的过程中，能跳过去最少的一次人数就是能跳过去的人数。</p>
+<p>题解的代码变量名十分惊奇，我就发一下自己的代码好了。</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+
+using namespace std;
+
+const int N =1e6+1;
+
+int t,n,m,d,l,a[N],b[N];
+
+bool can(int ans)
+{
+    memset(b,0,sizeof(b));
+    int anss=0;
+    for(int now=1;now&lt;=n;++now)
+    {
+        if(a[now]-b[++anss]&lt;=d)b[anss]=a[now];
+        if(anss==ans)anss=0;
+    }
+    for(int i=1;i&lt;=ans;++i)
+        if(l-b[i]&gt;d)
+            return 0;
+    return 1;
+}
+int main()
+{
+    freopen(&quot;Blue.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;Blue.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d&quot;,t);
+    while(t)
+    {
+        scanf(&quot;%d%d%d%d&quot;,&amp;n,&amp;m,&amp;l,&amp;d);
+        for(int i=1;i&lt;=n;++i)
+            scanf(&quot;%d&quot;,&amp;a[i]);
+        int ll=0,rr=m,mid;
+        while(ll!=rr)
+        {
+            mid=ll+rr+1&gt;&gt;1;
+            if(can(mid))    
+                ll=mid;
+            else            
+                rr=mid-1;
+        }
+        if(rr==m)
+            printf(&quot;Excited\n&quot;);
+        else 
+            printf(&quot;%d\n&quot;,rr);
+    }
+    return 0;
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模拟/" rel="tag"># 模拟</a>
+          
+            <a href="/tags/贪心/" rel="tag"># 贪心</a>
+          
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/14/SDOI2009-Bill的挑战/" rel="next" title="SDOI2009 Bill的挑战">
+                <i class="fa fa-chevron-left"></i> SDOI2009 Bill的挑战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/12/SCOI2010-股票交易/" rel="prev" title="SCOI2010 股票交易">
+                SCOI2010 股票交易 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/genji.jpg"
+               alt="pb" />
+          <p class="site-author-name" itemprop="name">pb</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pb0207" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://prostkhala.github.io/" title="ProSTKhala" target="_blank">ProSTKhala</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://allamend.blog.163.com/" title="allamend" target="_blank">allamend</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP-模拟赛"><span class="nav-number">1.</span> <span class="nav-text">NOIP 模拟赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Author：HJWJBSR-amp-duyege"><span class="nav-number">1.1.</span> <span class="nav-text">Author：HJWJBSR&duyege</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blue"><span class="nav-number">1.2.</span> <span class="nav-text">Blue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入"><span class="nav-number">1.2.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出"><span class="nav-number">1.2.2.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAMPLE"><span class="nav-number">1.2.3.</span> <span class="nav-text">SAMPLE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#INPUT"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">INPUT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OUTPUT"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">OUTPUT</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pb</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

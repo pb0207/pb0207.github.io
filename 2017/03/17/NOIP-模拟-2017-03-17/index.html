@@ -1,0 +1,1127 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="基础几何,树形DP,SPLAY,模拟," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="NOIP 模拟 Day1AUTHOR：Colin 计算几何题意描述花花对计算几何有着浓厚的兴趣。他经常对着平面直角坐标系发呆，思考一些有趣的问题。今天，他想到了一个十分有意思的题目： 首先，花花会在$ x $轴正半轴和$ y $轴正半轴分别挑选 $n$ 个点。随后，他将$ x $轴的点与$ y $轴的点一一连接，形成 $n $条线段，并保证任意两条线段不相交。花花确定这种连接方式有且仅有一种。最后">
+<meta name="keywords" content="基础几何,树形DP,SPLAY,模拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP 模拟 2017 03 17">
+<meta property="og:url" content="http://pb0207.github.io/2017/03/17/NOIP-模拟-2017-03-17/index.html">
+<meta property="og:site_name" content="pb0207">
+<meta property="og:description" content="NOIP 模拟 Day1AUTHOR：Colin 计算几何题意描述花花对计算几何有着浓厚的兴趣。他经常对着平面直角坐标系发呆，思考一些有趣的问题。今天，他想到了一个十分有意思的题目： 首先，花花会在$ x $轴正半轴和$ y $轴正半轴分别挑选 $n$ 个点。随后，他将$ x $轴的点与$ y $轴的点一一连接，形成 $n $条线段，并保证任意两条线段不相交。花花确定这种连接方式有且仅有一种。最后">
+<meta property="og:updated_time" content="2017-03-19T02:41:00.595Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP 模拟 2017 03 17">
+<meta name="twitter:description" content="NOIP 模拟 Day1AUTHOR：Colin 计算几何题意描述花花对计算几何有着浓厚的兴趣。他经常对着平面直角坐标系发呆，思考一些有趣的问题。今天，他想到了一个十分有意思的题目： 首先，花花会在$ x $轴正半轴和$ y $轴正半轴分别挑选 $n$ 个点。随后，他将$ x $轴的点与$ y $轴的点一一连接，形成 $n $条线段，并保证任意两条线段不相交。花花确定这种连接方式有且仅有一种。最后">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pb0207.github.io/2017/03/17/NOIP-模拟-2017-03-17/"/>
+
+
+
+
+
+  <title> NOIP 模拟 2017 03 17 | pb0207 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pb0207</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/03/17/NOIP-模拟-2017-03-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/genji.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pb0207">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NOIP 模拟 2017 03 17
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T19:11:58+08:00">
+                2017-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NOIP模拟/" itemprop="url" rel="index">
+                    <span itemprop="name">NOIP模拟</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="NOIP-模拟-Day1"><a href="#NOIP-模拟-Day1" class="headerlink" title="NOIP 模拟 Day1"></a>NOIP 模拟 Day1</h1><p><em>AUTHOR：Colin</em></p>
+<h2 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h2><h3 id="题意描述"><a href="#题意描述" class="headerlink" title="题意描述"></a>题意描述</h3><p>花花对计算几何有着浓厚的兴趣。他经常对着平面直角坐标系发呆，思考一些有趣的问题。今天，他想到了一个十分有意思的题目：</p>
+<p>首先，花花会在$ x $轴正半轴和$ y $轴正半轴分别挑选 $n$ 个点。随后，他将$ x $轴的点与$ y $轴的点一一连接，形成 $n $条线段，并保证任意两条线段不相交。花花确定这种连接方式有且仅<br>有一种。最后，花花会给出 m 个询问。对于每个询问，将会给定一个点 $P(x_p ,y_p )$，问线段$OP $（$O $为坐标原点）与 $n$ 条线段会产生多少个交点？</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第 1 行包含一个正整数$ n$，表示线段的数量；</p>
+<p>第 2 行包含 $n $个正整数，表示花花在$ x $轴选取的点的横坐标；</p>
+<p>第 3 行包含$ n $个正整数，表示花花在$ y$ 轴选取的点的纵坐标；</p>
+<p>第 4 行包含一个正整数 $m$，表示询问数量；</p>
+<p>随后 $m $行，每行包含两个正整数$ x_p$ 和 $y_p$ ，表示询问中给定的点的横、纵坐标。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>共 m 行，每行包含一个非负整数，表示你对这条询问给出的答案。</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><pre><code>3
+4 5 3
+3 5 4
+2
+1 1
+3 3
+</code></pre><h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><pre><code>0
+3
+</code></pre><h3 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h3><p>3 条线段分别为：</p>
+<p>$(3,0) − (0,3)$</p>
+<p>$(4,0) − (0,4)$</p>
+<p>$(5,0) − (0,5)$</p>
+<p>$(0,0) − (1,1)$ 不与他们有交点，答案为 $0$。</p>
+<p>$(0,0) − (3,3)$ 与三条线段均有交点，答案为 $3$。</p>
+<h3 id="数据规模与约定"><a href="#数据规模与约定" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>• 对于 $40%$ 的数据：$n,m ≤ 10$；</p>
+<p>• 另有 $20%$ 的数据：$n,m ≤ 100$；</p>
+<p>• 另有 $20%$ 的数据：$n,m ≤ 1000$；</p>
+<p>• 对于 $100%$ 的数据：$n,m ≤ 10^5$ ,$1 ≤ x,y &lt; 2^{31}$</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>比较水的一道题，首先因为给出的直线没有交点，所以一定是按顺序依次连接，快排一下就可以了，可以用终点和给出的$x,y$轴上的点以及原点构成的四边形面积和直线与坐标轴围成的三角形面积来比较</p>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+const int N=2e5+1e3;
+
+long long n,m,x[N],y[N];
+
+struct P{
+    long long x,y;    
+}pt[N];
+
+int main()
+{
+    freopen(&quot;geometry.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;geometry.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++)
+        scanf(&quot;%d&quot;,&amp;x[i]);
+    for(int i=1;i&lt;=n;i++)
+        scanf(&quot;%d&quot;,&amp;y[i]);
+    scanf(&quot;%d&quot;,&amp;m);
+    for(int i=1;i&lt;=m;i++)
+        scanf(&quot;%d%d&quot;,&amp;pt[i].x,&amp;pt[i].y);
+    sort(x+1,x+n+1);
+    sort(y+1,y+n+1);
+    for(int i=1;i&lt;=m;i++)
+    {
+        int l=0,r=n+1;
+        while(r-l&gt;1)
+        {
+            int mid=(l+r)&gt;&gt;1;
+            if((x[mid]*pt[i].y)+(y[mid]*pt[i].x)&gt;=(x[mid]*y[mid]))
+                l=mid;
+            else
+                r=mid;
+        }
+        printf(&quot;%d\n&quot;,l);
+    }
+}
+</code></pre><h2 id="花花的聚会"><a href="#花花的聚会" class="headerlink" title="花花的聚会"></a>花花的聚会</h2><h3 id="题意描述-1"><a href="#题意描述-1" class="headerlink" title="题意描述"></a>题意描述</h3><p>花花住在 H 国。H 国有 $n $个城市，其中$ 1 $号城市为其首都。城市间有$ n − 1 $条单向道路。从任意一个城市出发，都可以沿着这些单向道路一路走到首都。事实上，从任何一个城市<br>走到首都的路径是唯一的。过路并不是免费的。想要通过某一条道路，你必须使用一次过路券。H 国一共有 $m $种过路券，每张过路券以三个整数表示：$v k w$：你可以在城市$ v $以价格 $w $买到一张过路券。这张券可以使用$ k $次。这意味着，拿着这张券通过了$ k $条道路之后，这张券就不能再使用了。请注意你同一时间最多只能拥有最多一张过路券。但你可以随时撕掉手中已有的过路券，并且在所在的城市再买一张。</p>
+<p>花花家在首都。他有$ q $位朋友，他希望把这些朋友们都邀请到他家做客。所以他想要知道每位朋友要花多少路费。他的朋友们都很聪明，永远都会选择一条花费最少的方式到达首都。</p>
+<p>花花需要准备晚餐去了，所以他没有时间亲自计算出朋友们将要花费的路费。你可以帮帮他么？</p>
+<h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入的第一行包含两个空格隔开的整数$ n$ 和$ m$，表示 H 国的城市数量和过路券的种数。<br>之后的 $n − 1$ 行各自包含两个数$ a_i $和$ b_i$ ，代表城市 $a_i$ 到城市 $b_i$ 间有一条单向道路。<br>之后的 m 行每行包括三个整数 $v_i$ ,$k_i$ 和 $w_i$ ，表示一种过路券。</p>
+<p>下一行包含一个整数$ q$，表示花花朋友的数量。</p>
+<p>之后的 $q $行各自包含一个整数，表示花花朋友的所在城市。</p>
+<h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出共 $q$ 行，每一行代表一位朋友的路费。</p>
+<h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h3><pre><code>7 7
+3 1
+2 1
+7 6
+6 3
+5 3
+4 3
+7 2 3
+4
+7 1 1
+2 3 5
+3 6 2
+4 2 4
+5 3 10
+6 1 20
+3
+5
+6
+7
+</code></pre><h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h3><pre><code>10
+22
+5
+</code></pre><h3 id="样例解释-1"><a href="#样例解释-1" class="headerlink" title="样例解释"></a>样例解释</h3><p>对于第一位朋友，他在 5 号城市只能购买一种过路券，花费 10 元并且可以使用 3 次。这足够他走到首都，因此总花费是 10 元。</p>
+<p>对于第二位朋友，他在 6 号城市只能购买 20 元的过路券，并且只能使用一次。之后，他可以在 3 号城市购买 2 元，可以使用 3 次的过路券走到首都。总花费是 22 元。</p>
+<p>对于第三位朋友，他在 7 号城市可以购买两种过路券。他可以花 3 元买一张可以使用 2次的券，然后在 3 号城市再买一张 2 元，可以使用 3 次的券，走到首都。总花费是 5 元，而且<br>其他的购买方式不会比这种更省钱。</p>
+<h3 id="数据规模与约定-1"><a href="#数据规模与约定-1" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>• 对于 40% 的数据：$n,m,q$ ≤ 10,$w_i ≤ 10$；<br>• 另有 20% 的数据：$n,m,q ≤ 500$,$w_i ≤ 100$；<br>• 另有 20% 的数据：$n,m,q ≤ 5000$,$w_i ≤ 1000$；<br>• 对于 100% 的数据：$n,m,q ≤ 10^5$ ,$w_i ≤ 10000$,$1 ≤ v_i$ ,$k_i ≤ n$。</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p>多么裸的树形DP，但是数据范围较大，需要一些特殊的处理方法，可以倍增，也可以树剖，这里选择了倍增实现。</p>
+<p>设：<br>$$f[i]$$<br>为$i$到根节点最小花费</p>
+<p>则<br>$$f[i]=min(f[j]+w[i][x])$$<br>$$anc[i]=j \&amp;\&amp; dep[j]-dep[i]&gt;=k[i]$$</p>
+<h3 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h3><pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+
+const int inf=0x7fffffff;
+
+const int N=1e5+1;
+
+const int maxlogn=21;
+
+int deep[N],head[N],head2[N];
+
+long long st[N][maxlogn],minn[N][maxlogn],f[N];
+
+int tot,tot2,n,m,qu;
+
+struct edg{
+    int t,ne;
+}e[N*2];
+
+struct edg2{
+    int k,w,ne;
+}e2[N*2];
+
+void in(int x,int y)
+{
+    e[++tot].t=y;
+    e[tot].ne=head[x];
+    head[x]=tot;
+    return;
+}
+
+void in2(int x,int k,int w)
+{
+    e2[++tot2].k=k;
+    e2[tot2].w=w;
+    e2[tot2].ne=head2[x];
+    head2[x]=tot2;
+    return;
+}
+
+void getf(int x,int pre)
+{
+    st[x][0]=pre;
+    minn[x][0]=f[pre];
+    for(int i=1;i&lt;maxlogn;i++)
+    {
+        st[x][i]=st[st[x][i-1]][i-1];
+        minn[x][i]=min(minn[x][i-1],minn[st[x][i-1]][i-1]);
+    }
+    f[x]=x==1?0:inf;
+    for(int i=head2[x];i;i=e2[i].ne)
+    {
+        long long tmp=inf,y=x,k=e2[i].k,p=0;
+        while(k)
+        {
+            if(k&amp;1)tmp=min(tmp,minn[y][p]),y=st[y][p];
+            p++;k&gt;&gt;=1;
+        }
+        f[x]=min(f[x],tmp+e2[i].w);
+    }
+    for(int i=head[x];i;i=e[i].ne)
+    {
+        int y=e[i].t;
+        if(y!=pre)getf(y,x);
+    }
+    return;
+}
+
+int main()
+{
+//    freopen(&quot;party.in&quot;,&quot;r&quot;,stdin);
+//    freopen(&quot;party.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for(int i=1,x,y;i&lt;n;i++)
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y),in(x,y),in(y,x);
+    for(int i=1,x,k,w;i&lt;=m;i++)
+        scanf(&quot;%d%d%d&quot;,&amp;x,&amp;k,&amp;w),in2(x,k,w);
+    scanf(&quot;%d&quot;,&amp;qu);getf(1,1);
+    for(int i=1,x;i&lt;=qu;i++)
+    {
+        scanf(&quot;%d&quot;,&amp;x);printf(&quot;%d\n&quot;,f[x]);
+    }
+}
+</code></pre><h1 id="文本编辑器"><a href="#文本编辑器" class="headerlink" title="文本编辑器"></a>文本编辑器</h1><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p><a href="http://blog.csdn.net/zhangche0526/article/details/62898934" target="_blank" rel="external">体面在此不再描述</a><br><em>（0_0）好心的链接</em></p>
+<p>链表维护，加上SPLAY翻转操作，SPLAY还不会,不过借用lazy tag的思想，就不用了，就给个<strong>ProSTKhala</strong>大神的题解吧</p>
+<h3 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h3><pre><code>#include&lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+using namespace std;
+const int N=1e7+1;
+
+int tot,m,pos[2],cnt[2],pre[N],next[N];
+
+char opreator,ch[N],str[N];
+
+int move(){getchar();return getchar()==&apos;L&apos;?0:1;}
+
+void in(int opreator,char c)
+{
+    ++tot;
+    ch[tot]=c;
+    int u=pos[opreator],v=next[u];
+
+    pre[tot]=u;next[tot]=v;
+    next[u]=tot;pre[v]=tot;
+
+    if (cnt[opreator^1]&gt;=cnt[opreator])cnt[opreator^1]++;
+
+    pos[opreator]=tot;cnt[opreator]++;
+    if (pos[opreator^1]==u)pos[opreator^1]=tot;
+    printf(&quot;T\n&quot;);
+}
+
+void ll(int opreator)
+{
+    if (pos[opreator]==1){printf(&quot;F\n&quot;);return;}
+    int u=pos[opreator],v=pre[u];
+
+    if (next[v]!=u)swap(next[v],pre[v]);
+
+    pos[opreator]=v; cnt[opreator]--;
+    printf(&quot;T\n&quot;);
+}
+
+void rl(int opreator)
+{
+    if (next[pos[opreator]]==2){printf(&quot;F\n&quot;);return;}
+    int u=next[pos[opreator]],v=next[u];
+
+    if(pre[v]!=u)swap(next[v],pre[v]);
+
+    pos[opreator]=u;cnt[opreator]++;
+    printf(&quot;T\n&quot;);    
+}
+
+void D(int opreator)
+{
+    if (next[pos[opreator]]== 2){printf(&quot;F\n&quot;);return;}
+    int u = pos[opreator], v = next[u], w = next[v];
+
+    if (pre[w]!=v) swap(next[w], pre[w]);
+    if (cnt[opreator^1]&gt;cnt[opreator])cnt[opreator^1]--;
+    if (pos[opreator^1]==v)pos[opreator^1]=u;
+
+    next[u]= w;pre[w]=u;
+    printf(&quot;T\n&quot;);
+}
+
+void R()
+{
+    if (cnt[1]-cnt[0]&lt;=0){printf(&quot;F\n&quot;);return;}
+    if (cnt[1]-cnt[0]==1){printf(&quot;T\n&quot;);return;}
+    int now=pos[0],ne=next[now],c=pos[1],d=next[c];
+
+    swap(pre[ne], next[ne]);swap(pre[c],next[c]);
+    next[now]=c;pre[c]=now;next[ne]=d;pre[d]=ne;
+    pos[1]=ne;
+    printf(&quot;T\n&quot;);
+}
+
+void show()
+{
+    int u=1;
+    while(true)
+    {
+        if(pre[next[u]]!= u)swap(pre[next[u]],next[next[u]]);
+        u=next[u];
+        if (u==2)break;
+        putchar(ch[u]);
+    }
+    printf(&quot;\n&quot;);
+}
+
+void init()
+{
+    tot=2;
+    pre[1]=-1;next[1]= 2;
+    pre[2]=1;next[2]=-1;
+    pos[0]=pos[1]=cnt[0]=cnt[1]=1;
+    int len=strlen(str);
+    for(int i=0;i&lt;len;i++)
+    {
+        ++tot;
+        ch[tot]=str[i];
+        pre[tot]= i==0?1:tot-1;
+        next[tot]= i==len-1?2:tot+1;
+    }
+    if(len&gt;0)
+    {
+        next[1]=3;pre[2]=tot;
+        pos[1]=tot;cnt[1]=len+1;
+    }
+}
+
+int act()
+{
+    if(opreator==&apos;&lt;&apos;)         ll(move());
+    if(opreator==&apos;&gt;&apos;)         rl(move());
+    if(opreator==&apos;I&apos;)
+    {
+        int d=move();
+        char c=getchar();
+        while (c&lt;33||c&gt;126)c=getchar();
+        in(d,c);
+    }
+    if (opreator==&apos;D&apos;)         D(move());
+    if (opreator==&apos;R&apos;)         R();
+    if (opreator==&apos;S&apos;)         show();
+}
+int main()
+{
+//    freopen(&quot;editor.in&quot;,&quot;r&quot;, stdin);
+//    freopen(&quot;editor.out&quot;,&quot;w&quot;, stdout);
+    scanf(&quot;%s&quot;,str);
+    init();
+    scanf(&quot;%d&quot;,&amp;m);
+    for (int i=1;i&lt;=m;i++)
+    {
+        getchar();
+        opreator=getchar();
+        while (opreator!=&apos;&lt;&apos;&amp;&amp; opreator!=&apos;&gt;&apos;&amp;&amp;!(opreator &gt;=&apos;A&apos;&amp;&amp; opreator &lt;=&apos;Z&apos;))opreator=getchar();
+        act();
+    }
+    return 0;
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/基础几何/" rel="tag"># 基础几何</a>
+          
+            <a href="/tags/树形DP/" rel="tag"># 树形DP</a>
+          
+            <a href="/tags/SPLAY/" rel="tag"># SPLAY</a>
+          
+            <a href="/tags/模拟/" rel="tag"># 模拟</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/26/HAOI2012-Alien-外星人/" rel="next" title="HAOI2012 Alien 外星人">
+                <i class="fa fa-chevron-left"></i> HAOI2012 Alien 外星人
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/15/ZJOI2007-仓库建设/" rel="prev" title="ZJOI2007 仓库建设">
+                ZJOI2007 仓库建设 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/genji.jpg"
+               alt="pb" />
+          <p class="site-author-name" itemprop="name">pb</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pb0207" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://prostkhala.github.io/" title="ProSTKhala" target="_blank">ProSTKhala</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://allamend.blog.163.com/" title="allamend" target="_blank">allamend</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP-模拟-Day1"><span class="nav-number">1.</span> <span class="nav-text">NOIP 模拟 Day1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算几何"><span class="nav-number">1.1.</span> <span class="nav-text">计算几何</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意描述"><span class="nav-number">1.1.1.</span> <span class="nav-text">题意描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">1.1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">1.1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">1.1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">1.1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例解释"><span class="nav-number">1.1.6.</span> <span class="nav-text">样例解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据规模与约定"><span class="nav-number">1.1.7.</span> <span class="nav-text">数据规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">1.1.8.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#code"><span class="nav-number">1.1.8.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#花花的聚会"><span class="nav-number">1.2.</span> <span class="nav-text">花花的聚会</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意描述-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">题意描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例解释-1"><span class="nav-number">1.2.6.</span> <span class="nav-text">样例解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据规模与约定-1"><span class="nav-number">1.2.7.</span> <span class="nav-text">数据规模与约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解-1"><span class="nav-number">1.2.8.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-1"><span class="nav-number">1.2.9.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文本编辑器"><span class="nav-number">2.</span> <span class="nav-text">文本编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#描述"><span class="nav-number">2.0.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code-2"><span class="nav-number">2.0.2.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pb</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

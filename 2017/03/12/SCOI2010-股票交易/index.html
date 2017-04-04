@@ -1,0 +1,894 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="斜率优化,单调队列," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="SCOI2010 股票交易题目描述最近lxhgww又迷上了投资股票，通过一段时间的观察和学习，他总结出了股票行情的一些规律。 通过一段时间的观察，lxhgww预测到了未来T天内某只股票的走势，第i天的股票买入价为每股$APi$，第i天的股票卖出价为每股BPi（数据保证对于每个$i$，都有$AP$i&amp;gt;=$BPi$），但是每天不能无限制地交易，于是股票交易所规定第i天的一次买入至多只能购买$AS">
+<meta name="keywords" content="斜率优化,单调队列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SCOI2010 股票交易">
+<meta property="og:url" content="http://pb0207.github.io/2017/03/12/SCOI2010-股票交易/index.html">
+<meta property="og:site_name" content="pb0207">
+<meta property="og:description" content="SCOI2010 股票交易题目描述最近lxhgww又迷上了投资股票，通过一段时间的观察和学习，他总结出了股票行情的一些规律。 通过一段时间的观察，lxhgww预测到了未来T天内某只股票的走势，第i天的股票买入价为每股$APi$，第i天的股票卖出价为每股BPi（数据保证对于每个$i$，都有$AP$i&amp;gt;=$BPi$），但是每天不能无限制地交易，于是股票交易所规定第i天的一次买入至多只能购买$AS">
+<meta property="og:updated_time" content="2017-03-16T01:50:55.217Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SCOI2010 股票交易">
+<meta name="twitter:description" content="SCOI2010 股票交易题目描述最近lxhgww又迷上了投资股票，通过一段时间的观察和学习，他总结出了股票行情的一些规律。 通过一段时间的观察，lxhgww预测到了未来T天内某只股票的走势，第i天的股票买入价为每股$APi$，第i天的股票卖出价为每股BPi（数据保证对于每个$i$，都有$AP$i&amp;gt;=$BPi$），但是每天不能无限制地交易，于是股票交易所规定第i天的一次买入至多只能购买$AS">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pb0207.github.io/2017/03/12/SCOI2010-股票交易/"/>
+
+
+
+
+
+  <title> SCOI2010 股票交易 | pb0207 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pb0207</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/03/12/SCOI2010-股票交易/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/genji.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pb0207">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SCOI2010 股票交易
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-12T10:19:20+08:00">
+                2017-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DP/" itemprop="url" rel="index">
+                    <span itemprop="name">DP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SCOI2010-股票交易"><a href="#SCOI2010-股票交易" class="headerlink" title="SCOI2010 股票交易"></a><a href="https://www.luogu.org/problem/show?pid=2569" target="_blank" rel="external">SCOI2010 股票交易</a></h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>最近lxhgww又迷上了投资股票，通过一段时间的观察和学习，他总结出了股票行情的一些规律。</p>
+<p>通过一段时间的观察，lxhgww预测到了未来T天内某只股票的走势，第i天的股票买入价为每股$APi$，第i天的股票卖出价为每股BPi（数据保证对于每个$i$，都有$AP$i&gt;=$BPi$），但是每天不能无限制地交易，于是股票交易所规定第i天的一次买入至多只能购买$ASi$股，一次卖出至多只能卖出$BSi$股。</p>
+<p>另外，股票交易所还制定了两个规定。为了避免大家疯狂交易，股票交易所规定在两次交易（某一天的买入或者卖出均算是一次交易）之间，至少要间隔W天，也就是说如果在第i天发生了交易，那么从第$i+1$天到第$i+W$天，均不能发生交易。同时，为了避免垄断，股票交易所还规定在任何时间，一个人的手里的股票数不能超过$MaxP$。</p>
+<p>在第1天之前，lxhgww手里有一大笔钱（可以认为钱的数目无限），但是没有任何股票，当然，$T$天以后，lxhgww想要赚到最多的钱，聪明的程序员们，你们能帮助他吗？</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>输入数据第一行包括3个整数，分别是$T$，$MaxP$，$W$。</p>
+<p>接下来$T$行，第i行代表第i-1天的股票走势，每行4个整数，分别表示$APi$，$BPi$，$ASi$，$BSi$。</p>
+<h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>输出数据为一行，包括1个数字，表示lxhgww能赚到的最多的钱数。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><h3 id="输入样例-1："><a href="#输入样例-1：" class="headerlink" title="输入样例#1："></a>输入样例#1：</h3><pre><code>5 2 0
+2 1 1 1
+2 1 1 1
+3 2 1 1
+4 3 1 1
+5 4 1 1
+</code></pre><h3 id="输出样例-1："><a href="#输出样例-1：" class="headerlink" title="输出样例#1："></a>输出样例#1：</h3><pre><code>3
+</code></pre><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>对于30%的数据，0&lt;=W&lt;T&lt;=50,1&lt;=MaxP&lt;=50</p>
+<p>对于50%的数据，0&lt;=W&lt;T&lt;=2000,1&lt;=MaxP&lt;=50</p>
+<p>对于100%的数据，0&lt;=W&lt;T&lt;=2000,1&lt;=MaxP&lt;=2000</p>
+<p>对于所有的数据，1&lt;=BPi&lt;=APi&lt;=1000,1&lt;=ASi,BSi&lt;=MaxP</p>
+<hr>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先看到这道题，明显是一个DP解决最优化问题。</p>
+<h2 id="定义状态"><a href="#定义状态" class="headerlink" title="定义状态"></a>定义状态</h2><h3 id="f-i-j-表示第-i-天手中有-j-张股票的最大收益"><a href="#f-i-j-表示第-i-天手中有-j-张股票的最大收益" class="headerlink" title="$f[i][j]$表示第$i$天手中有$j$张股票的最大收益"></a>$f[i][j]$表示第$i$天手中有$j$张股票的最大收益</h3><hr>
+<h3 id="O-t-2maxp"><a href="#O-t-2maxp" class="headerlink" title="$O(t^2maxp)$"></a>$O(t^2maxp)$</h3><p>这种算法应该比较好想，写出状态转移方程即可，注意控制一下转移状态的范围即可。</p>
+<h4 id="状态转移方程："><a href="#状态转移方程：" class="headerlink" title="状态转移方程："></a>状态转移方程：</h4><h4 id="f-i-j-max-f-i-w-1-k-k-j-x-i"><a href="#f-i-j-max-f-i-w-1-k-k-j-x-i" class="headerlink" title="$f[i][j]=max(f[i-w-1][k]+(k-j)*(x[i]))$"></a>$f[i][j]=max(f[i-w-1][k]+(k-j)*(x[i]))$</h4><p>$其中 max(j-as[i],0)&lt;=k≤j$</p>
+<p>$x=ap[i];$</p>
+<p>$j≤k&lt;min(j+bs[i],maxp)$</p>
+<p>$x=bp[i]$</p>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+const int N=2009,M=2009;
+
+int t,maxp,w,ap[N],bp[N],as[N],bs[N],f[N][M];
+
+int main()
+{
+    scanf(&quot;%d%d%d&quot;,&amp;t,&amp;maxp,&amp;w);
+    for(int i=1;i&lt;=t;i++)
+        scanf(&quot;%d%d%d%d&quot;,&amp;ap[i],&amp;bp[i],&amp;as[i],&amp;bs[i]);
+    memset(f,-0x3f,sizeof(f));
+    for(int i=1;i&lt;=t;i++)
+    {
+        for(int j=0;j&lt;=as[i];j++)
+            f[i][j]=-ap[i]*j;
+        for(int j=0;j&lt;=maxp;j++)
+        {
+            f[i][j]=max(f[i][j],f[i-1][j]);
+            if(i-w-1&gt;=0)
+                for(int k=max(j-as[i],0);k&lt;=j;k++)
+                    f[i][j]=max(f[i][j],f[i-w-1][k]+(k-j)*ap[i]);
+            if(i-w-1&gt;=0)
+                for(int k=j;k&lt;=min(j+bs[i],maxp);k++)
+                    f[i][j]=max(f[i][j],f[i-w-1][k]+(k-j)*bp[i]);
+        }
+    }
+    printf(&quot;%d&quot;,f[n][0]);
+}
+</code></pre><p>那么这个算法只有70分，应该如何优化呢？</p>
+<hr>
+<h3 id="O-t-maxp"><a href="#O-t-maxp" class="headerlink" title="$O(t*maxp)$"></a>$O(t*maxp)$</h3><p>这里用到了单调队列优化。</p>
+<p>既然要用单调队列又化，就必须证明此问题的决策具有单调性。</p>
+<p>由于证明比较麻烦，打决策表观察可得知。</p>
+<p>代码如下</p>
+<h4 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int N = 2017;
+int t,maxp,w,head,tail,ap[N],bp[N],as[N],bs[N],f[N][N],q[2*N];
+int main()
+{
+    scanf(&quot;%d%d%d&quot;,&amp;t,&amp;maxp,&amp;w);
+    for(int i=1;i&lt;=t;++i)scanf(&quot;%d%d%d%d&quot;,ap+i,bp+i,as+i,bs+i);
+    memset(f,-0x3f,sizeof(f));
+    for(int i=1;i&lt;=t;++i)
+    {
+        for(int j=0;j&lt;=as[i];++j)    f[i][j]=-ap[i]*j;
+        for(int j=0;j&lt;=maxp;++j)    f[i][j]=max(f[i][j],f[i-1][j]);
+        if(i-w-1&gt;=0)
+        {
+            head=1,tail=0;
+            for(int j=0;j&lt;=maxp;++j)
+            {
+                while(head&lt;=tail&amp;&amp;q[head]&lt;max(0,j-as[i]))head++;
+                if(head&lt;=tail)
+                    f[i][j]=max(f[i][j],f[i-w-1][q[head]]-(j-q[head])*ap[i]);
+                while(head&lt;=tail&amp;&amp;f[i-w-1][j]+j*ap[i]&gt;=f[i-w-1][q[tail]]+q[tail]*ap[i])
+                tail--;
+                q[++tail]=j;
+            }
+            head=1,tail=0;
+            for(int j=maxp;j&gt;=0;--j) 
+            {
+                while(head&lt;=tail&amp;&amp;q[head]&gt;min(maxp,j+bs[i]))head++;
+                if(head&lt;=tail)
+                    f[i][j]=max(f[i][j],f[i-w-1][q[head]]+(q[head]-j)*bp[i]);
+                while(head&lt;=tail&amp;&amp;f[i-w-1][j]+j*bp[i]&gt;=f[i-w-1][q[tail]]+q[tail]*bp[i])
+                tail--;
+                q[++tail]=j;
+            }
+        }
+    }
+    printf(&quot;%d&quot;,f[t][0]);
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/斜率优化/" rel="tag"># 斜率优化</a>
+          
+            <a href="/tags/单调队列/" rel="tag"># 单调队列</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/12/NOIP模拟-2017-3-12/" rel="next" title="NOIP模拟 2017/3/12">
+                <i class="fa fa-chevron-left"></i> NOIP模拟 2017/3/12
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/10/后缀数组/" rel="prev" title="后缀数组">
+                后缀数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/genji.jpg"
+               alt="pb" />
+          <p class="site-author-name" itemprop="name">pb</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pb0207" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://prostkhala.github.io/" title="ProSTKhala" target="_blank">ProSTKhala</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://allamend.blog.163.com/" title="allamend" target="_blank">allamend</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SCOI2010-股票交易"><span class="nav-number">1.</span> <span class="nav-text">SCOI2010 股票交易</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式："><span class="nav-number">1.2.1.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式："><span class="nav-number">1.2.2.</span> <span class="nav-text">输出格式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.3.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入样例-1："><span class="nav-number">1.3.1.</span> <span class="nav-text">输入样例#1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出样例-1："><span class="nav-number">1.3.2.</span> <span class="nav-text">输出样例#1：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">1.4.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.5.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义状态"><span class="nav-number">1.6.</span> <span class="nav-text">定义状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#f-i-j-表示第-i-天手中有-j-张股票的最大收益"><span class="nav-number">1.6.1.</span> <span class="nav-text">$f[i][j]$表示第$i$天手中有$j$张股票的最大收益</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#O-t-2maxp"><span class="nav-number">1.6.2.</span> <span class="nav-text">$O(t^2maxp)$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程："><span class="nav-number">1.6.2.1.</span> <span class="nav-text">状态转移方程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f-i-j-max-f-i-w-1-k-k-j-x-i"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">$f[i][j]=max(f[i-w-1][k]+(k-j)*(x[i]))$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#code"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">code</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#O-t-maxp"><span class="nav-number">1.6.3.</span> <span class="nav-text">$O(t*maxp)$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#code-1"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pb</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
