@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="贪心,线段树,模拟," />
+  <meta name="keywords" content="群论," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="NOIP 模拟赛Author：HJWJBSR&amp;amp;duyege BlueBlue 是个动物学家，不仅喜欢研究猫和老鼠，还喜欢研究青蛙。 他最近开始研究青蛙过河的问题，可以简化成：数轴上$ 0 $为岸边，$L $为河对岸。$(0,L)$中间存在 n 个石子。已知青蛙一跳可以跳距离$ D$，而且不能沾水。求问能不能跳到河对岸。当然他觉得这个问题非常 naïve，于是在思考如果青蛙有 $m$ 个，且">
-<meta name="keywords" content="贪心,线段树,模拟">
+<meta name="description" content="Pólya定理先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多) 就先从例题说一下吧 例题SGU 282 同构题目描述我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不">
+<meta name="keywords" content="群论">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NOIP模拟 2017/3/12">
-<meta property="og:url" content="http://pb0207.github.io/2017/03/12/NOIP模拟-2017-3-12/index.html">
+<meta property="og:title" content="Pólya定理 例题">
+<meta property="og:url" content="http://pb0207.github.io/2017/04/09/Polya定理-例题/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:description" content="NOIP 模拟赛Author：HJWJBSR&amp;amp;duyege BlueBlue 是个动物学家，不仅喜欢研究猫和老鼠，还喜欢研究青蛙。 他最近开始研究青蛙过河的问题，可以简化成：数轴上$ 0 $为岸边，$L $为河对岸。$(0,L)$中间存在 n 个石子。已知青蛙一跳可以跳距离$ D$，而且不能沾水。求问能不能跳到河对岸。当然他觉得这个问题非常 naïve，于是在思考如果青蛙有 $m$ 个，且">
-<meta property="og:updated_time" content="2017-03-16T01:49:09.361Z">
+<meta property="og:description" content="Pólya定理先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多) 就先从例题说一下吧 例题SGU 282 同构题目描述我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不">
+<meta property="og:updated_time" content="2017-04-09T11:10:46.046Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NOIP模拟 2017/3/12">
-<meta name="twitter:description" content="NOIP 模拟赛Author：HJWJBSR&amp;amp;duyege BlueBlue 是个动物学家，不仅喜欢研究猫和老鼠，还喜欢研究青蛙。 他最近开始研究青蛙过河的问题，可以简化成：数轴上$ 0 $为岸边，$L $为河对岸。$(0,L)$中间存在 n 个石子。已知青蛙一跳可以跳距离$ D$，而且不能沾水。求问能不能跳到河对岸。当然他觉得这个问题非常 naïve，于是在思考如果青蛙有 $m$ 个，且">
+<meta name="twitter:title" content="Pólya定理 例题">
+<meta name="twitter:description" content="Pólya定理先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多) 就先从例题说一下吧 例题SGU 282 同构题目描述我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://pb0207.github.io/2017/03/12/NOIP模拟-2017-3-12/"/>
+  <link rel="canonical" href="http://pb0207.github.io/2017/04/09/Polya定理-例题/"/>
 
 
 
 
 
-  <title> NOIP模拟 2017/3/12 | pb0207 </title>
+  <title> Pólya定理 例题 | pb0207 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -290,7 +290,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/03/12/NOIP模拟-2017-3-12/">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/04/09/Polya定理-例题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pb">
@@ -311,7 +311,7 @@
             
             
               
-                NOIP模拟 2017/3/12
+                Pólya定理 例题
               
             
           </h1>
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-12T21:01:26+08:00">
-                2017-03-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T19:01:49+08:00">
+                2017-04-09
               </time>
             
 
@@ -349,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/NOIP模拟/" itemprop="url" rel="index">
-                    <span itemprop="name">NOIP模拟</span>
+                  <a href="/categories/群论/" itemprop="url" rel="index">
+                    <span itemprop="name">群论</span>
                   </a>
                 </span>
 
@@ -384,85 +384,90 @@
       
 
       
-        <h1 id="NOIP-模拟赛"><a href="#NOIP-模拟赛" class="headerlink" title="NOIP 模拟赛"></a>NOIP 模拟赛</h1><h2 id="Author：HJWJBSR-amp-duyege"><a href="#Author：HJWJBSR-amp-duyege" class="headerlink" title="Author：HJWJBSR&amp;duyege"></a>Author：HJWJBSR&amp;duyege</h2><hr>
-<h2 id="Blue"><a href="#Blue" class="headerlink" title="Blue"></a>Blue</h2><p>Blue 是个动物学家，不仅喜欢研究猫和老鼠，还喜欢研究青蛙。</p>
-<p>他最近开始研究青蛙过河的问题，可以简化成：数轴上$ 0 $为岸边，$L $为河对岸。$(0,L)$中间存在 n 个石子。已知青蛙一跳可以跳距离$ D$，而且不能沾水。求问能不能跳到河对岸。当然他觉得这个问题非常 naïve，于是在思考如果青蛙有 $m$ 个，且石头被踩过之后就会沉下去，$m $个青蛙还能不能依次安全过河。如果不能则问最多能有多少个过河。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行为一个正整数$ T $代表数据组数。每组数据第一行四个正整数：$n、m、D、L$。第二行 n 个升序正整数 $ai $代表第 $i $个石子坐标为 $ai$。保证没有重复且都小于$ L$。</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>$T$行”Excited”代表全部能过河或者一个整数代表有多少个能过河的。</p>
-<pre><code>对于 10%的数据保证 m=1.
-对于另外 10%的数据保证 D=L.
-对于另外 10%的数据保证 n=L-1.
-对于另外 30%的数据保证 n&lt;=100, L&lt;=10^5.
-对于 100%的数据保证 m&lt;=n&lt;=10^6,D&lt;=L&lt;=10^9.
-数据范围中的 n、m 皆代表题目描述中 n、m 的总和。
-</code></pre><h3 id="SAMPLE"><a href="#SAMPLE" class="headerlink" title="SAMPLE"></a>SAMPLE</h3><h4 id="INPUT"><a href="#INPUT" class="headerlink" title="INPUT"></a>INPUT</h4><pre><code>5
-10 9 16 30
-2 4 6 9 11 15 18 19 25 27 
-10 1 23 30
-10 11 13 14 15 16 18 26 27 29 
-10 7 28 30
-2 3 7 9 12 15 20 24 27 28 
-10 3 18 30
-1 6 9 14 18 19 22 27 28 29 
-10 7 10 30
-1 2 4 6 18 19 20 22 23 26 
-</code></pre><h4 id="OUTPUT"><a href="#OUTPUT" class="headerlink" title="OUTPUT"></a>OUTPUT</h4><pre><code>5
-Excited
-Excited
-Excited
-0
-</code></pre><hr>
-<p>既然作为第一题，绝对不会是DP，通常就是简单的贪心了。</p>
-<p>考试时想的比较多，由于需要求出人数，考虑到转化为二分判断可行性。判断还是用贪心，依次往后跳，记录下来最后看看有没有超过$D$的，复杂度$O(nlogn)$。</p>
-<p>然而正解是$O(n)$的直接贪心，对于每次跳，在每次跳的过程中，能跳过去最少的一次人数就是能跳过去的人数。</p>
-<p>题解的代码变量名十分惊奇，我就发一下自己的代码好了。</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
+        <h1 id="Polya定理"><a href="#Polya定理" class="headerlink" title="Pólya定理"></a>Pólya定理</h1><p>先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多)</p>
+<p>就先从例题说一下吧</p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h2 id="SGU-282-同构"><a href="#SGU-282-同构" class="headerlink" title="SGU 282 同构"></a>SGU 282 同构</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。<br>给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不同构的染色图数量。输出这个数模P的值。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入一行三个整数$N,M,P(1&lt;=N&lt;=53,1&lt;=M&lt;=1000,P$是素数且$P&lt;=10^6)$。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一行一个正整数，即互不同构的染色图数量模P的值。</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>sample 1:</p>
+<pre><code>1 1 2
+</code></pre><p>sample 2:</p>
+<pre><code>3 2 97
+</code></pre><p>sample 3:</p>
+<pre><code>3 4 97
+</code></pre><h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>sample 1:</p>
+<pre><code>1
+</code></pre><p>sample 2:</p>
+<pre><code>4
+</code></pre><p>sample 3:</p>
+<pre><code>20
+</code></pre><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>$n$个点的图有$n!$个置换，枚举肯定不可能的所以可以把$n$分解成若干个环，那么剩下的多于计算的就可以省去了那么不同环上的$a，b$两点，显然轮换个数为$gcd(n_a,n_b)$然后套polya即可</p>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
 #include&lt;cstring&gt;
-
+#include&lt;cmath&gt;
 using namespace std;
-
-const int N =1e6+1;
-
-int t,n,m,d,l,a[N],b[N];
-
-bool can(int ans)
+#define maxn 1111
+typedef long long ll;
+ll num[maxn],cnt[maxn],res,factor[maxn],n,m,p,ans;
+void init()
 {
-    memset(b,0,sizeof(b));
-    int anss=0;
-    for(int now=1;now&lt;=n;++now)
+    ans=res=0;
+    factor[0]=1;
+    for(int i=1;i&lt;maxn;i++)
+        factor[i]=factor[i-1]*i%p;
+}
+ll gcd(ll a,ll b)
+{
+    if(a&lt;b)return gcd(b,a);
+    if(b==0)return a;
+    return gcd(b,a%b);
+} 
+ll mod_pow(ll a,ll b,ll p)
+{
+    ll ans=1ll;
+    a%=p;
+    while(b)
     {
-        if(a[now]-b[++anss]&lt;=d)b[anss]=a[now];
-        if(anss==ans)anss=0;
+        if(b&amp;1) ans=(ans*a)%p;
+        a=(a*a)%p;
+        b&gt;&gt;=1;
+    } 
+    return ans;
+}
+void dfs(ll now,ll left)
+{
+    if(left==0)
+    {
+        ll a=1,b=0;
+        for(ll i=0;i&lt;res;i++)
+        {
+            a=a*mod_pow(num[i],cnt[i],p)%p*factor[cnt[i]]%p;
+            b+=cnt[i]*(cnt[i]-1)/2*num[i]+num[i]/2*cnt[i];
+            for(ll j=i+1;j&lt;res;j++)
+                b+=cnt[i]*cnt[j]*gcd(num[i],num[j]);
+        }
+        a=mod_pow(a,p-2,p)*factor[n]%p;
+        ans=(ans+a*mod_pow(m,b,p)%p)%p;
     }
-    for(int i=1;i&lt;=ans;++i)
-        if(l-b[i]&gt;d)
-            return 0;
-    return 1;
+    if(now&gt;left)return ;
+    dfs(now+1,left);
+    for(ll i=1;i*now&lt;=left;i++)
+    {
+        num[res]=now,cnt[res++]=i;
+        dfs(now+1,left-i*now);
+        res--;
+    }
 }
 int main()
 {
-    freopen(&quot;Blue.in&quot;,&quot;r&quot;,stdin);
-    freopen(&quot;Blue.out&quot;,&quot;w&quot;,stdout);
-    scanf(&quot;%d&quot;,t);
-    while(t)
+    while(~scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;m,&amp;p))
     {
-        scanf(&quot;%d%d%d%d&quot;,&amp;n,&amp;m,&amp;l,&amp;d);
-        for(int i=1;i&lt;=n;++i)
-            scanf(&quot;%d&quot;,&amp;a[i]);
-        int ll=0,rr=m,mid;
-        while(ll!=rr)
-        {
-            mid=ll+rr+1&gt;&gt;1;
-            if(can(mid))    
-                ll=mid;
-            else            
-                rr=mid-1;
-        }
-        if(rr==m)
-            printf(&quot;Excited\n&quot;);
-        else 
-            printf(&quot;%d\n&quot;,rr);
+        init();
+        dfs(1,n);
+        ans=ans*mod_pow(factor[n],p-2,p)%p;
+        printf(&quot;%lld\n&quot;,ans);
     }
     return 0;
 }
@@ -489,11 +494,7 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/贪心/" rel="tag"># 贪心</a>
-          
-            <a href="/tags/线段树/" rel="tag"># 线段树</a>
-          
-            <a href="/tags/模拟/" rel="tag"># 模拟</a>
+            <a href="/tags/群论/" rel="tag"># 群论</a>
           
         </div>
       
@@ -506,18 +507,14 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/14/SDOI2009-Bill的挑战/" rel="next" title="SDOI2009 Bill的挑战">
-                <i class="fa fa-chevron-left"></i> SDOI2009 Bill的挑战
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/12/SCOI2010-股票交易/" rel="prev" title="SCOI2010 股票交易">
-                SCOI2010 股票交易 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/05/筛法总结/" rel="prev" title="筛法总结">
+                筛法总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -672,7 +669,7 @@ int main()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP-模拟赛"><span class="nav-number">1.</span> <span class="nav-text">NOIP 模拟赛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Author：HJWJBSR-amp-duyege"><span class="nav-number">1.1.</span> <span class="nav-text">Author：HJWJBSR&duyege</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blue"><span class="nav-number">1.2.</span> <span class="nav-text">Blue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入"><span class="nav-number">1.2.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出"><span class="nav-number">1.2.2.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAMPLE"><span class="nav-number">1.2.3.</span> <span class="nav-text">SAMPLE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#INPUT"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">INPUT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OUTPUT"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">OUTPUT</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Polya定理"><span class="nav-number">1.</span> <span class="nav-text">Pólya定理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例题"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SGU-282-同构"><span class="nav-number">2.1.</span> <span class="nav-text">SGU 282 同构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">2.1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">2.1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">2.1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输入"><span class="nav-number">2.1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例输出"><span class="nav-number">2.1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解"><span class="nav-number">2.1.6.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#code"><span class="nav-number">2.1.6.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
