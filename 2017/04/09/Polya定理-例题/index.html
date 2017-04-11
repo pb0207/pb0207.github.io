@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/04/09/Polya定理-例题/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="Pólya定理先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多) 就先从例题说一下吧 例题SGU 282 同构题目描述我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不">
-<meta property="og:updated_time" content="2017-04-09T11:10:46.046Z">
+<meta property="og:updated_time" content="2017-04-10T13:52:10.464Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pólya定理 例题">
 <meta name="twitter:description" content="Pólya定理先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多) 就先从例题说一下吧 例题SGU 282 同构题目描述我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不">
@@ -401,8 +401,9 @@
 <pre><code>4
 </code></pre><p>sample 3:</p>
 <pre><code>20
-</code></pre><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>$n$个点的图有$n!$个置换，枚举肯定不可能的所以可以把$n$分解成若干个环，那么剩下的多于计算的就可以省去了那么不同环上的$a，b$两点，显然轮换个数为$gcd(n_a,n_b)$然后套polya即可</p>
-<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;cstdio&gt;
+</code></pre><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code>$n$个点的图有$n!$个置换，枚举肯定不可能的所以可以把$n$分解成若干个环，那么剩下的多于计算的就可以省去了那么不同环上的$a，b$两点，显然轮换个数为$gcd(n_a,n_b)$然后套polya即可
+#uncomplete
+</code></pre><h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 #include&lt;cstring&gt;
@@ -507,6 +508,10 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/04/10/排列组合/" rel="next" title="由浅入深排列组合">
+                <i class="fa fa-chevron-left"></i> 由浅入深排列组合
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -587,7 +592,7 @@ int main()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -596,7 +601,7 @@ int main()
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -605,7 +610,7 @@ int main()
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

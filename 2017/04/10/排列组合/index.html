@@ -1,0 +1,918 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="计数原理,组合数,Stirling,Polya定理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="排列组合排列组合顾名思义，就是解决一些排列和组合方法的问题。 加法与乘法原理加法原理定义:做一件事情，完成它有$N$类方式，第一类方式有$M_1$种方法，第二类方式有$M_2$种方法，……，第$N$类方式有$M_N$种方法，那么完成这件事情共有$M_1+M_2+……+M_N$种方法。举个例子：比如AC第一题有三种算法，第二题有二种算法，第三题有四种算法，那么只AC一道题就有$2+3+4=9$种方法">
+<meta name="keywords" content="计数原理,组合数,Stirling,Polya定理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="由浅入深排列组合">
+<meta property="og:url" content="http://pb0207.github.io/2017/04/10/排列组合/index.html">
+<meta property="og:site_name" content="pb0207">
+<meta property="og:description" content="排列组合排列组合顾名思义，就是解决一些排列和组合方法的问题。 加法与乘法原理加法原理定义:做一件事情，完成它有$N$类方式，第一类方式有$M_1$种方法，第二类方式有$M_2$种方法，……，第$N$类方式有$M_N$种方法，那么完成这件事情共有$M_1+M_2+……+M_N$种方法。举个例子：比如AC第一题有三种算法，第二题有二种算法，第三题有四种算法，那么只AC一道题就有$2+3+4=9$种方法">
+<meta property="og:updated_time" content="2017-04-11T03:43:00.798Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="由浅入深排列组合">
+<meta name="twitter:description" content="排列组合排列组合顾名思义，就是解决一些排列和组合方法的问题。 加法与乘法原理加法原理定义:做一件事情，完成它有$N$类方式，第一类方式有$M_1$种方法，第二类方式有$M_2$种方法，……，第$N$类方式有$M_N$种方法，那么完成这件事情共有$M_1+M_2+……+M_N$种方法。举个例子：比如AC第一题有三种算法，第二题有二种算法，第三题有四种算法，那么只AC一道题就有$2+3+4=9$种方法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pb0207.github.io/2017/04/10/排列组合/"/>
+
+
+
+
+
+  <title> 由浅入深排列组合 | pb0207 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pb0207</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/04/10/排列组合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/genji.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pb0207">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                由浅入深排列组合
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T11:16:27+08:00">
+                2017-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/组合数学/" itemprop="url" rel="index">
+                    <span itemprop="name">组合数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h1><p>排列组合顾名思义，就是解决一些排列和组合方法的问题。</p>
+<h2 id="加法与乘法原理"><a href="#加法与乘法原理" class="headerlink" title="加法与乘法原理"></a>加法与乘法原理</h2><h3 id="加法原理"><a href="#加法原理" class="headerlink" title="加法原理"></a>加法原理</h3><h4 id="定义-做一件事情，完成它有-N-类方式，第一类方式有-M-1-种方法，第二类方式有-M-2-种方法，……，第-N-类方式有-M-N-种方法，那么完成这件事情共有-M-1-M-2-……-M-N-种方法。"><a href="#定义-做一件事情，完成它有-N-类方式，第一类方式有-M-1-种方法，第二类方式有-M-2-种方法，……，第-N-类方式有-M-N-种方法，那么完成这件事情共有-M-1-M-2-……-M-N-种方法。" class="headerlink" title="定义:做一件事情，完成它有$N$类方式，第一类方式有$M_1$种方法，第二类方式有$M_2$种方法，……，第$N$类方式有$M_N$种方法，那么完成这件事情共有$M_1+M_2+……+M_N$种方法。"></a><strong>定义:做一件事情，完成它有$N$类方式，第一类方式有$M_1$种方法，第二类方式有$M_2$种方法，……，第$N$类方式有$M_N$种方法，那么完成这件事情共有$M_1+M_2+……+M_N$种方法。</strong></h4><p>举个例子：比如AC第一题有三种算法，第二题有二种算法，第三题有四种算法，那么只AC一道题就有$2+3+4=9$种方法。</p>
+<h3 id="乘法原理"><a href="#乘法原理" class="headerlink" title="乘法原理"></a>乘法原理</h3><h4 id="定义-做一件事，完成它需要分成-N-个步骤，做第一-步有-M-1-种不同的方法，做第二步有-M-2-种不同的方法，……，做第-N-步有-M×N-种不同的方法。那么完成这件事共有-M-1×M-2×……×M-N-种不同的方法。"><a href="#定义-做一件事，完成它需要分成-N-个步骤，做第一-步有-M-1-种不同的方法，做第二步有-M-2-种不同的方法，……，做第-N-步有-M×N-种不同的方法。那么完成这件事共有-M-1×M-2×……×M-N-种不同的方法。" class="headerlink" title="定义:做一件事，完成它需要分成$N$个步骤，做第一 步有$M_1$种不同的方法，做第二步有$M_2$种不同的方法，……，做第$N$步有$M×N$种不同的方法。那么完成这件事共有$M_1×M_2×……×M_N$种不同的方法。"></a><strong>定义:做一件事，完成它需要分成$N$个步骤，做第一 步有$M_1$种不同的方法，做第二步有$M_2$种不同的方法，……，做第$N$步有$M×N$种不同的方法。那么完成这件事共有$M_1×M_2×……×M_N$种不同的方法。</strong></h4><p>比较经典的例子：<strong>算数基本定理</strong></p>
+<p>算数基本定理：如果有一个数$x$，他的质因数分解为<br>$$x=p_1^{t_1}p_2^{t_2}…p_k^{t_k}$$<br>那么它的因子就有<br>$$(t_1+1)(t_2+1)(t_3+1)…(t_k+1)个$$</p>
+<p>证明：这里就用到了乘法原理了。</p>
+<p>显然对于这个数的每个质因子都可以选$[0,t_i]$个，所以有$t_i+1$种选择，所以根据乘法原理，就可以得到因子个数。</p>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>大水题，$n*n$的棋盘上摆放$n$个互不攻击的车，有多少种方法。</p>
+<p>根据乘法原理，第一行放置有$n$个格子可以选择，但是放置之后，第二行就只有$n-1$个格子了，所以依次下去，答案就是$n!$</p>
+<p>code</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+
+const int N=21;
+
+long long n,fac[N];
+
+void calfac()
+{
+    fac[0]=1;
+    for(int i=1;i&lt;N;i++)
+        fac[i]=fac[i-1]*i;
+}
+int main()
+{
+    calfac();
+    scanf(&quot;%lld&quot;,&amp;n);
+    printf(&quot;%lld&quot;,fac[n]);
+}
+</code></pre><h1 id="Polya定理"><a href="#Polya定理" class="headerlink" title="Pólya定理"></a>Pólya定理</h1><p>先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多)</p>
+<p>就先从例题说一下吧</p>
+<h2 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h2><h3 id="SGU-282-同构"><a href="#SGU-282-同构" class="headerlink" title="SGU 282 同构"></a>SGU 282 同构</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。<br>给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不同构的染色图数量。输出这个数模P的值。</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入一行三个整数$N,M,P(1&lt;=N&lt;=53,1&lt;=M&lt;=1000,P$是素数且$P&lt;=10^6)$。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一行一个正整数，即互不同构的染色图数量模P的值。</p>
+<h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><p>sample 1:</p>
+<pre><code>1 1 2
+</code></pre><p>sample 2:</p>
+<pre><code>3 2 97
+</code></pre><p>sample 3:</p>
+<pre><code>3 4 97
+</code></pre><h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><p>sample 1:</p>
+<pre><code>1
+</code></pre><p>sample 2:</p>
+<pre><code>4
+</code></pre><p>sample 3:</p>
+<pre><code>20
+</code></pre><h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><pre><code>$n$个点的图有$n!$个置换，枚举肯定不可能的所以可以把$n$分解成若干个环，那么剩下的多于计算的就可以省去了那么不同环上的$a，b$两点，显然轮换个数为$gcd(n_a,n_b)$然后套polya即可
+#uncomplete
+</code></pre><h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;cmath&gt;
+using namespace std;
+#define maxn 1111
+typedef long long ll;
+ll num[maxn],cnt[maxn],res,factor[maxn],n,m,p,ans;
+void init()
+{
+    ans=res=0;
+    factor[0]=1;
+    for(int i=1;i&lt;maxn;i++)
+        factor[i]=factor[i-1]*i%p;
+}
+ll gcd(ll a,ll b)
+{
+    if(a&lt;b)return gcd(b,a);
+    if(b==0)return a;
+    return gcd(b,a%b);
+} 
+ll mod_pow(ll a,ll b,ll p)
+{
+    ll ans=1ll;
+    a%=p;
+    while(b)
+    {
+        if(b&amp;1) ans=(ans*a)%p;
+        a=(a*a)%p;
+        b&gt;&gt;=1;
+    } 
+    return ans;
+}
+void dfs(ll now,ll left)
+{
+    if(left==0)
+    {
+        ll a=1,b=0;
+        for(ll i=0;i&lt;res;i++)
+        {
+            a=a*mod_pow(num[i],cnt[i],p)%p*factor[cnt[i]]%p;
+            b+=cnt[i]*(cnt[i]-1)/2*num[i]+num[i]/2*cnt[i];
+            for(ll j=i+1;j&lt;res;j++)
+                b+=cnt[i]*cnt[j]*gcd(num[i],num[j]);
+        }
+        a=mod_pow(a,p-2,p)*factor[n]%p;
+        ans=(ans+a*mod_pow(m,b,p)%p)%p;
+    }
+    if(now&gt;left)return ;
+    dfs(now+1,left);
+    for(ll i=1;i*now&lt;=left;i++)
+    {
+        num[res]=now,cnt[res++]=i;
+        dfs(now+1,left-i*now);
+        res--;
+    }
+}
+int main()
+{
+    while(~scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;m,&amp;p))
+    {
+        init();
+        dfs(1,n);
+        ans=ans*mod_pow(factor[n],p-2,p)%p;
+        printf(&quot;%lld\n&quot;,ans);
+    }
+    return 0;
+}
+</code></pre><h2 id="组合数"><a href="#组合数" class="headerlink" title="组合数"></a>组合数</h2><p>这是一个基于乘法原理的东西。<br>首先看看什么是</p>
+<h3 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h3><h4 id="定义：从-n-个不同的元素中，有次序的选取-r-个元素，记为-n-中取-r-个的排列，数量记为-A-n-r-当-n-r-时，叫做全排列"><a href="#定义：从-n-个不同的元素中，有次序的选取-r-个元素，记为-n-中取-r-个的排列，数量记为-A-n-r-当-n-r-时，叫做全排列" class="headerlink" title="定义：从$n$个不同的元素中，有次序的选取$r$个元素，记为$n$中取$r$个的排列，数量记为$A(n,r)$,当$n=r$时，叫做全排列"></a><strong>定义：从$n$个不同的元素中，有次序的选取$r$个元素，记为$n$中取$r$个的排列，数量记为$A(n,r)$,当$n=r$时，叫做全排列</strong></h4><p>$$A(n,r)=\frac {n!} {(n-r)!}$$</p>
+<p>而且$A(n,r)通常表示为A^n_r$</p>
+<h3 id="组合数-1"><a href="#组合数-1" class="headerlink" title="组合数"></a>组合数</h3><h4 id="定义：组合数，从-n-个不同的元素中选取-r-个切不考虑顺序，记作-C-n-r-或-C-r-n-或-begin-pmatrix-n-m-end-pmatrix"><a href="#定义：组合数，从-n-个不同的元素中选取-r-个切不考虑顺序，记作-C-n-r-或-C-r-n-或-begin-pmatrix-n-m-end-pmatrix" class="headerlink" title="定义：组合数，从$n$个不同的元素中选取$r$个切不考虑顺序，记作$C(n,r)$或$C_r^n$或$\begin{pmatrix}n\m\end{pmatrix}$"></a><strong>定义：组合数，从$n$个不同的元素中选取$r$个切不考虑顺序，记作$C(n,r)$或$C_r^n$或$\begin{pmatrix}n\m\end{pmatrix}$</strong></h4><p>$\begin{pmatrix}n\m\end{pmatrix}=\frac {p(n,r)} {r!}=\frac {n!} {m!(n-m)!}$</p>
+<p>事实组合数和排列经常一起运算来计算一些东西。</p>
+<h4 id="常见性质"><a href="#常见性质" class="headerlink" title="常见性质"></a>常见性质</h4><p>这些东西可以用组合论证来解释，即将其表示为长度一定的二进制串中某一位选0或者选1</p>
+<p>$$C^n_m=C^n_m$$<br>这个应该很好想，从$n$中取$m$个为1跟找$n-m$个为0是一样的。</p>
+<p>$$ $$</p>
+<h2 id="Catalan"><a href="#Catalan" class="headerlink" title="Catalan"></a>Catalan</h2><h2 id="Stirling"><a href="#Stirling" class="headerlink" title="Stirling"></a>Stirling</h2><h2 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h2><h2 id="母函数"><a href="#母函数" class="headerlink" title="母函数"></a>母函数</h2><h2 id="抽屉原理"><a href="#抽屉原理" class="headerlink" title="抽屉原理"></a>抽屉原理</h2><p>好久之前做过一道跟抽屉原理有关的题啊，忘掉了。</p>
+<p>是一套模拟题里面的，可以优化复杂度。</p>
+<p>抽屉原理就是比如二种苹果放到五个抽屉中，总有一个抽屉出现重复种类的苹果。</p>
+<p>再比如去掉大小王的扑克牌，抽14张，总有两张点数相同的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计数原理/" rel="tag"># 计数原理</a>
+          
+            <a href="/tags/组合数/" rel="tag"># 组合数</a>
+          
+            <a href="/tags/Stirling/" rel="tag"># Stirling</a>
+          
+            <a href="/tags/Polya定理/" rel="tag"># Polya定理</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/09/Polya定理-例题/" rel="prev" title="Pólya定理 例题">
+                Pólya定理 例题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/genji.jpg"
+               alt="pb" />
+          <p class="site-author-name" itemprop="name">pb</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pb0207" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://prostkhala.github.io/" title="ProSTKhala" target="_blank">ProSTKhala</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://allamend.blog.163.com/" title="allamend" target="_blank">allamend</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#排列组合"><span class="nav-number">1.</span> <span class="nav-text">排列组合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加法与乘法原理"><span class="nav-number">1.1.</span> <span class="nav-text">加法与乘法原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加法原理"><span class="nav-number">1.1.1.</span> <span class="nav-text">加法原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-做一件事情，完成它有-N-类方式，第一类方式有-M-1-种方法，第二类方式有-M-2-种方法，……，第-N-类方式有-M-N-种方法，那么完成这件事情共有-M-1-M-2-……-M-N-种方法。"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">定义:做一件事情，完成它有$N$类方式，第一类方式有$M_1$种方法，第二类方式有$M_2$种方法，……，第$N$类方式有$M_N$种方法，那么完成这件事情共有$M_1+M_2+……+M_N$种方法。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乘法原理"><span class="nav-number">1.1.2.</span> <span class="nav-text">乘法原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-做一件事，完成它需要分成-N-个步骤，做第一-步有-M-1-种不同的方法，做第二步有-M-2-种不同的方法，……，做第-N-步有-M×N-种不同的方法。那么完成这件事共有-M-1×M-2×……×M-N-种不同的方法。"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">定义:做一件事，完成它需要分成$N$个步骤，做第一 步有$M_1$种不同的方法，做第二步有$M_2$种不同的方法，……，做第$N$步有$M×N$种不同的方法。那么完成这件事共有$M_1×M_2×……×M_N$种不同的方法。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Polya定理"><span class="nav-number">2.</span> <span class="nav-text">Pólya定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例题-1"><span class="nav-number">2.1.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SGU-282-同构"><span class="nav-number">2.1.1.</span> <span class="nav-text">SGU 282 同构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题解"><span class="nav-number">2.1.1.6.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#code"><span class="nav-number">2.1.1.6.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合数"><span class="nav-number">2.2.</span> <span class="nav-text">组合数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排列"><span class="nav-number">2.2.1.</span> <span class="nav-text">排列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义：从-n-个不同的元素中，有次序的选取-r-个元素，记为-n-中取-r-个的排列，数量记为-A-n-r-当-n-r-时，叫做全排列"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">定义：从$n$个不同的元素中，有次序的选取$r$个元素，记为$n$中取$r$个的排列，数量记为$A(n,r)$,当$n=r$时，叫做全排列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合数-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">组合数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义：组合数，从-n-个不同的元素中选取-r-个切不考虑顺序，记作-C-n-r-或-C-r-n-或-begin-pmatrix-n-m-end-pmatrix"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">定义：组合数，从$n$个不同的元素中选取$r$个切不考虑顺序，记作$C(n,r)$或$C_r^n$或$\begin{pmatrix}n\m\end{pmatrix}$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见性质"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">常见性质</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Catalan"><span class="nav-number">2.3.</span> <span class="nav-text">Catalan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stirling"><span class="nav-number">2.4.</span> <span class="nav-text">Stirling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容斥原理"><span class="nav-number">2.5.</span> <span class="nav-text">容斥原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#母函数"><span class="nav-number">2.6.</span> <span class="nav-text">母函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽屉原理"><span class="nav-number">2.7.</span> <span class="nav-text">抽屉原理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pb</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
