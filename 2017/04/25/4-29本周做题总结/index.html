@@ -94,14 +94,15 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/04/25/4-29本周做题总结/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="bzoj 1015这题挺有意思的。大意是在删除点的同时，输出连通块的个数。乍一看挺水的，反向操作就行了，用并查集维护，dfs求连通块，但是第一次全部WA了，还是忍不住看了数据。 自己没有想到的是，每次加入星球后，连通块会变多，想了想，因为有些星球被摧毁了，就不算连通块，所以需要在在恢复星球时，先把当前答案增加1，然后再开始处理减少的情况。 另外要注意的就是不能重复摧毁星球，否则反向操作的时候会导致">
-<meta property="og:image" content="http://i1.piimg.com/567571/8734c82baeffd11b.png">
-<meta property="og:image" content="http://i4.buimg.com/567571/4a88ce4146320ea3.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/db3257f6fe47c9e7.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/759fe5db3b3b0f7d.png">
+<meta property="og:image" content="http://i2.muimg.com/567571/ad9b299c0f36ce37.png">
 <meta property="og:image" content="http://i4.buimg.com/567571/59d57f2154e649f9.png">
-<meta property="og:updated_time" content="2017-04-27T08:34:52.494Z">
+<meta property="og:updated_time" content="2017-04-27T08:44:20.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4.29本周做题总结">
 <meta name="twitter:description" content="bzoj 1015这题挺有意思的。大意是在删除点的同时，输出连通块的个数。乍一看挺水的，反向操作就行了，用并查集维护，dfs求连通块，但是第一次全部WA了，还是忍不住看了数据。 自己没有想到的是，每次加入星球后，连通块会变多，想了想，因为有些星球被摧毁了，就不算连通块，所以需要在在恢复星球时，先把当前答案增加1，然后再开始处理减少的情况。 另外要注意的就是不能重复摧毁星球，否则反向操作的时候会导致">
-<meta name="twitter:image" content="http://i1.piimg.com/567571/8734c82baeffd11b.png">
+<meta name="twitter:image" content="http://i4.buimg.com/567571/db3257f6fe47c9e7.png">
 
 
 
@@ -402,7 +403,7 @@
 <p>另外本题需要先推出一些结论，那就是转移是有限的。要推出不同的情况下哪些转移是不同的。然后来进行操作。</p>
 <h1 id="SDOI2017-T1"><a href="#SDOI2017-T1" class="headerlink" title="SDOI2017 T1"></a>SDOI2017 T1</h1><p>数学题。这么裸的莫比乌斯反演不会推，真是problemB白做了，主要不好处理的就是连续的乘法。但是化简一下就成可以直接用的了。看来还是要多做一些题。</p>
 <p>这题的模数平方会爆ULL，所以不写个单精取模几乎骗不到暴力分$0.0$。</p>
-<p>详细一点的在学校OJ上，截个图吧。。<br><img src="http://i1.piimg.com/567571/8734c82baeffd11b.png" alt=""><br><img src="http://i4.buimg.com/567571/4a88ce4146320ea3.png" alt=""></p>
+<p>详细一点的在学校OJ上，截个图吧。。<br><img src="http://i4.buimg.com/567571/db3257f6fe47c9e7.png" alt=""><br><img src="http://i4.buimg.com/567571/759fe5db3b3b0f7d.png" alt=""><br><img src="http://i2.muimg.com/567571/ad9b299c0f36ce37.png" alt=""></p>
 <h1 id="bzoj-1049"><a href="#bzoj-1049" class="headerlink" title="bzoj 1049"></a>bzoj 1049</h1><p>HAOI2006，话说多年前的题不是都很水么，这道题好难。</p>
 <p>第一问利用差分思想，只不过是数组减去下标，然后最长上升子序列即可。</p>
 <p>第二问挺难的。下面是网上的题解，事实上我想的也差不多，只不过没有证明下面的结论，所以只想出了$O(n^2logn)$的做法，是过不了这题的。题解中公式比较多，就直接粘图片了。第二问主要是证明结论的，我觉得最值得借鉴的是第一问的思想。<br><img src="http://i4.buimg.com/567571/59d57f2154e649f9.png" alt=""></p>
