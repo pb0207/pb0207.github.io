@@ -87,17 +87,20 @@
 
 
 
-<meta name="description" content="bzoj1001比较裸的网络流，给结点标号建边，由于是双向边，所以必须将双向流量都初始化，另外dinic一定要加当前弧优化，否则很容易tle bzoj 1003一道dp，比较简单的想法是跑spfa，因为毕竟是最短路问题，但是中间可以改变线路，就需要DP来辅助决策 bzoj 1004其实是一道裸的burnsides引理，但是有更简单的做法，就是组合数学。因为是选择，加上组合数之后，最后推出来一个比较">
+<meta name="description" content="bzoj 1015这题挺有意思的。大意是在删除点的同时，输出连通块的个数。乍一看挺水的，反向操作就行了，用并查集维护，dfs求连通块，但是第一次全部WA了，还是忍不住看了数据。 自己没有想到的是，每次加入星球后，连通块会变多，想了想，因为有些星球被摧毁了，就不算连通块，所以需要在在恢复星球时，先把当前答案增加1，然后再开始处理减少的情况。 另外要注意的就是不能重复摧毁星球，否则反向操作的时候会导致">
 <meta name="keywords" content="杂题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4.23本周做题总结">
-<meta property="og:url" content="http://pb0207.github.io/2017/04/25/4-23本周做题总结/index.html">
+<meta property="og:title" content="4.29本周做题总结">
+<meta property="og:url" content="http://pb0207.github.io/2017/04/25/4-29本周做题总结/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:description" content="bzoj1001比较裸的网络流，给结点标号建边，由于是双向边，所以必须将双向流量都初始化，另外dinic一定要加当前弧优化，否则很容易tle bzoj 1003一道dp，比较简单的想法是跑spfa，因为毕竟是最短路问题，但是中间可以改变线路，就需要DP来辅助决策 bzoj 1004其实是一道裸的burnsides引理，但是有更简单的做法，就是组合数学。因为是选择，加上组合数之后，最后推出来一个比较">
-<meta property="og:updated_time" content="2017-04-25T03:13:01.502Z">
+<meta property="og:description" content="bzoj 1015这题挺有意思的。大意是在删除点的同时，输出连通块的个数。乍一看挺水的，反向操作就行了，用并查集维护，dfs求连通块，但是第一次全部WA了，还是忍不住看了数据。 自己没有想到的是，每次加入星球后，连通块会变多，想了想，因为有些星球被摧毁了，就不算连通块，所以需要在在恢复星球时，先把当前答案增加1，然后再开始处理减少的情况。 另外要注意的就是不能重复摧毁星球，否则反向操作的时候会导致">
+<meta property="og:image" content="http://i1.piimg.com/567571/8734c82baeffd11b.png">
+<meta property="og:image" content="http://i4.buimg.com/567571/4a88ce4146320ea3.png">
+<meta property="og:updated_time" content="2017-04-27T03:35:50.703Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4.23本周做题总结">
-<meta name="twitter:description" content="bzoj1001比较裸的网络流，给结点标号建边，由于是双向边，所以必须将双向流量都初始化，另外dinic一定要加当前弧优化，否则很容易tle bzoj 1003一道dp，比较简单的想法是跑spfa，因为毕竟是最短路问题，但是中间可以改变线路，就需要DP来辅助决策 bzoj 1004其实是一道裸的burnsides引理，但是有更简单的做法，就是组合数学。因为是选择，加上组合数之后，最后推出来一个比较">
+<meta name="twitter:title" content="4.29本周做题总结">
+<meta name="twitter:description" content="bzoj 1015这题挺有意思的。大意是在删除点的同时，输出连通块的个数。乍一看挺水的，反向操作就行了，用并查集维护，dfs求连通块，但是第一次全部WA了，还是忍不住看了数据。 自己没有想到的是，每次加入星球后，连通块会变多，想了想，因为有些星球被摧毁了，就不算连通块，所以需要在在恢复星球时，先把当前答案增加1，然后再开始处理减少的情况。 另外要注意的就是不能重复摧毁星球，否则反向操作的时候会导致">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/8734c82baeffd11b.png">
 
 
 
@@ -125,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://pb0207.github.io/2017/04/25/4-23本周做题总结/"/>
+  <link rel="canonical" href="http://pb0207.github.io/2017/04/25/4-29本周做题总结/"/>
 
 
 
 
 
-  <title> 4.23本周做题总结 | pb0207 </title>
+  <title> 4.29本周做题总结 | pb0207 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -290,7 +293,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/04/25/4-23本周做题总结/">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/04/25/4-29本周做题总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pb">
@@ -311,7 +314,7 @@
             
             
               
-                4.23本周做题总结
+                4.29本周做题总结
               
             
           </h1>
@@ -326,7 +329,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T10:34:08+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T15:02:49+08:00">
                 2017-04-25
               </time>
             
@@ -384,19 +387,21 @@
       
 
       
-        <h1 id="bzoj1001"><a href="#bzoj1001" class="headerlink" title="bzoj1001"></a>bzoj1001</h1><p>比较裸的网络流，给结点标号建边，由于是双向边，所以必须将双向流量都初始化，另外dinic一定要加当前弧优化，否则很容易tle</p>
-<h1 id="bzoj-1003"><a href="#bzoj-1003" class="headerlink" title="bzoj 1003"></a>bzoj 1003</h1><p>一道dp，比较简单的想法是跑spfa，因为毕竟是最短路问题，但是中间可以改变线路，就需要DP来辅助决策</p>
-<h1 id="bzoj-1004"><a href="#bzoj-1004" class="headerlink" title="bzoj 1004"></a>bzoj 1004</h1><p>其实是一道裸的burnsides引理，但是有更简单的做法，就是组合数学。因为是选择，加上组合数之后，最后推出来一个比较简单的式子，直接费马小定理求逆元然后处理掉除法就很方便了</p>
-<h1 id="bzoj-1007"><a href="#bzoj-1007" class="headerlink" title="bzoj 1007"></a>bzoj 1007</h1><p>几何题，有点像半平面交，但是并不会。可以直接观察一下，逆时针排序之后扫描，如果交点在上面就不能要了，于是可以用栈来维护，依次扫描，不符合条件就弹出，跟凸包是一样的。</p>
-<h1 id="bzoj-1008"><a href="#bzoj-1008" class="headerlink" title="bzoj 1008"></a>bzoj 1008</h1><p>这题好水。。。很简单的乘法原理，因为要求选择的相邻的数不能相同，所以第一个任意选，但是第二个就就只能在剩下的中间选，但是注意到与第一次选择的一定是不同的，所以后面的和这次的方案数其实是一样的，直接用快速幂就可以处理。</p>
-<h1 id="bzoj-1011"><a href="#bzoj-1011" class="headerlink" title="bzoj 1011"></a>bzoj 1011</h1><p>这题可以有很小的一个误差，而且因为只受到遥远行星的干扰，所以可以预处理分母，然后枚举行星位置来做。很奇怪的做法。</p>
-<h1 id="bzoj-1013"><a href="#bzoj-1013" class="headerlink" title="bzoj 1013"></a>bzoj 1013</h1><p>无论是几维的球体，其显著特征就是点到球心的距离都是相等的，然后就是一堆方程组了，注意需要预处理一下，然后高斯消元解方程组</p>
-<h1 id="bzoj-1054"><a href="#bzoj-1054" class="headerlink" title="bzoj 1054"></a>bzoj 1054</h1><p>BFS，需要记录状态，显然状压可以，但是更方便的是直接用HASH来储存，搜索状态直接入队即可。</p>
-<h1 id="洛谷月赛R2t1"><a href="#洛谷月赛R2t1" class="headerlink" title="洛谷月赛R2t1"></a>洛谷月赛R2t1</h1><p>数学题，都是打表找规律做的。。。后来自己推了推，貌似可以简单地证明一下，如果是因数，取mod时候就会去掉，所以要先处理出因数的和，可以$O(nlogn)$处理出来，然后就是递推了。</p>
-<p>总结一下数学题的经验吧，数学题真是不能往一个方向死推啊，看到个$f(x)$就开始推莫比乌斯反演或者欧拉函数了，其实可以往别的方向想一想。</p>
-<h1 id="COGS-2192"><a href="#COGS-2192" class="headerlink" title="COGS 2192"></a>COGS 2192</h1><p>约瑟夫问题的改进版，一开始理解错了题意。其实是一个简单地模拟，但是需要推出来每次那些人会被干掉。</p>
-<h1 id="Codeforces286E"><a href="#Codeforces286E" class="headerlink" title="Codeforces286E"></a>Codeforces286E</h1><p>还是<a href="prostkhala.github.io">ST</a>带我领略了这题啊。<br>确实是好题。首先组合问题显然不属于组合数学的范围了，因为限制因素太多，考虑用母函数。但是由于可以多次选举，多次求多项式乘积FFT也处理不了，但是根据题意，无论相加多少次，应该也已经在之前给出的集合里面了，所以只需要平方即可。</p>
-<h1 id="物品"><a href="#物品" class="headerlink" title="物品"></a>物品</h1><p>二分答案，每次预处理出来在哪个时间点分裂，枚举可能的情况最后判断，注意当满足时范围要左移，所以必须写左开右闭，答案是最后的右区间。</p>
+        <h1 id="bzoj-1015"><a href="#bzoj-1015" class="headerlink" title="bzoj 1015"></a>bzoj 1015</h1><p>这题挺有意思的。大意是在删除点的同时，输出连通块的个数。乍一看挺水的，反向操作就行了，用并查集维护，dfs求连通块，但是第一次全部WA了，还是忍不住看了数据。</p>
+<p>自己没有想到的是，每次加入星球后，连通块会变多，想了想，因为有些星球被摧毁了，就不算连通块，所以需要在在恢复星球时，先把当前答案增加1，然后再开始处理减少的情况。</p>
+<p>另外要注意的就是不能重复摧毁星球，否则反向操作的时候会导致星球的数量统计出现问题，只有在其第一次摧毁时才操作，针对每个星球记录一下即可。</p>
+<h1 id="bzoj-1016"><a href="#bzoj-1016" class="headerlink" title="bzoj 1016"></a>bzoj 1016</h1><p>最小生成树计数问题。生成树计数问题理论上都可以用基尔霍夫矩阵-生成树定理来解决。不过构造比较麻烦。</p>
+<p>本题给出的特殊条件使得有更简单的做法。因为每条边只有十条权值相同的，所以可以直接枚举然后计算。</p>
+<h1 id="bzoj-1017"><a href="#bzoj-1017" class="headerlink" title="bzoj 1017"></a>bzoj 1017</h1><p>这道题DP分两部分，一部分是在树上，但是树上DP时无法计算如何产生最大的收益，于是就要再做一个线性的DP来处理收益，需要两部分DP相结合。</p>
+<h1 id="bzoj-1018"><a href="#bzoj-1018" class="headerlink" title="bzoj 1018"></a>bzoj 1018</h1><p>这道题思想比较新颖，用线段树来维护连通性，其实就是维护一下是否有权值。但是要把其放在不同的位置来处理，同时要考虑如何走可以到达，然后维护连通性。听说分治并查集也可以做，但是并没有找到题解，也不会写。。。</p>
+<h1 id="bzoj-1019"><a href="#bzoj-1019" class="headerlink" title="bzoj 1019"></a>bzoj 1019</h1><p>这题题目名称叫汉诺塔，但并不是简单的递归。事实上，需要知道一类汉诺塔问题的递推公式，步数总是一个线性的一元一次递推式，即$f[n]=f[n-1]×a+b$。那么只要用三个栈来模拟三个柱子，便可以模拟出前三次操作，计算出$a,b$然后进行递推计算即可。</p>
+<h1 id="bzoj-1012"><a href="#bzoj-1012" class="headerlink" title="bzoj 1012"></a>bzoj 1012</h1><p>这道题线段树确实可以直接解决。事实上任何可以快速插入查询的数据结构多可以完成相应的操作。但是另外一种写法是利用单调栈，查找时二分查找，思路还是很值得借鉴。</p>
+<h1 id="bzoj-1020"><a href="#bzoj-1020" class="headerlink" title="bzoj 1020"></a>bzoj 1020</h1><p>这道题不是纯的计算几何。最大值最小会想到二分，而且到两边的距离确实具有单调性，但是二分的话先让会浪费很多时间。所以可以根据每次二分的答案计算出哪些地方不可能产生答案而直接剔除，这就用到了迭代的方法。代码实现也比较复杂，需要计算很多量。</p>
+<h1 id="bzoj-1021"><a href="#bzoj-1021" class="headerlink" title="bzoj 1021"></a>bzoj 1021</h1><p>DP。设计状态比较重要。数据范围中，债务的最大值只有1000是突破点，可以直接把A、B的债务作为两维，然后进行DP。还是比较好处理的。就是一个01背包，然后直接用滚动数组计算即可。</p>
+<p>另外本题需要先推出一些结论，那就是转移是有限的。要推出不同的情况下哪些转移是不同的。然后来进行操作。</p>
+<h1 id="SDOI2017-T1"><a href="#SDOI2017-T1" class="headerlink" title="SDOI2017 T1"></a>SDOI2017 T1</h1><p>数学题。这么裸的莫比乌斯反演不会推，真是problemB白做了，主要不好处理的就是连续的乘法。但是化简一下就成可以直接用的了。看来还是要多做一些题。</p>
+<p>这题的模数平方会爆ULL，所以不写个单精取模几乎骗不到暴力分$0.0$。</p>
+<p>详细一点的在学校OJ上，截个图吧。。<br><img src="http://i1.piimg.com/567571/8734c82baeffd11b.png" alt=""><br><img src="http://i4.buimg.com/567571/4a88ce4146320ea3.png" alt=""></p>
 
       
     </div>
@@ -433,18 +438,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/25/4-29本周做题总结/" rel="next" title="4.29本周做题总结">
-                <i class="fa fa-chevron-left"></i> 4.29本周做题总结
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/10/排列组合/" rel="prev" title="由浅入深排列组合">
-                由浅入深排列组合 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/25/4-23本周做题总结/" rel="prev" title="4.23本周做题总结">
+                4.23本周做题总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -599,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj1001"><span class="nav-number">1.</span> <span class="nav-text">bzoj1001</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1003"><span class="nav-number">2.</span> <span class="nav-text">bzoj 1003</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1004"><span class="nav-number">3.</span> <span class="nav-text">bzoj 1004</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1007"><span class="nav-number">4.</span> <span class="nav-text">bzoj 1007</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1008"><span class="nav-number">5.</span> <span class="nav-text">bzoj 1008</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1011"><span class="nav-number">6.</span> <span class="nav-text">bzoj 1011</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1013"><span class="nav-number">7.</span> <span class="nav-text">bzoj 1013</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1054"><span class="nav-number">8.</span> <span class="nav-text">bzoj 1054</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#洛谷月赛R2t1"><span class="nav-number">9.</span> <span class="nav-text">洛谷月赛R2t1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#COGS-2192"><span class="nav-number">10.</span> <span class="nav-text">COGS 2192</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Codeforces286E"><span class="nav-number">11.</span> <span class="nav-text">Codeforces286E</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物品"><span class="nav-number">12.</span> <span class="nav-text">物品</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1015"><span class="nav-number">1.</span> <span class="nav-text">bzoj 1015</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1016"><span class="nav-number">2.</span> <span class="nav-text">bzoj 1016</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1017"><span class="nav-number">3.</span> <span class="nav-text">bzoj 1017</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1018"><span class="nav-number">4.</span> <span class="nav-text">bzoj 1018</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1019"><span class="nav-number">5.</span> <span class="nav-text">bzoj 1019</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1012"><span class="nav-number">6.</span> <span class="nav-text">bzoj 1012</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1020"><span class="nav-number">7.</span> <span class="nav-text">bzoj 1020</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1021"><span class="nav-number">8.</span> <span class="nav-text">bzoj 1021</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SDOI2017-T1"><span class="nav-number">9.</span> <span class="nav-text">SDOI2017 T1</span></a></li></ol></div>
             
 
           </div>
