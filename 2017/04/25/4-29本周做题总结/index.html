@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://i4.buimg.com/567571/759fe5db3b3b0f7d.png">
 <meta property="og:image" content="http://i2.muimg.com/567571/ad9b299c0f36ce37.png">
 <meta property="og:image" content="http://i4.buimg.com/567571/59d57f2154e649f9.png">
-<meta property="og:updated_time" content="2017-04-27T08:44:20.278Z">
+<meta property="og:updated_time" content="2017-04-28T03:51:05.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4.29本周做题总结">
 <meta name="twitter:description" content="bzoj 1015这题挺有意思的。大意是在删除点的同时，输出连通块的个数。乍一看挺水的，反向操作就行了，用并查集维护，dfs求连通块，但是第一次全部WA了，还是忍不住看了数据。 自己没有想到的是，每次加入星球后，连通块会变多，想了想，因为有些星球被摧毁了，就不算连通块，所以需要在在恢复星球时，先把当前答案增加1，然后再开始处理减少的情况。 另外要注意的就是不能重复摧毁星球，否则反向操作的时候会导致">
@@ -407,6 +407,18 @@
 <h1 id="bzoj-1049"><a href="#bzoj-1049" class="headerlink" title="bzoj 1049"></a>bzoj 1049</h1><p>HAOI2006，话说多年前的题不是都很水么，这道题好难。</p>
 <p>第一问利用差分思想，只不过是数组减去下标，然后最长上升子序列即可。</p>
 <p>第二问挺难的。下面是网上的题解，事实上我想的也差不多，只不过没有证明下面的结论，所以只想出了$O(n^2logn)$的做法，是过不了这题的。题解中公式比较多，就直接粘图片了。第二问主要是证明结论的，我觉得最值得借鉴的是第一问的思想。<br><img src="http://i4.buimg.com/567571/59d57f2154e649f9.png" alt=""></p>
+<h1 id="bzoj-1024"><a href="#bzoj-1024" class="headerlink" title="bzoj 1024"></a>bzoj 1024</h1><p>本来看到最小值最大以为是二分，但是并不是，数据范围很小，直接暴力搜索即可，注意每次搜索后选择较好的答案</p>
+<h1 id="bzoj-1025"><a href="#bzoj-1025" class="headerlink" title="bzoj 1025"></a>bzoj 1025</h1><p>这题是要求$[1,n]$的正整数组成的数列在不同的置换下，一直循环到恢复初始状态，循环次数有多少种。</p>
+<p>这道题可以转换一下。<br>试想每一个对应关系$a-b$为从$a-&gt;b$的一条边，<br>那么图中一定存在$n$条边且每个点入度出度都为$1$，</p>
+<p>易证一定存在一个或几个环。<br>实际上排数就是这几个环大小的LCM。<br>即求和为n的数列的最小公倍数种数。<br>那么可以直接DP。</p>
+<h1 id="bzoj-1026"><a href="#bzoj-1026" class="headerlink" title="bzoj 1026"></a>bzoj 1026</h1><p>数位DP，设计状态比较重要，而且不仅要满足题目中所给的条件，也要让这是一个合法的数字。</p>
+<p>数位DP的维度设计一般就是数字的长度，而且多是一些数字不同组合方式计数问题。</p>
+<h1 id="bzoj-1027"><a href="#bzoj-1027" class="headerlink" title="bzoj 1027"></a>bzoj 1027</h1><p>这道题模型建构很关键啊，想了好久才想出来。不过还是没有自己完全做出来，因为毕竟模型建出来，解决方法也很重要。</p>
+<p>每种合金第三个含量可以由前两个计算出来，所以不必考虑。将其看成平面上的点，如果想由几种合金组合成题目要求的合金，可以证明，必须要在几种合金的凸包内部。</p>
+<p>之后就是如何处理，事实上还需要建一个图，要求的所有合金如果都在某一条线段的左边，就连一条边。然后floyd求最小环即可。</p>
+<p>本题先化成计算几何，再向图论转化是十分巧妙的。思想值得借鉴。</p>
+<h1 id="bzoj-1028"><a href="#bzoj-1028" class="headerlink" title="bzoj 1028"></a>bzoj 1028</h1><p>暴力枚举，与入门经典上的暴搜不一样，本题简化了麻将，所以可以很简单的贪心，显然应该优先组成刻子，然后$O(n)$扫描的过程中进行枚举对子进行判断，必须组成三的倍数。最终时间复杂度为$O(n^3)$</p>
+<h1 id="bzoj-1029"><a href="#bzoj-1029" class="headerlink" title="bzoj 1029"></a>bzoj 1029</h1><p>又是一道贪心。按T2排序之后扫描，在保证可以修的情况下尽量多修。还是比较好想的。</p>
 
       
     </div>
@@ -442,6 +454,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/02/5-6本周做题总结/" rel="next" title="5-6本周做题总结">
+                <i class="fa fa-chevron-left"></i> 5-6本周做题总结
+              </a>
             
           </div>
 
@@ -523,7 +539,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -605,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1015"><span class="nav-number">1.</span> <span class="nav-text">bzoj 1015</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1016"><span class="nav-number">2.</span> <span class="nav-text">bzoj 1016</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1017"><span class="nav-number">3.</span> <span class="nav-text">bzoj 1017</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1018"><span class="nav-number">4.</span> <span class="nav-text">bzoj 1018</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1019"><span class="nav-number">5.</span> <span class="nav-text">bzoj 1019</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1012"><span class="nav-number">6.</span> <span class="nav-text">bzoj 1012</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1020"><span class="nav-number">7.</span> <span class="nav-text">bzoj 1020</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1021"><span class="nav-number">8.</span> <span class="nav-text">bzoj 1021</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SDOI2017-T1"><span class="nav-number">9.</span> <span class="nav-text">SDOI2017 T1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1049"><span class="nav-number">10.</span> <span class="nav-text">bzoj 1049</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1015"><span class="nav-number">1.</span> <span class="nav-text">bzoj 1015</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1016"><span class="nav-number">2.</span> <span class="nav-text">bzoj 1016</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1017"><span class="nav-number">3.</span> <span class="nav-text">bzoj 1017</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1018"><span class="nav-number">4.</span> <span class="nav-text">bzoj 1018</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1019"><span class="nav-number">5.</span> <span class="nav-text">bzoj 1019</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1012"><span class="nav-number">6.</span> <span class="nav-text">bzoj 1012</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1020"><span class="nav-number">7.</span> <span class="nav-text">bzoj 1020</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1021"><span class="nav-number">8.</span> <span class="nav-text">bzoj 1021</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SDOI2017-T1"><span class="nav-number">9.</span> <span class="nav-text">SDOI2017 T1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1049"><span class="nav-number">10.</span> <span class="nav-text">bzoj 1049</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1024"><span class="nav-number">11.</span> <span class="nav-text">bzoj 1024</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1025"><span class="nav-number">12.</span> <span class="nav-text">bzoj 1025</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1026"><span class="nav-number">13.</span> <span class="nav-text">bzoj 1026</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1027"><span class="nav-number">14.</span> <span class="nav-text">bzoj 1027</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1028"><span class="nav-number">15.</span> <span class="nav-text">bzoj 1028</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1029"><span class="nav-number">16.</span> <span class="nav-text">bzoj 1029</span></a></li></ol></div>
             
 
           </div>
