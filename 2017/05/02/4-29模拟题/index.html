@@ -1,0 +1,1027 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="模拟,计算几何,01分数规划,DP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="星座题目描述世界上有两种人，数星星的人和画星座的人为了探索我们头顶那美丽的星空，伟大的 C 学给了我们一张星图，这张星图 可以看做一个平面，其中包含了 $n $颗星星，每颗星星可以用平面上的一个点来表 示，C 学告诉我们这张星图中包含着多种神奇的$α- β- γ$星座，这些星座在平 面内构成了很多平行四边形，它们的都有一组边长为γ的对边平行于 $x$ 轴，且另 一组对边平行于一斜率为 $β/ α$">
+<meta name="keywords" content="模拟,计算几何,01分数规划,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4-29模拟题">
+<meta property="og:url" content="http://pb0207.github.io/2017/05/02/4-29模拟题/index.html">
+<meta property="og:site_name" content="pb0207">
+<meta property="og:description" content="星座题目描述世界上有两种人，数星星的人和画星座的人为了探索我们头顶那美丽的星空，伟大的 C 学给了我们一张星图，这张星图 可以看做一个平面，其中包含了 $n $颗星星，每颗星星可以用平面上的一个点来表 示，C 学告诉我们这张星图中包含着多种神奇的$α- β- γ$星座，这些星座在平 面内构成了很多平行四边形，它们的都有一组边长为γ的对边平行于 $x$ 轴，且另 一组对边平行于一斜率为 $β/ α$">
+<meta property="og:updated_time" content="2017-05-02T00:27:09.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4-29模拟题">
+<meta name="twitter:description" content="星座题目描述世界上有两种人，数星星的人和画星座的人为了探索我们头顶那美丽的星空，伟大的 C 学给了我们一张星图，这张星图 可以看做一个平面，其中包含了 $n $颗星星，每颗星星可以用平面上的一个点来表 示，C 学告诉我们这张星图中包含着多种神奇的$α- β- γ$星座，这些星座在平 面内构成了很多平行四边形，它们的都有一组边长为γ的对边平行于 $x$ 轴，且另 一组对边平行于一斜率为 $β/ α$">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pb0207.github.io/2017/05/02/4-29模拟题/"/>
+
+
+
+
+
+  <title> 4-29模拟题 | pb0207 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pb0207</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/05/02/4-29模拟题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/genji.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pb0207">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                4-29模拟题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-02T08:06:24+08:00">
+                2017-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NOIP模拟/" itemprop="url" rel="index">
+                    <span itemprop="name">NOIP模拟</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="星座"><a href="#星座" class="headerlink" title="星座"></a>星座</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>世界上有两种人，数星星的人和画星座的人<br>为了探索我们头顶那美丽的星空，伟大的 C 学给了我们一张星图，这张星图 可以看做一个平面，其中包含了 $n $颗星星，每颗星星可以用平面上的一个点来表 示，C 学告诉我们这张星图中包含着多种神奇的$α- β- γ$星座，这些星座在平 面内构成了很多平行四边形，它们的都有一组边长为γ的对边平行于 $x$ 轴，且另 一组对边平行于一斜率为 $β/ α$的直线， 现在 C 学给了我们若干组询问，每组 询问包含 3 个整数$ α， β和 γ$，对于每组询问请你求出$ x$ 轴上方和下方中$ α- β- γ$星座的个数 (平行四边形不能与 $x $轴有相交的部分)</p>
+<h2 id="输入格式与数据范围"><a href="#输入格式与数据范围" class="headerlink" title="输入格式与数据范围"></a>输入格式与数据范围</h2><p>第 $1 $行$ 2 $个正整数 $n， m $表示星星的个数 和 询问的个数 （$4 ≤ n ≤ 100000, 1 ≤ m ≤ 10$）</p>
+<p>第 $2~n+1 $行 每行$ 2 $个整数$ x， y $表示每颗星星的横纵坐标 ($-1000 ≤ x ≤ 1000, -1000 ≤ y ≤ 1000 $) (数据保证不会有两颗星星在同一个位置)</p>
+<p>第 $n+2~n+m+1 $行 每行 $3 $个整数$ α， β$和 $γ$($1 ≤ α≤ 2000，-2000 ≤ β≤ 2000 和 1 ≤ γ≤ 2000$) (当$β= 0 $时，表示一条平行于$ y $轴的直线)</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出共 $m $行</p>
+<p>每行两个整数 表示 $x$ 轴上方满足条件星座个数 和 $x$ 轴下方满足条件星座 个数</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>【样例输入】</p>
+<pre><code>8 1
+
+1 1
+
+2 1
+
+1 2
+
+2 2
+
+1 -1
+
+2 -1
+
+1 -2
+
+2 -2
+
+1 0 1
+</code></pre><p>【样例输出】</p>
+<pre><code>1 1
+</code></pre><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>几何题还是要多画图啊。首先，满足斜率条件的点，肯定与$x$轴有唯一的交点，按这个交点排序之后，只要用一个映射来表示这个点右边距离是$\gamma$有没有点来判断即可，对于相同的$y,x_0$只要分别计算出右边距离为$\gamma$的，放入集合中，计算$c(size,2)$即可。</p>
+<p>注意精度是大坑。</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+
+const int N=1e5+1e3+7;
+
+const double eps=1e-6;
+
+int c[N][3],has[4100][4100];
+
+int n,m,cnt;
+
+struct node{
+    int x,y;
+    double x0; 
+}p[N];
+
+bool cmp(node a,node b)
+{
+    if((fabs(a.x0-b.x0)&lt;eps))
+        return a.y&gt;b.y;
+    else
+        return a.x0&lt;b.x0+eps;
+}
+
+void calcC()
+{
+    for(int i=1;i&lt;N;i++)
+        c[i][0]=1;
+    c[0][0]=1;
+    for(int i=1;i&lt;N;i++)
+        for(int j=1;j&lt;=2&amp;&amp;j&lt;=i;j++)
+            c[i][j]=c[i-1][j]+c[i-1][j-1];
+}
+
+int main()
+{
+    freopen(&quot;star.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;star.out&quot;,&quot;w&quot;,stdout);
+    calcC();
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for(int i=1;i&lt;=n;i++)
+    {
+        int x,y;
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+        if(y)
+            p[++cnt].x=x,p[cnt].y=y,has[x+1500][y+1500]=1;
+    }
+    n=cnt;
+    while(m--)
+    {
+        int a,b,v,ans1=0,ans2=0;
+        scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;v);
+        if(b==0)
+            a=0,b=1;
+        for(int i=1;i&lt;=n;i++)
+            p[i].x0=(double)p[i].x-(double)p[i].y*(double)(a)/(double)(b);
+        sort(p+1,p+n+1,cmp);
+        int i=1;
+        while(i&lt;=n)
+        {
+            cnt=0;
+            while(abs(p[i].x0-p[i+1].x0)&lt;eps&amp;&amp;p[i].y&gt;0)
+            {
+                if(has[p[i].x+1500+v][p[i].y+1500])
+                    cnt++;
+                i++;
+            }
+            if(has[p[i].x+1500+v][p[i].y+1500]&amp;&amp;p[i].y&gt;0)
+                    cnt++;
+            ans1+=c[cnt][2];
+            cnt=0;
+            while(abs(p[i].x0-p[i+1].x0)&lt;eps&amp;&amp;p[i].y!=0)
+            {
+                if(has[p[i].x+1500+v][p[i].y+1500])
+                    cnt++;
+                i++;
+            }
+            if(has[p[i].x+1500+v][p[i].y+1500]&amp;&amp;p[i].y&lt;0)
+                    cnt++;
+            ans2+=c[cnt][2];
+            i++;
+        }
+        printf(&quot;%d %d\n&quot;,ans1,ans2);
+    }
+}
+</code></pre><h1 id="W-的火星工程"><a href="#W-的火星工程" class="headerlink" title="W 的火星工程"></a>W 的火星工程</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>大老板 W 的伟大工程扩大到了火星，他准备在火星建立一个自己的度假村。在他的度假村里，有两个大饭店 A,B。对于 W 来说，修建度假村必不可少的就</p>
+<p>是从 A 饭店向 B 饭店修路,以保证他可以短时间内享受各种美味。火星上有一些中转站，中转站之间以及它们与饭店之间有路径使得能从一个到达另一个（路径为单向）。对于每一条路径，工程师 ZQ 给出了它的两个消费参数 a, b。W 会从A 饭店出发，经过其中的一些路径，最终到达 B 饭店。W 希望他走过的所有道</p>
+<p>路的 $\frac {\sum a} {\sum b}$最小，也就是那些道路的 $a$ 值之和除以他们的$ b$ 值之和最小。可是路径实在太多了，W 不知道该如何选择。聪明的你需要帮助他计算出这</p>
+<p>个最小值。至于路径的选取方法你就不需要告诉他了。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入两个整数 $n,m$,表示中转站的数量和边的数量。</p>
+<p>随后 $m$ 行，每行四个整数 $x,y,a,b$，分别表示路径的两端，路径的$ a,b$ 消费参数。</p>
+<p>其中 $0$ 号点与 $n+1$ 号点分别表示 W 的两个饭店 A，B。</p>
+<p>注意你并不需要把所有中转站都连入路中，只要保证从 A 饭店可以到达 B饭店就行了。</p>
+<h2 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出一个小数，表示所求的最小值。输出保留小数点后 6 位（printf 保留6位即可）。</p>
+<h2 id="样例-1"><a href="#样例-1" class="headerlink" title="样例"></a>样例</h2><p>【样例输入】</p>
+<pre><code>2 3
+
+0 1 1 2
+
+0 2 2 3
+
+1 3 1 3
+</code></pre><p>【样例输出】</p>
+<pre><code>0.400000
+</code></pre><h2 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h2><p>对于 20%的数据，$n, m ≤ 100$;</p>
+<p>对于 50%的数据，$n ≤1000$;</p>
+<p>对于 100%的数据，$1 ≤ n ≤ 10000, 1 ≤ m ≤ 100000, 0 ≤ x, y ≤ n+1,0 &lt; a,b ≤ 100000$;</p>
+<p>数据保证 $0$ 号饭店可以到达$ n+1 $号饭店，任意两个中转站或饭店间最多有一条边，且保证没有路可以构成环。</p>
+<h2 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h2><p>裸的零一分数规划。因为没有看到单向边，谢了奇怪的判断，各种不知道怎么处理负环，挂掉了。推一下式子吧。</p>
+<p>求$min{\frac {\sum a} {\sum b}}$</p>
+<p>令$ans=min{\frac {\sum a} {\sum b}}$</p>
+<p>设一个布尔数组$x[i]$代表第$i$条边的选择。</p>
+<p>则$ans=\frac {\sum a[i]x[i]} {\sum b[i]x[i]}$</p>
+<p>设一个函数$f(t)=\sum a[i]x[i]-t\sum b[i]x[i]$</p>
+<p>显然函数还跟边的选择有关。但是当$t=ans$时，是可以找出一种选择满足题目条件。</p>
+<p>我们可以二分这个$t$，然后只要保证函数最小值大于零以及单调性来判断$t$如何变化。</p>
+<p>构造新边$a[i]-tb[i]$，此时函数最小值就是最短路。</p>
+<p>然后裸的SPFA或者堆优化dijkstra。</p>
+<h3 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h3><pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+using namespace std;
+
+const int N=1e4+1e2+7,M=1e5+1e3+7;
+
+const double eps=1e-8;
+
+queue&lt;int&gt;q;
+
+struct node{
+    int to,a,b,ne;
+    double tw;
+}edg[M*2];
+
+int head[N],cnt=1,n,m;
+
+bool inq[N];
+
+double d[N];
+
+void build(int u,int v,int a,int b)
+{
+    cnt++;
+    edg[cnt].to=v;
+    edg[cnt].a=a;
+    edg[cnt].b=b;
+    edg[cnt].ne=head[u];
+    head[u]=cnt;
+}
+
+bool spfa(double val)
+{
+    for(int i=0;i&lt;=n+1;i++)
+        d[i]=M;
+    memset(inq,false,sizeof(inq));
+    double ret=0;
+    for(int i=2;i&lt;=cnt;i++)
+        edg[i].tw=(double)edg[i].a-(double)edg[i].b*val;
+    q.push(0);
+    d[0]=0;
+    inq[0]=true;
+    while(!q.empty())
+    {
+        int u=q.front();
+        q.pop();
+        inq[u]=false;
+        for(int tmp=head[u];tmp;tmp=edg[tmp].ne)
+        {
+            int v=edg[tmp].to;
+            if(d[v]&gt;d[u]+edg[tmp].tw)
+            {
+                d[v]=d[u]+edg[tmp].tw;
+                if(!inq[v])
+                    q.push(v),inq[v]=true;
+            }
+        }
+    }
+    return d[n+1]&lt;eps;
+}
+
+int main()
+{
+    freopen(&quot;wproject.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;wproject.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for(int i=1;i&lt;=m;i++)
+    {
+        int x,y,a,b;
+        scanf(&quot;%d%d%d%d&quot;,&amp;x,&amp;y,&amp;a,&amp;b);
+        build(x,y,a,b);
+        build(y,x,a,b);
+    }
+    double l=0,r=M;
+    while(r-l&gt;eps)
+    {
+        double mid=(l+r)/2;
+        if(spfa(mid))
+            r=mid;
+        else
+            l=mid;
+    }
+    printf(&quot;%.6lf&quot;,l);
+}
+</code></pre><h1 id="t3未完待续DP"><a href="#t3未完待续DP" class="headerlink" title="t3未完待续DP"></a>t3未完待续DP</h1>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模拟/" rel="tag"># 模拟</a>
+          
+            <a href="/tags/计算几何/" rel="tag"># 计算几何</a>
+          
+            <a href="/tags/01分数规划/" rel="tag"># 01分数规划</a>
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/25/4-29本周做题总结/" rel="prev" title="4.29本周做题总结">
+                4.29本周做题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/genji.jpg"
+               alt="pb" />
+          <p class="site-author-name" itemprop="name">pb</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pb0207" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://prostkhala.github.io/" title="ProSTKhala" target="_blank">ProSTKhala</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://allamend.blog.163.com/" title="allamend" target="_blank">allamend</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#星座"><span class="nav-number">1.</span> <span class="nav-text">星座</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式与数据范围"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式与数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">1.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.5.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code"><span class="nav-number">1.5.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#W-的火星工程"><span class="nav-number">2.</span> <span class="nav-text">W 的火星工程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例-1"><span class="nav-number">2.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据范围"><span class="nav-number">2.5.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">2.6.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#t3未完待续DP"><span class="nav-number">3.</span> <span class="nav-text">t3未完待续DP</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pb</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
