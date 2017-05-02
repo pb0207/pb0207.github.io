@@ -94,10 +94,13 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/05/02/4-29模拟题/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="星座题目描述世界上有两种人，数星星的人和画星座的人为了探索我们头顶那美丽的星空，伟大的 C 学给了我们一张星图，这张星图 可以看做一个平面，其中包含了 $n $颗星星，每颗星星可以用平面上的一个点来表 示，C 学告诉我们这张星图中包含着多种神奇的$α- β- γ$星座，这些星座在平 面内构成了很多平行四边形，它们的都有一组边长为γ的对边平行于 $x$ 轴，且另 一组对边平行于一斜率为 $β/ α$">
-<meta property="og:updated_time" content="2017-05-02T00:27:09.741Z">
+<meta property="og:image" content="http://i1.piimg.com/567571/dfc8034e4dc246b8.png">
+<meta property="og:image" content="http://i2.muimg.com/567571/ed80cb88ccb07b43.png">
+<meta property="og:updated_time" content="2017-05-02T12:26:48.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="4-29模拟题">
 <meta name="twitter:description" content="星座题目描述世界上有两种人，数星星的人和画星座的人为了探索我们头顶那美丽的星空，伟大的 C 学给了我们一张星图，这张星图 可以看做一个平面，其中包含了 $n $颗星星，每颗星星可以用平面上的一个点来表 示，C 学告诉我们这张星图中包含着多种神奇的$α- β- γ$星座，这些星座在平 面内构成了很多平行四边形，它们的都有一组边长为γ的对边平行于 $x$ 轴，且另 一组对边平行于一斜率为 $β/ α$">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/dfc8034e4dc246b8.png">
 
 
 
@@ -622,7 +625,145 @@ int main()
     }
     printf(&quot;%.6lf&quot;,l);
 }
-</code></pre><h1 id="t3未完待续DP"><a href="#t3未完待续DP" class="headerlink" title="t3未完待续DP"></a>t3未完待续DP</h1>
+</code></pre><h1 id="A-B-C"><a href="#A-B-C" class="headerlink" title="A-B=C"></a>A-B=C</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>今天 HYX 同学由于兼爱平生，同时也为了练习如何讲题，来到幼儿园去教小朋友们学习减法，现在他手上有很多盒小木棍，他需要用这些小木棍摆出 A-</p>
+<p>B=C 的样子来教小朋友学减法，这时有个聪明机智可爱的小女孩问了 HYX 同学这样一个问题“对于每一盒小木棍能摆出多少形如 A-B=C 式子(对于每一个摆出</p>
+<p>的式子要求将小木棍用完)”，HYX 很想回答她的问题，但他发现这并不是一个很好解决的问题，所以为了解决小女孩的问题，HYX 同学希望你能帮它算一算</p>
+<p>对于他的每一个盒子所能摆出算式的的数量，当然由于这个数可能很大你只需要输出答案取模 1e9+7 后的值就可以了。（因为小女孩还很年幼，所以她还不知道</p>
+<p>0 概念，所以要求 A,B,C 均为正整数，且不能有前导 0） 说明：等号和减号需要使用木棍</p>
+<p>数字的样式：</p>
+<p>（无图请脑补）</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><p>输入格式<br>从文件 subtraction.in 中输入数据。</p>
+<p>第一行 一个正整数 T 表示 HYX 同学手中盒子的数量</p>
+<p>接下来 T 行 每行一个整数 表示每个盒子中小木棍的数量<br>输出格式<br>输出到文件 subtraction.out 中。</p>
+<p>输出 T 行 第 i 行输出 以 Case #i: ans 的形式输出 ans 为第 i 个盒子所能摆出形如 A-B=C 的式子的个数</p>
+<h2 id="样例-2"><a href="#样例-2" class="headerlink" title="样例"></a>样例</h2><p>【样例输入】</p>
+<pre><code>3
+
+1
+
+12
+
+20
+</code></pre><p>【样例输出】</p>
+<pre><code>Case #1: 0
+
+Case #2: 1
+
+Case #3: 38
+</code></pre><h2 id="数据范围-1"><a href="#数据范围-1" class="headerlink" title="数据范围"></a>数据范围</h2><p>对于 $20%$的数据 $1 ≤ T ≤ 10, 1 ≤ N ≤ 24$</p>
+<p>对于 $80%$的数据 $1 ≤ T ≤ 30, 1 ≤ N ≤ 500$</p>
+<p>对于 $100%$的数据 $1 ≤ T ≤ 1e7, 1 ≤ N ≤ 1e6$</p>
+<h2 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h2><p>状态转移方程如下，采用记忆化搜索实现。</p>
+<p><img src="http://i1.piimg.com/567571/dfc8034e4dc246b8.png" alt=""><br><img src="http://i2.muimg.com/567571/ed80cb88ccb07b43.png" alt=""></p>
+<h3 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h3><pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+typedef long long ll;
+
+const int N=1e6+1e3+7;
+
+int need[]={6,2,5,5,4,5,6,3,7,6};
+
+int need0[100];
+int need1[100];
+
+const int P=1e9+7;
+
+ll dp[N][2][2][2];
+bool vis[N][2][2][2];
+
+ll DP(int w,bool s1,bool s2,bool u)
+{
+    if(!s1&amp;&amp;!s2)
+    {
+        if(u==0&amp;&amp;w==3)
+            return 1;
+        if(u==1&amp;&amp;w==5)
+            return 1;
+        return 0;
+    }
+    if(w&lt;=3)
+        return 0;
+    if(vis[w][s1][s2][u])
+        return dp[w][s1][s2][u];
+    vis[w][s1][s2][u]=true;
+    ll &amp;val=dp[w][s1][s2][u];
+    val=0;
+    if(s1&amp;&amp;s2)
+    {
+        for(int i=1;i&lt;10;i++)
+        {
+            val+=DP(w-need[i]-need[0]-need[(i+u)%10],0,1,i+u&gt;9);
+            val+=DP(w-need[i]-need[0]-need[(i+u)%10],1,1,i+u&gt;9);
+            val+=DP(w-need[i]-need[0]-need[(i+u)%10],1,0,i+u&gt;9);
+            val+=DP(w-need[i]-need[0]-need[(i+u)%10],1,1,i+u&gt;9);
+        }
+        for(int i=1;i&lt;10;i++)
+            for(int j=1;j&lt;10;j++)
+            {
+                val+=DP(w-need[i]-need[j]-need[(i+j+u)%10],1,1,i+j+u&gt;9);
+                val+=DP(w-need[i]-need[j]-need[(i+j+u)%10],0,1,i+j+u&gt;9);
+                val+=DP(w-need[i]-need[j]-need[(i+j+u)%10],1,0,i+j+u&gt;9);
+                val+=DP(w-need[i]-need[j]-need[(i+j+u)%10],0,0,i+j+u&gt;9);
+            }
+        val+=DP(w-need[0]-need[0]-need[u%10],1,1,u&gt;9);
+    }
+    else
+    if(s1)
+    {
+        for(int i=1;i&lt;10;i++)
+        {
+            val+=DP(w-need[i]-need[(i+u)%10],0,0,i+u&gt;9);
+            val+=DP(w-need[i]-need[(i+u)%10],1,0,i+u&gt;9);
+        }
+        val += DP(w-need[0]-need[u%10], 1, 0, u&gt;9);
+    }
+    else
+    if(s2)
+    {
+        for(int i=1;i&lt;10;i++)
+        {
+            val+=DP(w-need[i]-need[(i+u)%10],0,0,i+u&gt;9);
+            val+=DP(w-need[i]-need[(i+u)%10],0,1,i+u&gt;9);
+        }
+        val += DP(w-need[0]-need[u%10], 0, 1, u&gt;9);
+    }
+    val%=P;
+    return val;
+}
+void exec()
+{
+    int t,x;
+    for(int i=4;i&lt;=1000;i++)
+    {
+        DP(i,1,1,0);
+        DP(i,1,0,0);
+        DP(i,0,1,0);
+        DP(i,1,1,1);
+        DP(i,1,0,1);
+        DP(i,0,1,1);     
+    }
+    scanf(&quot;%d&quot;,&amp;t);
+    for (int i=1;i&lt;=t;++i) 
+    {
+        scanf(&quot;%d&quot;,&amp;x);
+        putchar(&apos;C&apos;), putchar(&apos;a&apos;), putchar(&apos;s&apos;), putchar(&apos;e&apos;), putchar(&apos; &apos;), putchar(&apos;#&apos;);
+        printf(&quot;%d:&quot;,i);
+        putchar(&apos; &apos;);
+        printf(&quot;%lld\n&quot;,DP(x,1,1,0));
+    }
+}
+
+int main()
+{
+    freopen(&quot;subtraction.in&quot;, &quot;r&quot;, stdin);
+    freopen(&quot;subtraction.out&quot;, &quot;w&quot;, stdout);
+    exec();
+}
+</code></pre>
       
     </div>
 
@@ -826,7 +967,7 @@ int main()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#星座"><span class="nav-number">1.</span> <span class="nav-text">星座</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式与数据范围"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式与数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">1.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.5.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code"><span class="nav-number">1.5.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#W-的火星工程"><span class="nav-number">2.</span> <span class="nav-text">W 的火星工程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例-1"><span class="nav-number">2.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据范围"><span class="nav-number">2.5.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">2.6.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#t3未完待续DP"><span class="nav-number">3.</span> <span class="nav-text">t3未完待续DP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#星座"><span class="nav-number">1.</span> <span class="nav-text">星座</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式与数据范围"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式与数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">1.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.5.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code"><span class="nav-number">1.5.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#W-的火星工程"><span class="nav-number">2.</span> <span class="nav-text">W 的火星工程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">2.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式-1"><span class="nav-number">2.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例-1"><span class="nav-number">2.4.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据范围"><span class="nav-number">2.5.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">2.6.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-B-C"><span class="nav-number">3.</span> <span class="nav-text">A-B=C</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">3.2.</span> <span class="nav-text">输入输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例-2"><span class="nav-number">3.3.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据范围-1"><span class="nav-number">3.4.</span> <span class="nav-text">数据范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-2"><span class="nav-number">3.5.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code-2"><span class="nav-number">3.5.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
