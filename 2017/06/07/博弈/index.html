@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/06/07/博弈/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，">
-<meta property="og:updated_time" content="2017-06-07T02:33:15.723Z">
+<meta property="og:updated_time" content="2017-06-07T02:37:05.550Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博弈">
 <meta name="twitter:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，">
@@ -396,7 +396,7 @@
 <h3 id="例1：-1"><a href="#例1：-1" class="headerlink" title="例1："></a>例1：</h3><p>有一堆石子有$n$个，对于一个集合$S={a[i]|i\in[1,n]}$，可以拿随意的$x\in S$个，不能拿就输了，问初始局面先手必胜还是必败。</p>
 <p>解：设$f[i]$为当前还有$i$个石子的时候的时候是先手必胜还是必败。</p>
 <p>首先边界条件是$f[0]=0$</p>
-<p>显然根据上面的结论有<br>$$f[i]=\begin{cases}<br>1,\exists \  \forall \  f[i-a[i]]=0\<br>0,else<br>\end{cases}<br>$$</p>
+<p>显然根据上面的结论有<br>$$f[i]=<br>\begin{cases}<br>1,\exists \  \forall \  f[i-a[i]]=0\\<br>0,else<br>\end{cases}<br>$$</p>
 <p>那么直接枚举计算即可。</p>
 <p>也可以使用记忆化搜索来解决。</p>
 <p>这种方法一般都作为博弈的暴力解法来出现，只能拿到部分分，但可以用来对拍。</p>
@@ -405,7 +405,8 @@
 <p>解：</p>
 <p><strong>NIM和就是把每堆都看成单独的游戏，N堆的结果是每堆结果的异或和。</strong></p>
 <p>下列证明经转载（有耐心可以看一下，或者可以直接跳过，记住上面的结论就可以了）：</p>
-<p>定义：P-position和N-position，其中P代表Previous，N代表Next。直观的说，上一次move的人有必胜策略的局面是P- position，也就是“后手可保证必胜”或者“先手必败”，现在轮到move的人有必胜策略的局面是N-position，也就是“先手可保证必胜 ”。更严谨的定义是：<br>1.无法进行任何移动的局面（也就是terminal position）是P-position；<br>2.<br>2.可以移动到P-position的局面是N-position；3.所有移动都导致N-position 的局面是P-position。</p>
+<p>定义：P-position和N-position，其中P代表Previous，N代表Next。直观的说，上一次move的人有必胜策略的局面是P- position，也就是“后手可保证必胜”或者“先手必败”，现在轮到move的人有必胜策略的局面是N-position，也就是“先手可保证必胜 ”。更严谨的定义是：<br>1.无法进行任何移动的局面（也就是terminal position）是P-position；</p>
+<p>2.可以移动到P-position的局面是N-position；3.所有移动都导致N-position 的局面是P-position。</p>
 <p>按照这个定义，如果局面不可能重现，或者说positions的集合可以进行拓扑排序，那么每个position或者是P-position或者是N-position，而且可以通过定义计算出来。</p>
 <p>以 Nim游戏为例来进行一下计算。比如说我刚才说当只有两堆石子且两堆石子数量相等时后手有必胜策略，也就是这是一个P-position，下面我们依靠定 义证明一下(3,3)是一个P是一个P是一个P-position。</p>
 <p>首先(3,3)的子局面（也就是通过合法移动可以导致的局面）有(0,3)(1,3) (2,3)（显然交换石子堆的位置不影响其性质，所以把(x,y)和(y,x)看成同一种局面），只需要计算出这三种局面的性质就可以了。 (0,3)的子局面有(0,0)、(0,1)、(0,2)，其中(0,0)显然是P-position，所以(0,3)是N-position（只要找到 一个是P-position的子局面就能说明是N-position）。(1,3)的后继中(1,1)是P-position（因为(1,1)的唯一子局 面(0,1)是N-position），所以(1,3)也是N-position。</p>
@@ -415,7 +416,7 @@
 <p>(Bouton’s Theorem)对于一个Nim游戏的局面(a1,a2,…,an)，它是P-position当且仅当a1^a2^…^an=0，其中^表示异 或(xor)运算。怎么样，是不是很神奇？我看到它的时候也觉得很神奇，完全没有道理的和异或运算扯上了关系。但这个定理的证明却也不复杂，基本上就是按 照两种position的证明来的。</p>
 <p>根据定义，证明一种判断position的性质的方法的正确性，只需证明三个命题： </p>
 <p>1、这个判断将所有terminal position判为P-position</p>
-<p>；2、根据这个判断被判为N-position的局面一定可以移动到某个P-position；</p>
+<p>2、根据这个判断被判为N-position的局面一定可以移动到某个P-position；</p>
 <p>3、根据这个判 断被判为P-position的局面无法移动到某个P-position。</p>
 <p>第一个命题显然，terminal position只有一个，就是全0，异或仍然是0。</p>
 <p>第二个命题，对于某个局面(a1,a2,…,an)，若a1^a2^…^an!=0，一定存在某个合法的移动，将ai改变成ai’后满足 a1^a2^…^ai’^…^an=0。</p>
@@ -451,7 +452,8 @@ int SG(int x)
     SG[x]=mex(S);
     return SG[x];
 }
-</code></pre><h2 id="大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"><a href="#大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化" class="headerlink" title="大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"></a>大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化</h2>
+</code></pre><p>时间复杂度$O(nk)$</p>
+<h2 id="大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"><a href="#大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化" class="headerlink" title="大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"></a>大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化</h2>
       
     </div>
 
@@ -567,7 +569,7 @@ int SG(int x)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="杂题," />
 
 
 
@@ -87,14 +87,17 @@
 
 
 
-<meta name="keywords">
+<meta name="description" content="bzoj 2432NOI2011兔农。斐波那契变形版，要推一些式子，不好推啊。但是可以打表找找规律，可以发现斐波那契数列在取模意义下是有循环节的。然后矩阵快速幂优化。还是见得不够多，自己推不出来啊。 bzoj 1023首次接触仙人掌啊，但是就是DP了，先学了学DFS，就是一个tarjan。然后看了看定义什么的，父亲母亲…… 所以说这题用到的比较重要的性质： 定义1：设$ F[i] $表示DFS树中">
+<meta name="keywords" content="杂题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="5-6本周做题总结">
 <meta property="og:url" content="http://pb0207.github.io/2017/05/02/5-6本周做题总结/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:updated_time" content="2017-05-02T00:04:15.530Z">
+<meta property="og:description" content="bzoj 2432NOI2011兔农。斐波那契变形版，要推一些式子，不好推啊。但是可以打表找找规律，可以发现斐波那契数列在取模意义下是有循环节的。然后矩阵快速幂优化。还是见得不够多，自己推不出来啊。 bzoj 1023首次接触仙人掌啊，但是就是DP了，先学了学DFS，就是一个tarjan。然后看了看定义什么的，父亲母亲…… 所以说这题用到的比较重要的性质： 定义1：设$ F[i] $表示DFS树中">
+<meta property="og:updated_time" content="2017-06-07T02:35:35.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5-6本周做题总结">
+<meta name="twitter:description" content="bzoj 2432NOI2011兔农。斐波那契变形版，要推一些式子，不好推啊。但是可以打表找找规律，可以发现斐波那契数列在取模意义下是有循环节的。然后矩阵快速幂优化。还是见得不够多，自己推不出来啊。 bzoj 1023首次接触仙人掌啊，但是就是DP了，先学了学DFS，就是一个tarjan。然后看了看定义什么的，父亲母亲…… 所以说这题用到的比较重要的性质： 定义1：设$ F[i] $表示DFS树中">
 
 
 
@@ -334,6 +337,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日常刷题/" itemprop="url" rel="index">
+                    <span itemprop="name">日常刷题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -359,7 +384,22 @@
       
 
       
-        
+        <h1 id="bzoj-2432"><a href="#bzoj-2432" class="headerlink" title="bzoj 2432"></a>bzoj 2432</h1><p>NOI2011兔农。斐波那契变形版，要推一些式子，不好推啊。但是可以打表找找规律，可以发现斐波那契数列在取模意义下是有循环节的。然后矩阵快速幂优化。还是见得不够多，自己推不出来啊。</p>
+<h1 id="bzoj-1023"><a href="#bzoj-1023" class="headerlink" title="bzoj 1023"></a>bzoj 1023</h1><p>首次接触仙人掌啊，但是就是DP了，先学了学DFS，就是一个tarjan。然后看了看定义什么的，父亲母亲……</p>
+<p>所以说这题用到的比较重要的性质：</p>
+<p>定义1：设$ F[i] $表示DFS树中以$ i$ 为根的子树的点及i在仙人掌图的诱导子图中（诱导子图就是由某个图的一个点集$V$所有两个端点都在集合V中的边构成的边集$E$构成的图）的 以$i$为起点到诱导子图内其他各点的最短路径中的最长的一条的长度。</p>
+<p>性质：<br>直径必然存在一个且只有一个节点，它在这条路径的所有点中深度最小称之为最高点</p>
+<p>不带环的$f$转移<br>$$  F [ i ] =max(F [ k ]) +1(k∈i的儿子）$$</p>
+<p>带上环之后就是<br>$$F[u]+F[v]+1来更新了$$</p>
+<p>然后环形DP，单调队列……</p>
+<p>回头再深入研究一下，留一个tag</p>
+<h2 id="tag（未完待续）"><a href="#tag（未完待续）" class="headerlink" title="tag（未完待续）"></a>tag（未完待续）</h2><h1 id="bzoj-1030"><a href="#bzoj-1030" class="headerlink" title="bzoj 1030"></a>bzoj 1030</h1><p>AC自动机裸题，简单地DP求出不相同的，再用总数减去即可。</p>
+<h1 id="bzoj-1031"><a href="#bzoj-1031" class="headerlink" title="bzoj 1031"></a>bzoj 1031</h1><p>SA裸题，将源字符串拼在后面，然后求SA，之后输出即可。</p>
+<h1 id="bzoj-1032"><a href="#bzoj-1032" class="headerlink" title="bzoj 1032"></a>bzoj 1032</h1><p>区间DP，但是这题显然不能考虑优先放置一些球的高级玩法，只能像括号匹配一样一点点做。</p>
+<h1 id="bzoj-1034"><a href="#bzoj-1034" class="headerlink" title="bzoj 1034"></a>bzoj 1034</h1><p>排序之后贪心。运用田忌赛马的策略，能赢则赢，能平则平。自己的最坏的分可以用总分减去对方的最好得分。</p>
+<h1 id="bzoj-1036"><a href="#bzoj-1036" class="headerlink" title="bzoj 1036"></a>bzoj 1036</h1><p>裸的树链剖分，点权值，三个操作，改点，最大值，和。</p>
+<h1 id="bzoj-1037"><a href="#bzoj-1037" class="headerlink" title="bzoj 1037"></a>bzoj 1037</h1><p>递推求组合情况，需要注意的是，这题要用一个四维的数组来做，之前自己二维推了5分钟什么都没推出来，所以如果状态数不够，不放增加一些，就算会爆内存，也可以有了思路再优化。</p>
+
       
     </div>
 
@@ -380,6 +420,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/杂题/" rel="tag"># 杂题</a>
+          
+        </div>
+      
 
       
         
@@ -388,6 +434,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/02/4-29模拟题/" rel="next" title="4-29模拟题">
+                <i class="fa fa-chevron-left"></i> 4-29模拟题
+              </a>
             
           </div>
 
@@ -444,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/genji.jpg"
@@ -460,7 +519,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -469,7 +528,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -478,7 +537,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -532,6 +591,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-2432"><span class="nav-number">1.</span> <span class="nav-text">bzoj 2432</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1023"><span class="nav-number">2.</span> <span class="nav-text">bzoj 1023</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tag（未完待续）"><span class="nav-number">2.1.</span> <span class="nav-text">tag（未完待续）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1030"><span class="nav-number">3.</span> <span class="nav-text">bzoj 1030</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1031"><span class="nav-number">4.</span> <span class="nav-text">bzoj 1031</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1032"><span class="nav-number">5.</span> <span class="nav-text">bzoj 1032</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1034"><span class="nav-number">6.</span> <span class="nav-text">bzoj 1034</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1036"><span class="nav-number">7.</span> <span class="nav-text">bzoj 1036</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bzoj-1037"><span class="nav-number">8.</span> <span class="nav-text">bzoj 1037</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
