@@ -1,0 +1,850 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="博弈," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，">
+<meta name="keywords" content="博弈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博弈">
+<meta property="og:url" content="http://pb0207.github.io/2017/06/07/博弈/index.html">
+<meta property="og:site_name" content="pb0207">
+<meta property="og:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，">
+<meta property="og:updated_time" content="2017-06-07T02:33:15.723Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博弈">
+<meta name="twitter:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pb0207.github.io/2017/06/07/博弈/"/>
+
+
+
+
+
+  <title> 博弈 | pb0207 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pb0207</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/06/07/博弈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/genji.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pb0207">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                博弈
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-07T09:47:35+08:00">
+                2017-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/组合游戏/" itemprop="url" rel="index">
+                    <span itemprop="name">组合游戏</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="博弈"><a href="#博弈" class="headerlink" title="博弈"></a>博弈</h1><p>博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。</p>
+<p>博弈大概分以下几种解决方法：</p>
+<p>找出必胜策略，DFS或者DP直接求，SG函数</p>
+<h2 id="找出必胜策略"><a href="#找出必胜策略" class="headerlink" title="找出必胜策略"></a>找出必胜策略</h2><p>这种方法并不常见。</p>
+<h3 id="例1："><a href="#例1：" class="headerlink" title="例1："></a>例1：</h3><p>有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。</p>
+<p>解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，后手只需要在先手拿完之后保持$n \ mod \ 3=0$即可。当然不等于$3$时，先手可以直接让其变为等于$3$，则必胜。</p>
+<h2 id="DFS或者DP直接求"><a href="#DFS或者DP直接求" class="headerlink" title="DFS或者DP直接求"></a>DFS或者DP直接求</h2><p>首先在博弈里面有两种状态，必胜态和必败态。因为两个人都是采用了最优策略，所以有以下定理:</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><strong>1.如果当前状态的后继状态有必败态，那么这一定是必胜态</strong></p>
+<p><strong>2.如果当前状态的后继状态都是必胜态，那么这一定是必败态</strong></p>
+<h3 id="例1：-1"><a href="#例1：-1" class="headerlink" title="例1："></a>例1：</h3><p>有一堆石子有$n$个，对于一个集合$S={a[i]|i\in[1,n]}$，可以拿随意的$x\in S$个，不能拿就输了，问初始局面先手必胜还是必败。</p>
+<p>解：设$f[i]$为当前还有$i$个石子的时候的时候是先手必胜还是必败。</p>
+<p>首先边界条件是$f[0]=0$</p>
+<p>显然根据上面的结论有<br>$$f[i]=\begin{cases}<br>1,\exists \  \forall \  f[i-a[i]]=0\<br>0,else<br>\end{cases}<br>$$</p>
+<p>那么直接枚举计算即可。</p>
+<p>也可以使用记忆化搜索来解决。</p>
+<p>这种方法一般都作为博弈的暴力解法来出现，只能拿到部分分，但可以用来对拍。</p>
+<h2 id="SG函数"><a href="#SG函数" class="headerlink" title="SG函数"></a>SG函数</h2><p>解决组合游戏问题通常都可以用这种方法进行转化。先来看一个问题</p>
+<h3 id="NIM游戏"><a href="#NIM游戏" class="headerlink" title="NIM游戏"></a>NIM游戏</h3><p>有若干堆石子，每堆石子的数量都是有限的，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。</p>
+<p>解：</p>
+<p><strong>NIM和就是把每堆都看成单独的游戏，N堆的结果是每堆结果的异或和。</strong></p>
+<p>下列证明经转载（有耐心可以看一下，或者可以直接跳过，记住上面的结论就可以了）：</p>
+<p>定义：P-position和N-position，其中P代表Previous，N代表Next。直观的说，上一次move的人有必胜策略的局面是P- position，也就是“后手可保证必胜”或者“先手必败”，现在轮到move的人有必胜策略的局面是N-position，也就是“先手可保证必胜 ”。更严谨的定义是：<br>1.无法进行任何移动的局面（也就是terminal position）是P-position；<br>2.<br>2.可以移动到P-position的局面是N-position；3.所有移动都导致N-position 的局面是P-position。</p>
+<p>按照这个定义，如果局面不可能重现，或者说positions的集合可以进行拓扑排序，那么每个position或者是P-position或者是N-position，而且可以通过定义计算出来。</p>
+<p>以 Nim游戏为例来进行一下计算。比如说我刚才说当只有两堆石子且两堆石子数量相等时后手有必胜策略，也就是这是一个P-position，下面我们依靠定 义证明一下(3,3)是一个P是一个P是一个P-position。</p>
+<p>首先(3,3)的子局面（也就是通过合法移动可以导致的局面）有(0,3)(1,3) (2,3)（显然交换石子堆的位置不影响其性质，所以把(x,y)和(y,x)看成同一种局面），只需要计算出这三种局面的性质就可以了。 (0,3)的子局面有(0,0)、(0,1)、(0,2)，其中(0,0)显然是P-position，所以(0,3)是N-position（只要找到 一个是P-position的子局面就能说明是N-position）。(1,3)的后继中(1,1)是P-position（因为(1,1)的唯一子局 面(0,1)是N-position），所以(1,3)也是N-position。</p>
+<p>同样可以证明(2,3)是N-position。所以(3,3)的所有 子局面都是N-position，它就是P-position。通过一点简单的数学归纳，可以严格的证明“有两堆石子时的局面是P-position当且 仅当这两堆石子的数目相等”。</p>
+<p>根据上面这个过程，可以得到一个递归的算法——对于当前的局面，递归计算它的所有子局面的性质，如果存在某 个子局面是P-position，那么向这个子局面的移动就是必胜策略。当然，可能你已经敏锐地看出有大量的重叠子问题，所以可以用DP或者记忆化搜索的 方法以提高效率（简单的博弈问题想到这一步就可以了）。但问题是，利用这个算法，对于某个Nim游戏的局面(a1,a2,…,an)来说，要想判断它 的性质以及找出必胜策略，需要计算$O(a1×a2×…×an)$个局面的性质，不管怎样记忆化都无法降低这个时间复杂度。所以我们需要更高效的判断 Nim游戏的局面的性质的方法。</p>
+<p>直接说结论好了。</p>
+<p>(Bouton’s Theorem)对于一个Nim游戏的局面(a1,a2,…,an)，它是P-position当且仅当a1^a2^…^an=0，其中^表示异 或(xor)运算。怎么样，是不是很神奇？我看到它的时候也觉得很神奇，完全没有道理的和异或运算扯上了关系。但这个定理的证明却也不复杂，基本上就是按 照两种position的证明来的。</p>
+<p>根据定义，证明一种判断position的性质的方法的正确性，只需证明三个命题： </p>
+<p>1、这个判断将所有terminal position判为P-position</p>
+<p>；2、根据这个判断被判为N-position的局面一定可以移动到某个P-position；</p>
+<p>3、根据这个判 断被判为P-position的局面无法移动到某个P-position。</p>
+<p>第一个命题显然，terminal position只有一个，就是全0，异或仍然是0。</p>
+<p>第二个命题，对于某个局面(a1,a2,…,an)，若a1^a2^…^an!=0，一定存在某个合法的移动，将ai改变成ai’后满足 a1^a2^…^ai’^…^an=0。</p>
+<p>不妨设a1^a2^…^an=k，则一定存在某个ai，它的二进制表示在k的最高位上是1（否则k的 最高位那个1是怎么得到的）。这时ai^k &lt; ai一定成立。则我们可以将ai改变成ai’=ai^k，此时 a1^a2^…^ai’^…^an=a1^a2^…^an^k=0。</p>
+<p>第三个命题，对于某个局面 (a1,a2,…,an)，若a1^a2^…^an=0，一定不存在某个合法的移动，将ai改变成ai’后满足 a1^a2^…^ai’^…^an=0。</p>
+<p>因为异或运算满足消去率，由a1^a2^…^an=a1^a2^…^ai’^…^an可以得 到ai=ai’。所以将ai改变成ai’不是一个合法的移动。证毕。</p>
+<p>根据这个定理，我们可以在O(n)的时间内判断一个Nim的局面的性质，且如果它是N-position，也可以在O(n)的时间内找到所有的必胜策略。Nim问题就这样基本上完美的解决了。</p>
+<hr>
+<h3 id="SG函数-1"><a href="#SG函数-1" class="headerlink" title="SG函数"></a>SG函数</h3><p>SG函数是子状态SG值从0开始最小的没有出现的值，如果没有子状态自然SG是0，是必败态。</p>
+<p>当且仅当SG(x)=0,x状态为必败态</p>
+<h3 id="SG定理"><a href="#SG定理" class="headerlink" title="SG定理"></a>SG定理</h3><p>一个组合游戏问题的结论相当于其子游戏的NIM和。</p>
+<p>为什么是对的呢。</p>
+<p>根据SG函数的定义，如果SG(x)=k，那么x状态可以转移到$SG(S)=[0,k-1]$中的集合S中的任意一个状态。相当于NIM中每一堆石子可以转移到$[0,k-1]$中任意一个。所以可以根据相同的方法证明。</p>
+<h3 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h3><p>有$k$堆石子，对于一个集合$S={a[i]|i\in[1,n]}$，可以从一堆石子中拿随意的$x\in S$个，不能拿就输了，问初始局面先手必胜还是必败。</p>
+<p>解：<br>如果我们进行$k$维次DP的话，时间复杂度无法接受，为$O(a[1]a[2]a[3]…a[n])$。</p>
+<p>考虑直接计算SG值，用一个集合来维护，递归解决。</p>
+<pre><code>int mex(set&lt;int&gt;S)
+{
+    int ret=0;
+    while(S.count(ret))
+        ret++;
+}
+
+int SG(int x)
+{
+    if(done[x])
+        return SG[x];
+    set&lt;int&gt; S;
+    for(int i=1;i&lt;=n;i++)
+        if(x-a[i])
+            S.insert(SG(x-a[i]));
+    done[x]=true;
+    SG[x]=mex(S);
+    return SG[x];
+}
+</code></pre><h2 id="大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"><a href="#大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化" class="headerlink" title="大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"></a>大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/博弈/" rel="tag"># 博弈</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/07/莫比乌斯反演/" rel="prev" title="莫比乌斯反演">
+                莫比乌斯反演 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/genji.jpg"
+               alt="pb" />
+          <p class="site-author-name" itemprop="name">pb</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pb0207" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://prostkhala.github.io/" title="ProSTKhala" target="_blank">ProSTKhala</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://allamend.blog.163.com/" title="allamend" target="_blank">allamend</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#博弈"><span class="nav-number">1.</span> <span class="nav-text">博弈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#找出必胜策略"><span class="nav-number">1.1.</span> <span class="nav-text">找出必胜策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例1："><span class="nav-number">1.1.1.</span> <span class="nav-text">例1：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DFS或者DP直接求"><span class="nav-number">1.2.</span> <span class="nav-text">DFS或者DP直接求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">1.2.1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例1：-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">例1：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SG函数"><span class="nav-number">1.3.</span> <span class="nav-text">SG函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NIM游戏"><span class="nav-number">1.3.1.</span> <span class="nav-text">NIM游戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SG函数-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">SG函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SG定理"><span class="nav-number">1.3.3.</span> <span class="nav-text">SG定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例："><span class="nav-number">1.3.4.</span> <span class="nav-text">例：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"><span class="nav-number">1.4.</span> <span class="nav-text">大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pb</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
