@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/06/08/旋转卡壳/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
-<meta property="og:updated_time" content="2017-06-08T08:38:32.615Z">
+<meta property="og:updated_time" content="2017-06-08T08:48:41.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算几何">
 <meta name="twitter:description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
@@ -525,7 +525,7 @@ int main()
 }
 </code></pre><p><em>题目有待补充</em></p>
 <hr>
-<h2 id="半平面交"><a href="#半平面交" class="headerlink" title="半平面交"></a>半平面交</h2><h3 id="定义：求几个半平面相交的部分。"><a href="#定义：求几个半平面相交的部分。" class="headerlink" title="定义：求几个半平面相交的部分。"></a>定义：求几个半平面相交的部分。</h3><h3 id="算法：排序增量算法"><a href="#算法：排序增量算法" class="headerlink" title="算法：排序增量算法"></a>算法：排序增量算法</h3><h3 id="表示：规定一条向量的左边是这条向量对应的半平面"><a href="#表示：规定一条向量的左边是这条向量对应的半平面" class="headerlink" title="表示：规定一条向量的左边是这条向量对应的半平面"></a>表示：规定一条向量的左边是这条向量对应的半平面</h3><p><strong>经典论文：</strong></p>
+<h2 id="半平面交"><a href="#半平面交" class="headerlink" title="半平面交"></a>半平面交</h2><h3 id="定义：求几个半平面相交的部分。"><a href="#定义：求几个半平面相交的部分。" class="headerlink" title="定义：求几个半平面相交的部分。"></a>定义：求几个半平面相交的部分。</h3><h3 id="算法：排序增量算法"><a href="#算法：排序增量算法" class="headerlink" title="算法：排序增量算法"></a>算法：排序增量算法</h3><h3 id="表示：规定一条向量的左边是这条向量对应的半平面"><a href="#表示：规定一条向量的左边是这条向量对应的半平面" class="headerlink" title="表示：规定一条向量的左边是这条向量对应的半平面"></a>表示：规定一条向量的左边是这条向量对应的半平面</h3><p><strong>According to：经典论文：</strong></p>
 <p>求n个半平面的交有三种做法： 第一种就是用每个平面去切割已有的凸多边形，复杂度O(n^2)。 </p>
 <p>第二种就是传说中的分治算法。将n个半平面分成两个部分，分别求完交之后再将两个相交的区域求交集。由于交出来的都是凸多边形，利用凸多边形的交可以在O(n)时间内完成的性质，将复杂度降为O(nlogn)。</p>
 <p>第三种就是ZZY大牛的那篇论文提到的他自创的排序增量算法。</p>
@@ -647,7 +647,7 @@ int main()
     printf(&quot;%.3lf\n&quot;,ans);  
     return 0;  
 }  
-</code></pre><h1 id="旋转卡壳"><a href="#旋转卡壳" class="headerlink" title="旋转卡壳"></a>旋转卡壳</h1><p>思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于凸包来操作就行了。</p>
+</code></pre><h1 id="旋转卡壳"><a href="#旋转卡壳" class="headerlink" title="旋转卡壳"></a>旋转卡壳</h1><p>思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于需要计算的凸多边形来操作就行了。</p>
 <p>POJ2185</p>
 <p>给出n个点，求平面内的最远点对。</p>
 <p>题解：<br>首先答案肯定在凸包上。先求出凸包之后，只需要求凸包的直径，这时采用旋转卡壳来求。</p>
