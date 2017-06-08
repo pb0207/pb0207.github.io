@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="旋转卡壳," />
+  <meta name="keywords" content="旋转卡壳,半平面交,凸包,向量," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="给出n个点，求平面内的最远点对。 题解：首先答案肯定在凸包上。先求出凸包之后，只需要求凸包的直径，这时采用旋转卡壳来求。 思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于凸包来操作就行了。 code #include&amp;lt;cstdio&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;iostream&amp;g">
-<meta name="keywords" content="旋转卡壳">
+<meta name="description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
+<meta name="keywords" content="旋转卡壳,半平面交,凸包,向量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="POJ2185">
+<meta property="og:title" content="计算几何">
 <meta property="og:url" content="http://pb0207.github.io/2017/06/08/旋转卡壳/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:description" content="给出n个点，求平面内的最远点对。 题解：首先答案肯定在凸包上。先求出凸包之后，只需要求凸包的直径，这时采用旋转卡壳来求。 思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于凸包来操作就行了。 code #include&amp;lt;cstdio&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;iostream&amp;g">
-<meta property="og:updated_time" content="2017-06-08T03:57:16.404Z">
+<meta property="og:description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
+<meta property="og:updated_time" content="2017-06-08T08:38:32.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="POJ2185">
-<meta name="twitter:description" content="给出n个点，求平面内的最远点对。 题解：首先答案肯定在凸包上。先求出凸包之后，只需要求凸包的直径，这时采用旋转卡壳来求。 思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于凸包来操作就行了。 code #include&amp;lt;cstdio&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;iostream&amp;g">
+<meta name="twitter:title" content="计算几何">
+<meta name="twitter:description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
 
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <title> POJ2185 | pb0207 </title>
+  <title> 计算几何 | pb0207 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -311,7 +311,7 @@
             
             
               
-                POJ2185
+                计算几何
               
             
           </h1>
@@ -384,9 +384,273 @@
       
 
       
-        <p>给出n个点，求平面内的最远点对。</p>
+        <h1 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h1><h2 id="解决几何问题的有力工具"><a href="#解决几何问题的有力工具" class="headerlink" title="解决几何问题的有力工具"></a>解决几何问题的有力工具</h2><p>OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。</p>
+<h3 id="向量的基本运算"><a href="#向量的基本运算" class="headerlink" title="向量的基本运算"></a>向量的基本运算</h3><p><strong>向量的表示：$\vec a $   向量a</strong></p>
+<p><strong>向量的加减运算:满足平行四边形法则</strong></p>
+<p><strong>$\vec {AB}+\vec {BC}=\vec{AC}$</strong></p>
+<p>$(a,b)+(c,d)=(a+c,b+c)$</p>
+<p><strong>$\vec{AB}-\vec{AC}=\vec{CB}$</strong></p>
+<p>$(a,b)-(c,d)=(a-b,c-d)$</p>
+<p><strong>向量的点乘、数量积</strong></p>
+<p><strong>$\vec x · \vec y=|\vec x||\vec y|cos&lt;\vec x,\vec y&gt;$</strong></p>
+<p>$(a,b)·(c,d)=ac+bd$</p>
+<p><strong>几何意义为x向量在y向量上投影的与y向量模长的乘积</strong></p>
+<p><strong>Attention:这是一个数量</strong></p>
+<p><strong>向量的叉积</strong></p>
+<p><strong>$\vec x ×\vec y=|\vec x||\vec y|sin&lt;\vec x,\vec y&gt;$</strong></p>
+<p>$(a,b)×(c,d)=ad-bc$</p>
+<p><strong>Attention:这是一个向量</strong></p>
+<p><strong>同时，两个点相减是向量，相加无意义</strong></p>
+<p><strong>两向量共线，则点积为$0$，垂直则叉积为$\vec 0$</strong></p>
+<p>code</p>
+<pre><code>struct P{
+double x,y;
+P(double x=0,double y=0):x(x),y(y);
+};
+
+P operator +(P a,P b)
+{
+    return P(a.x+b.x,a.y+b.y);
+}
+
+P operator -(P a,P b)
+{
+    return P(a.x-b.x,a.y-b.y);
+}
+
+double cross(P a,P b)
+{
+    return a.x*b.y-a.y*b.x;    
+}
+
+double dot(P a,P b)
+{
+    return a.x*b.x+a.y*b.y;
+}
+
+bool ver(P a,P b)//判断是否垂直 
+{
+    return dot(a,b)==0; 
+}
+
+bool col(P a,P b)//判断是否共线
+{
+    return cross(a,b)==0;
+}
+
+double dis(P a,P b)
+{
+    return sqrt(dot(b-a,b-a));
+} 
+</code></pre><hr>
+<h2 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h2><h3 id="定义：凸包是可以包裹平面上某个点集的最小凸多边形。"><a href="#定义：凸包是可以包裹平面上某个点集的最小凸多边形。" class="headerlink" title="定义：凸包是可以包裹平面上某个点集的最小凸多边形。"></a>定义：凸包是可以包裹平面上某个点集的最小凸多边形。</h3><h3 id="性质：凸包的定点一定在点集内。"><a href="#性质：凸包的定点一定在点集内。" class="headerlink" title="性质：凸包的定点一定在点集内。"></a>性质：凸包的定点一定在点集内。</h3><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>Granham算法的变种：Andrew（更快更好记）</p>
+<p>思路：先对点按x，y排序，然后进行从左到右扫描先求出下凸包，再求出上凸包。</p>
+<p>Code：cogs896圈奶牛</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+
+const int N=1e4+1e3+1;
+
+struct P{
+    double x,y;
+}pt[N],ch[N*2];
+
+double cross(P a,P b)
+{
+    return a.x*b.y-b.x*a.y;
+}
+
+bool cmp(P a,P b)
+{
+    return a.x&lt;b.x;
+    if(a.x==b.x)
+        return a.y&lt;b.y;
+}
+
+P operator -(P a,P b)
+{
+    P ret;
+    ret.x=a.x-b.x;
+    ret.y=a.y-b.y;
+    return ret;
+}
+
+double dot(P a,P b)
+{
+    return a.x*b.x+a.y*b.y;
+}
+
+double len(P a)
+{
+    return sqrt(dot(a,a));
+}
+
+int n,m;
+
+void ConvexHull()
+{
+    sort(pt+1,pt+n+1,cmp);
+    for(int i=1;i&lt;=n;i++)
+    {
+        while(m&gt;1&amp;&amp;cross(ch[m]-ch[m-1],pt[i]-ch[m-1])&lt;=0)
+            m--;
+        ch[++m]=pt[i];
+    }
+    int k=m;
+    for(int i=n-1;i&gt;=1;i--)
+    {
+        while(m&gt;k&amp;&amp;cross(ch[m]-ch[m-1],pt[i]-ch[m-1])&lt;=0)
+            m--;
+        ch[++m]=pt[i];
+    }
+    if(n&gt;1)
+        m--;
+}
+
+int main()
+{
+    freopen(&quot;fc.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;fc.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++)
+        scanf(&quot;%lf%lf&quot;,&amp;pt[i].x,&amp;pt[i].y);
+    double ans=0;
+    for(int i=2;i&lt;=m;i++)
+        ans+=len(ch[i]-ch[i-1]);
+    ans+=len(ch[1]-ch[m]);
+    printf(&quot;%.2lf&quot;,ans);
+}
+</code></pre><p><em>题目有待补充</em></p>
+<hr>
+<h2 id="半平面交"><a href="#半平面交" class="headerlink" title="半平面交"></a>半平面交</h2><h3 id="定义：求几个半平面相交的部分。"><a href="#定义：求几个半平面相交的部分。" class="headerlink" title="定义：求几个半平面相交的部分。"></a>定义：求几个半平面相交的部分。</h3><h3 id="算法：排序增量算法"><a href="#算法：排序增量算法" class="headerlink" title="算法：排序增量算法"></a>算法：排序增量算法</h3><h3 id="表示：规定一条向量的左边是这条向量对应的半平面"><a href="#表示：规定一条向量的左边是这条向量对应的半平面" class="headerlink" title="表示：规定一条向量的左边是这条向量对应的半平面"></a>表示：规定一条向量的左边是这条向量对应的半平面</h3><p><strong>经典论文：</strong></p>
+<p>求n个半平面的交有三种做法： 第一种就是用每个平面去切割已有的凸多边形，复杂度O(n^2)。 </p>
+<p>第二种就是传说中的分治算法。将n个半平面分成两个部分，分别求完交之后再将两个相交的区域求交集。由于交出来的都是凸多边形，利用凸多边形的交可以在O(n)时间内完成的性质，将复杂度降为O(nlogn)。</p>
+<p>第三种就是ZZY大牛的那篇论文提到的他自创的排序增量算法。</p>
+<p>但是他的那种做法还是有些复杂，在网上找到evalls写的一个很优美的版本：</p>
+<p>将所有半平面按极角排序，对于极角相同的，选择性的保留一个。$O(nlogn)$</p>
+<p>step2. 使用一个双端队列(deque)，加入最开始2个半平面。</p>
+<p>step3. 每次考虑一个新的半平面： </p>
+<p>a.while deque顶端的两个半平面的交点在当前半平面外:删除deque顶端的半平面</p>
+<p>b.while deque底部的两个半平面的交点在当前半平面外:删除deque底部的半平面</p>
+<p>c.将新半平面加入deque顶端step4.删除两端多余的半平面。</p>
+<p>具体方法是：</p>
+<p>a.while deque顶端的两个半平面的交点在底部半平面外:删除deque顶端的半平面</p>
+<p>b.while deque底部的两个半平面的交点在顶端半平面外:删除deque底部的半平面重复a,b直到不能删除为止。 </p>
+<p>step5:计算出deque顶端和底部的交点即可。 这个算法描述的非常清晰。当初写的时候有两个地方想的不太明白：step 1如何选择性的保留一个。step3如何判断交点在半平面外。</p>
+<p>其实这两个问题都可以用叉积来解决。首先根据给定的两点顺序规定好极角序。</p>
+<p>假定两点$o1,o2$的输入方向是顺时针，那么另一点P是否在其平面内只要判断o1P这个向量是否在$o1,o2$这个向量的右手边即可。</p>
+<p>对于相同角度的两个半平面$(a_1a_2，b_1b_2)$，可以看$a_1b_1$这个向量是否在$a_1 a_2$这个向量的右手边，每次都要选择更靠近右手边的那个半平面。</p>
+<h3 id="直线的向量表示"><a href="#直线的向量表示" class="headerlink" title="直线的向量表示"></a>直线的向量表示</h3><p>$line_{AB}=Point_{A}+k×\vec {AB}$</p>
+<p>这样表示的好处是，如果有两条直线有交点的话，那么直线$P+k_1\vec v,Q+k_2\vec w$<br>的交点在两条直线上的参数就是:<br>$$\vec u=P-Q$$<br>$$k_1=\frac {cross(w,u)} {cross(v,w)}  $$<br>$$k_2=\frac {cross(u,v)} {cross(v,w)}  $$</p>
+<p>推导略。</p>
+<p>例题：<br><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2618" target="_blank" rel="external">Cqoi2006凸多边形</a><br>求几个凸多边形的交集：裸的半平面交（代码中半平面交部分见下题）</p>
+<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1038" target="_blank" rel="external">ZJOI2008瞭望塔</a></p>
+<p>题面较长，简单描述一下：大概是要求一些点，这些点之间的连线下面都是山，然后要在一个点上选一个最低高度使得这个点可以看到所有点。</p>
+<p>题解：对于相邻的两个点构造向量，求半平面交。<br>半平面交求得的区域就是可以建瞭望塔的区域，然后就是求得到的区域的边界与下方折线的边界的最近距离。<br>这个最短距离只可能出现在上下边界的顶点上，所以计算出来取最小值即可。</p>
+<pre><code>#include&lt;iostream&gt;  
+#include&lt;cstdio&gt;  
+#include&lt;cmath&gt;  
+#include&lt;cstdlib&gt;  
+#include&lt;cstring&gt;  
+#include&lt;algorithm&gt;  
+#define F(i,j,n) for(int i=j;i&lt;=n;i++)  
+#define D(i,j,n) for(int i=j;i&gt;=n;i--)  
+#define ll long long  
+#define maxn 1005  
+#define eps 1e-8  
+#define inf 1000000000  
+using namespace std;  
+int n,cnt,tot;  
+double ans=1e60;  
+struct P{double x,y;}p[maxn],a[maxn];  
+struct L{P a,b;double angle;}l[maxn],q[maxn];  
+inline int read()  
+{  
+    int x=0,f=1;char ch=getchar();  
+    while (ch&lt;&apos;0&apos;||ch&gt;&apos;9&apos;){if (ch==&apos;-&apos;) f=-1;ch=getchar();}  
+    while (ch&gt;=&apos;0&apos;&amp;&amp;ch&lt;=&apos;9&apos;){x=x*10+ch-&apos;0&apos;;ch=getchar();}  
+    return x*f;  
+}  
+inline P operator -(P a,P b){return (P){a.x-b.x,a.y-b.y};}  
+inline double operator *(P a,P b){return a.x*b.y-a.y*b.x;}  
+inline bool operator &lt;(L a,L b)  
+{  
+    if (fabs(a.angle-b.angle)&lt;eps) return (a.b-a.a)*(b.b-a.a)&gt;0;  
+    else return a.angle&lt;b.angle;  
+}  
+inline P inter(L l1,L l2)  
+{  
+    double k1=(l2.b-l1.a)*(l1.b-l1.a),k2=(l1.b-l1.a)*(l2.a-l1.a),t=k1/(k1+k2);  
+    return (P){l2.b.x+(l2.a.x-l2.b.x)*t,l2.b.y+(l2.a.y-l2.b.y)*t};  
+}  
+inline bool judge(L l1,L l2,L t)  
+{  
+    P p=inter(l1,l2);  
+    return (t.b-t.a)*(p-t.a)&lt;0;  
+}  
+inline void pre()  
+{  
+    p[0].x=p[1].x;p[0].y=inf;  
+    p[n+1].x=p[n].x;p[n+1].y=inf;  
+    F(i,0,n) l[++cnt]=(L){p[i],p[i+1]};  
+    F(i,1,cnt) l[i].angle=atan2(l[i].b.y-l[i].a.y,l[i].b.x-l[i].a.x);  
+    sort(l+1,l+cnt+1);  
+}  
+inline void hpi()  
+{  
+    int top=0,bot=1;  
+    tot=1;  
+    F(i,2,cnt)  
+    {  
+        if (fabs(l[i].angle-l[i-1].angle)&gt;=eps) tot++;  
+        l[tot]=l[i];  
+    }  
+    cnt=tot;  
+    q[++top]=l[1];q[++top]=l[2];  
+    F(i,3,cnt)  
+    {  
+        while (bot&lt;top&amp;&amp;judge(q[top-1],q[top],l[i])) top--;  
+        while (bot&lt;top&amp;&amp;judge(q[bot+1],q[bot],l[i])) bot++;  
+        q[++top]=l[i];  
+    }  
+    while (bot&lt;top&amp;&amp;judge(q[top-1],q[top],q[bot])) top--;  
+    while (bot&lt;top&amp;&amp;judge(q[bot+1],q[bot],q[top])) bot++;  
+    tot=0;  
+    F(i,bot,top-1) a[++tot]=inter(q[i],q[i+1]);  
+}  
+inline void getans()  
+{  
+    F(k,1,tot) F(i,1,n-1)  
+    {  
+        P t=(P){a[k].x,-1};  
+        if (a[k].x&gt;=p[i].x&amp;&amp;a[k].x&lt;=p[i+1].x)  
+            ans=min(ans,a[k].y-inter((L){p[i],p[i+1]},(L){t,a[k]}).y);  
+    }  
+    F(k,1,n) F(i,1,tot-1)  
+    {  
+        P t=(P){p[k].x,-1};  
+        if (p[k].x&gt;=a[i].x&amp;&amp;p[k].x&lt;=a[i+1].x)  
+            ans=min(ans,inter((L){a[i],a[i+1]},(L){t,p[k]}).y-p[k].y);  
+    }  
+}  
+int main()  
+{  
+    n=read();  
+    F(i,1,n) p[i].x=read();  
+    F(i,1,n) p[i].y=read();  
+    pre();  
+    hpi();  
+    getans();  
+    printf(&quot;%.3lf\n&quot;,ans);  
+    return 0;  
+}  
+</code></pre><h1 id="旋转卡壳"><a href="#旋转卡壳" class="headerlink" title="旋转卡壳"></a>旋转卡壳</h1><p>思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于凸包来操作就行了。</p>
+<p>POJ2185</p>
+<p>给出n个点，求平面内的最远点对。</p>
 <p>题解：<br>首先答案肯定在凸包上。先求出凸包之后，只需要求凸包的直径，这时采用旋转卡壳来求。</p>
-<p>思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于凸包来操作就行了。</p>
 <p>code</p>
 <pre><code>#include&lt;cstdio&gt;
 #include&lt;algorithm&gt;
@@ -479,7 +743,8 @@ int main()
     GR();
     printf(&quot;%d&quot;,(int)(ans));
 }
-</code></pre>
+</code></pre><p><strong>例题见后续博客</strong></p>
+
       
     </div>
 
@@ -503,6 +768,12 @@ int main()
         <div class="post-tags">
           
             <a href="/tags/旋转卡壳/" rel="tag"># 旋转卡壳</a>
+          
+            <a href="/tags/半平面交/" rel="tag"># 半平面交</a>
+          
+            <a href="/tags/凸包/" rel="tag"># 凸包</a>
+          
+            <a href="/tags/向量/" rel="tag"># 向量</a>
           
         </div>
       
@@ -570,8 +841,17 @@ int main()
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/genji.jpg"
@@ -604,7 +884,7 @@ int main()
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -658,6 +938,22 @@ int main()
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算几何"><span class="nav-number">1.</span> <span class="nav-text">计算几何</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决几何问题的有力工具"><span class="nav-number">1.1.</span> <span class="nav-text">解决几何问题的有力工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#向量的基本运算"><span class="nav-number">1.1.1.</span> <span class="nav-text">向量的基本运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#凸包"><span class="nav-number">1.2.</span> <span class="nav-text">凸包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义：凸包是可以包裹平面上某个点集的最小凸多边形。"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义：凸包是可以包裹平面上某个点集的最小凸多边形。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性质：凸包的定点一定在点集内。"><span class="nav-number">1.2.2.</span> <span class="nav-text">性质：凸包的定点一定在点集内。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">1.2.3.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#半平面交"><span class="nav-number">1.3.</span> <span class="nav-text">半平面交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义：求几个半平面相交的部分。"><span class="nav-number">1.3.1.</span> <span class="nav-text">定义：求几个半平面相交的部分。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法：排序增量算法"><span class="nav-number">1.3.2.</span> <span class="nav-text">算法：排序增量算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表示：规定一条向量的左边是这条向量对应的半平面"><span class="nav-number">1.3.3.</span> <span class="nav-text">表示：规定一条向量的左边是这条向量对应的半平面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直线的向量表示"><span class="nav-number">1.3.4.</span> <span class="nav-text">直线的向量表示</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#旋转卡壳"><span class="nav-number">2.</span> <span class="nav-text">旋转卡壳</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
