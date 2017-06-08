@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，">
+<meta name="description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n  mod  3=0$必败，否则必胜。因为当$n  mod  3=0$时，后手只需">
 <meta name="keywords" content="博弈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博弈">
 <meta property="og:url" content="http://pb0207.github.io/2017/06/07/博弈/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，">
+<meta property="og:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n  mod  3=0$必败，否则必胜。因为当$n  mod  3=0$时，后手只需">
 <meta property="og:updated_time" content="2017-06-07T02:37:05.550Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博弈">
-<meta name="twitter:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，">
+<meta name="twitter:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n  mod  3=0$必败，否则必胜。因为当$n  mod  3=0$时，后手只需">
 
 
 
@@ -389,14 +389,14 @@
 <p>找出必胜策略，DFS或者DP直接求，SG函数</p>
 <h2 id="找出必胜策略"><a href="#找出必胜策略" class="headerlink" title="找出必胜策略"></a>找出必胜策略</h2><p>这种方法并不常见。</p>
 <h3 id="例1："><a href="#例1：" class="headerlink" title="例1："></a>例1：</h3><p>有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。</p>
-<p>解：如果$n \ mod \ 3=0$必败，否则必胜。因为当$n \ mod \ 3=0$时，后手只需要在先手拿完之后保持$n \ mod \ 3=0$即可。当然不等于$3$时，先手可以直接让其变为等于$3$，则必胜。</p>
+<p>解：如果$n  mod  3=0$必败，否则必胜。因为当$n  mod  3=0$时，后手只需要在先手拿完之后保持$n  mod  3=0$即可。当然不等于$3$时，先手可以直接让其变为等于$3$，则必胜。</p>
 <h2 id="DFS或者DP直接求"><a href="#DFS或者DP直接求" class="headerlink" title="DFS或者DP直接求"></a>DFS或者DP直接求</h2><p>首先在博弈里面有两种状态，必胜态和必败态。因为两个人都是采用了最优策略，所以有以下定理:</p>
 <h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><strong>1.如果当前状态的后继状态有必败态，那么这一定是必胜态</strong></p>
 <p><strong>2.如果当前状态的后继状态都是必胜态，那么这一定是必败态</strong></p>
 <h3 id="例1：-1"><a href="#例1：-1" class="headerlink" title="例1："></a>例1：</h3><p>有一堆石子有$n$个，对于一个集合$S={a[i]|i\in[1,n]}$，可以拿随意的$x\in S$个，不能拿就输了，问初始局面先手必胜还是必败。</p>
 <p>解：设$f[i]$为当前还有$i$个石子的时候的时候是先手必胜还是必败。</p>
 <p>首先边界条件是$f[0]=0$</p>
-<p>显然根据上面的结论有<br>$$f[i]=<br>\begin{cases}<br>1,\exists \  \forall \  f[i-a[i]]=0\\<br>0,else<br>\end{cases}<br>$$</p>
+<p>显然根据上面的结论有<br>$$f[i]=<br>\begin{cases}<br>1,\exists   \forall   f[i-a[i]]=0\\\<br>0,else<br>\end{cases}<br>$$</p>
 <p>那么直接枚举计算即可。</p>
 <p>也可以使用记忆化搜索来解决。</p>
 <p>这种方法一般都作为博弈的暴力解法来出现，只能拿到部分分，但可以用来对拍。</p>
@@ -489,6 +489,10 @@ int SG(int x)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/06/08/旋转卡壳/" rel="next" title="POJ2185">
+                <i class="fa fa-chevron-left"></i> POJ2185
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -569,7 +573,7 @@ int SG(int x)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -578,7 +582,7 @@ int SG(int x)
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -587,7 +591,7 @@ int SG(int x)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

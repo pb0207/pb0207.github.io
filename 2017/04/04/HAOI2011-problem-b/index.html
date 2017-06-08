@@ -395,15 +395,15 @@
 </code></pre><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>$100%$的数据满足：$1≤n≤50000，1≤a≤b≤50000，1≤c≤d≤50000，1≤k≤50000$</p>
 <h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p>借着这道题谈一下莫比乌斯反演</p>
 <h3 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h3><p>莫比乌斯函数是一个积性函数</p>
-<p>其定义如下<br>$$\mu(n)=\begin{cases}<br>1,n=1\\<br>(-1)^k=p_1p_2…p_k,p_i\in{prime}\\<br>0,else<br>\end{cases}$$</p>
-<p>莫比乌斯函数具有以下性质<br>$$\sum_{d|n}\mu(d)=\begin{cases}<br>1,n=1\\<br>0,n&gt;1<br>\end{cases}$$</p>
+<p>其定义如下<br>$$\mu(n)=\begin{cases}<br>1,n=1\\\<br>(-1)^k=p_1p_2…p_k,p_i\in{prime}\\\<br>0,else<br>\end{cases}$$</p>
+<p>莫比乌斯函数具有以下性质<br>$$\sum_{d|n}\mu(d)=\begin{cases}<br>1,n=1\\\<br>0,n&gt;1<br>\end{cases}$$</p>
 <p>莫比乌斯函数是积性函数</p>
 <h3 id="Dirichlet卷积"><a href="#Dirichlet卷积" class="headerlink" title="Dirichlet卷积"></a>Dirichlet卷积</h3><p>两个数论函数$f(x),g(x)$的卷积$(f×g(x))$定义为<br>$$f×g(n)=\sum_{d|n}f(d)g(\frac n d)$$</p>
-<h3 id="莫比乌斯反演-1"><a href="#莫比乌斯反演-1" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><p>如果数论函数$f(x),g(x)$满足<br>$$f(n)=\sum<em>{d|n} g(d)$$<br>那么它们也满足<br>$$g(n)=\sum</em>{d|n}\mu(n)f(\frac n d)$$</p>
+<h3 id="莫比乌斯反演-1"><a href="#莫比乌斯反演-1" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><p>如果数论函数$f(x),g(x)$满足<br>$$f(n)=\sum_{d|n} g(d)$$<br>那么它们也满足<br>$$g(n)=\sum_{d|n}\mu(n)f(\frac n d)$$</p>
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>显然上面那一题就是一个比较裸的莫比乌斯反演题了</p>
 <h3 id="首先来看如果去掉-x-y-的下限"><a href="#首先来看如果去掉-x-y-的下限" class="headerlink" title="首先来看如果去掉$x,y$的下限"></a>首先来看如果去掉$x,y$的下限</h3><p>首先两边同时除以$k$</p>
 <p>那么条件就变成了<br>$$gcd({\frac x k},{\frac y k})=1$$.</p>
-<p>而且有<br>$$\sum<em>{d|n}\mu(d)=[n=1]$$<br>原来要求的是<br>$$\sum</em>{x=a}^b\sum<em>{y=c}^d[gcd(x,y)=k]$$<br>就转化为了<br>$$\sum</em>{x=1}^{b’}\sum<em>{y=1}^{d’}\sum</em>{d|(x,y)}\mu(d)$$<br>然后<br>显然就是一个除法之后向下取整求和</p>
+<p>而且有<br>$$\sum_{d|n}\mu(d)=[n=1]$$<br>原来要求的是<br>$$\sum_{x=a}^b\sum_{y=c}^d[gcd(x,y)=k]$$<br>就转化为了<br>$$\sum_{x=1}^{b’}\sum_{y=1}^{d’}\sum_{d|(x,y)}\mu(d)$$<br>然后<br>显然就是一个除法之后向下取整求和</p>
 <p>但是直接枚举$d$就TLE了</p>
 <p>于是采用分块处理</p>
 <p>但是很显然有下限，于是容斥原理<br>(画下图就知道了。。。)</p>
@@ -590,7 +590,7 @@ int main()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -599,7 +599,7 @@ int main()
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -608,7 +608,7 @@ int main()
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

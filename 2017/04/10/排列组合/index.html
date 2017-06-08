@@ -513,9 +513,9 @@ int main()
 <h3 id="组合数-1"><a href="#组合数-1" class="headerlink" title="组合数"></a>组合数</h3><h4 id="定义：组合数，从-n-个不同的元素中选取-r-个切不考虑顺序，记作-C-n-r-或-C-r-n"><a href="#定义：组合数，从-n-个不同的元素中选取-r-个切不考虑顺序，记作-C-n-r-或-C-r-n" class="headerlink" title="定义：组合数，从$n$个不同的元素中选取$r$个切不考虑顺序，记作$C(n,r)$或$C_r^n$"></a><strong>定义：组合数，从$n$个不同的元素中选取$r$个切不考虑顺序，记作$C(n,r)$或$C_r^n$</strong></h4><p>$C^n_m=\frac {p(n,r)} {r!}=\frac {n!} {m!(n-m)!}$</p>
 <p>事实组合数和排列经常一起运算来计算一些东西。</p>
 <h4 id="常见性质"><a href="#常见性质" class="headerlink" title="常见性质"></a>常见性质</h4><p><strong>这些东西可以用组合论证来解释，即将其表示为长度一定的二进制串中某一位选0或者选1</strong></p>
-<p><strong>1.$C^n<em>m=C^n</em>{n-m}$</strong></p>
+<p><strong>1.$C^n_m=C^n_{n-m}$</strong></p>
 <p>这个应该很好想，从$n$中取$m$个为1跟找$n-m$个为0是一样的。</p>
-<p><strong>2.$C^n<em>m=C^{n-1}</em>{m-1}+C^{n-1}_m$</strong></p>
+<p><strong>2.$C^n_m=C^{n-1}_{m-1}+C^{n-1}_m$</strong></p>
 <p>长度为$n$的串有$m$个1，可以是长度为$n-1$有$m-1$个1的加一个1，或者是$n-1$有$m$个1的加一个0</p>
 <p><strong>3.$2^n=\sum_k C^n_k$</strong></p>
 <p>长度为$n$的串根据乘法原理有$2^n$个，根据加法原理有分别有$1…n$个1的串加起来那么多个</p>
@@ -523,7 +523,7 @@ int main()
 <p>著名的二项式定理，其还有推广过的多项式定理。</p>
 <p>说实话这个用组合论证很麻烦。</p>
 <p>这就是$(a+b)^n$的展开形式的解释：首先看后面的多项式，就是从$n$个$a$里面选了$k$个，剩下$n-k$个$b$，其可能数就是前面的系数。</p>
-<p><strong>5.$C^{n+m}_r=\sum_kC^n<em>kC^m</em>{r-k}$</strong></p>
+<p><strong>5.$C^{n+m}_r=\sum_kC^n_kC^m_{r-k}$</strong></p>
 <p>在$n+m$长度中选$r(r&lt;n,r&lt;m)$个1，那么就是在$n$个中选$k$个和在$m$个中选$r-k$个。</p>
 <h2 id="组合数的计算就可以避免时间复杂度低的阶乘，可以通过2来实现。"><a href="#组合数的计算就可以避免时间复杂度低的阶乘，可以通过2来实现。" class="headerlink" title="组合数的计算就可以避免时间复杂度低的阶乘，可以通过2来实现。"></a>组合数的计算就可以避免时间复杂度低的阶乘，可以通过2来实现。</h2><h2 id="Catalan"><a href="#Catalan" class="headerlink" title="Catalan"></a>Catalan</h2><p>令$h(0)=1,h(1)=1$，catalan数满足递推式:<br>$h(n)= h(0)×h(n-1)+h(1)×h(n-2) + … + h(n-1)×h(0) (n&gt;=2)$</p>
 <p>卡特兰数应用有很多三角形划分等等等</p>
@@ -675,7 +675,7 @@ int main()
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -684,7 +684,7 @@ int main()
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -693,7 +693,7 @@ int main()
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
