@@ -396,7 +396,7 @@
 <h3 id="例1：-1"><a href="#例1：-1" class="headerlink" title="例1："></a>例1：</h3><p>有一堆石子有$n$个，对于一个集合$S={a[i]|i\in[1,n]}$，可以拿随意的$x\in S$个，不能拿就输了，问初始局面先手必胜还是必败。</p>
 <p>解：设$f[i]$为当前还有$i$个石子的时候的时候是先手必胜还是必败。</p>
 <p>首先边界条件是$f[0]=0$</p>
-<p>显然根据上面的结论有<br>$$f[i]=<br>\begin{cases}<br>1,\exists   \forall   f[i-a[i]]=0\\\<br>0,else<br>\end{cases}<br>$$</p>
+<p>显然根据上面的结论有<br>$$f[i]=<br>\begin{cases}<br>1,\exists   \forall   f[i-a[i]]=0\\<br>0,else<br>\end{cases}<br>$$</p>
 <p>那么直接枚举计算即可。</p>
 <p>也可以使用记忆化搜索来解决。</p>
 <p>这种方法一般都作为博弈的暴力解法来出现，只能拿到部分分，但可以用来对拍。</p>
@@ -573,7 +573,7 @@ int SG(int x)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -582,7 +582,7 @@ int SG(int x)
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -591,7 +591,7 @@ int SG(int x)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="状压DP,字符串DP," />
+  <meta name="keywords" content="线段树,离散化," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="SDOI2009 Bill的挑战问题描述：Sheng bill不仅有惊人的心算能力，还可以轻松地完成各种统计。在昨天的比赛中，你凭借优秀的程序与他打成了平局，这导致Sheng bill极度的不满。于是他再次挑战你。这次你可不能输！ 这次，比赛规则是这样的： 给N个长度相同的字符串（由小写英文字母和′$?$′组成），$S1, S2, . . . , SN$，求与这$N$个串中的刚好$K$个串匹配的字">
-<meta name="keywords" content="状压DP,字符串DP">
+<meta name="description" content="NOI2016区间在数轴上有$ n $个闭区间 $[l_1,r_1],[l_2,r_2],…,[l_n,r_n]$。现在要从中选出 $m $个区间，使得这$ m $个区间共同包含至少一个位置。换句话说，就是使得存在一个 $x$，使得对于每一个被选中的区间$ [l_i,r_i]$，都有 $l_i≤x≤r_i$。 对于一个合法的选取方案，它的花费为被选中的最长区间长度减去被选中的最短区间长度。区间$">
+<meta name="keywords" content="线段树,离散化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SDOI2009 Bill的挑战">
-<meta property="og:url" content="http://pb0207.github.io/2017/03/14/SDOI2009-Bill的挑战/index.html">
+<meta property="og:title" content="NOI2016 区间">
+<meta property="og:url" content="http://pb0207.github.io/2017/06/16/NOI2016-区间/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:description" content="SDOI2009 Bill的挑战问题描述：Sheng bill不仅有惊人的心算能力，还可以轻松地完成各种统计。在昨天的比赛中，你凭借优秀的程序与他打成了平局，这导致Sheng bill极度的不满。于是他再次挑战你。这次你可不能输！ 这次，比赛规则是这样的： 给N个长度相同的字符串（由小写英文字母和′$?$′组成），$S1, S2, . . . , SN$，求与这$N$个串中的刚好$K$个串匹配的字">
-<meta property="og:updated_time" content="2017-03-20T11:32:21.514Z">
+<meta property="og:description" content="NOI2016区间在数轴上有$ n $个闭区间 $[l_1,r_1],[l_2,r_2],…,[l_n,r_n]$。现在要从中选出 $m $个区间，使得这$ m $个区间共同包含至少一个位置。换句话说，就是使得存在一个 $x$，使得对于每一个被选中的区间$ [l_i,r_i]$，都有 $l_i≤x≤r_i$。 对于一个合法的选取方案，它的花费为被选中的最长区间长度减去被选中的最短区间长度。区间$">
+<meta property="og:updated_time" content="2017-06-16T08:05:07.397Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SDOI2009 Bill的挑战">
-<meta name="twitter:description" content="SDOI2009 Bill的挑战问题描述：Sheng bill不仅有惊人的心算能力，还可以轻松地完成各种统计。在昨天的比赛中，你凭借优秀的程序与他打成了平局，这导致Sheng bill极度的不满。于是他再次挑战你。这次你可不能输！ 这次，比赛规则是这样的： 给N个长度相同的字符串（由小写英文字母和′$?$′组成），$S1, S2, . . . , SN$，求与这$N$个串中的刚好$K$个串匹配的字">
+<meta name="twitter:title" content="NOI2016 区间">
+<meta name="twitter:description" content="NOI2016区间在数轴上有$ n $个闭区间 $[l_1,r_1],[l_2,r_2],…,[l_n,r_n]$。现在要从中选出 $m $个区间，使得这$ m $个区间共同包含至少一个位置。换句话说，就是使得存在一个 $x$，使得对于每一个被选中的区间$ [l_i,r_i]$，都有 $l_i≤x≤r_i$。 对于一个合法的选取方案，它的花费为被选中的最长区间长度减去被选中的最短区间长度。区间$">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://pb0207.github.io/2017/03/14/SDOI2009-Bill的挑战/"/>
+  <link rel="canonical" href="http://pb0207.github.io/2017/06/16/NOI2016-区间/"/>
 
 
 
 
 
-  <title> SDOI2009 Bill的挑战 | pb0207 </title>
+  <title> NOI2016 区间 | pb0207 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -290,7 +290,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/03/14/SDOI2009-Bill的挑战/">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/06/16/NOI2016-区间/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pb">
@@ -311,7 +311,7 @@
             
             
               
-                SDOI2009 Bill的挑战
+                NOI2016 区间
               
             
           </h1>
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-14T16:32:47+08:00">
-                2017-03-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-16T15:52:48+08:00">
+                2017-06-16
               </time>
             
 
@@ -349,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DP/" itemprop="url" rel="index">
-                    <span itemprop="name">DP</span>
+                  <a href="/categories/NOI/" itemprop="url" rel="index">
+                    <span itemprop="name">NOI</span>
                   </a>
                 </span>
 
@@ -384,95 +384,135 @@
       
 
       
-        <h1 id="SDOI2009-Bill的挑战"><a href="#SDOI2009-Bill的挑战" class="headerlink" title="SDOI2009 Bill的挑战"></a>SDOI2009 Bill的挑战</h1><h2 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h2><p><strong>Sheng bill</strong>不仅有惊人的心算能力，还可以轻松地完成各种统计。在昨天的比赛中，你凭借优秀的程序与他打成了平局，这导致<strong>Sheng bill</strong>极度的不满。于是他再次挑战你。这次你可不能输！</p>
-<p>这次，比赛规则是这样的：</p>
-<p>给N个长度相同的字符串（由小写英文字母和′$<br>?$′组成），$S1, S2, . . . , SN$，求与这$N$个串中<br>的刚好$K$个串匹配的字符串T的个数（答案模$1000003$）。<br>若字符串$Sx（1 ≤ x ≤ N）$和T匹配，满足以下条件：</p>
-<ol>
-<li>$Sx.length = T.length$。</li>
-<li>对于任意的$1 ≤ i ≤ Sx.length$，满足$Sx[i] =$′$<br>?$′<br>或者$Sx[i] = T[i]$。<br>其中T只包含小写英文字母。</li>
-</ol>
-<h2 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h2><p>本题包含多组数据。<br>第一行：一个整数$T$，表示数据的个数。<br>对于每组数据：<br>第一行：两个整数，$N$和$K$（含义如题目表述）。<br>接下来$N$行：每行一个字符串。</p>
-<h2 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h2><p>对于每组数据，输出方案数目（共$T$行）。</p>
-<h2 id="样例输入："><a href="#样例输入：" class="headerlink" title="样例输入："></a>样例输入：</h2><pre><code>1
-2 1
-a?
-?b
-</code></pre><h2 id="样例输出："><a href="#样例输出：" class="headerlink" title="样例输出："></a>样例输出：</h2><pre><code>50
-</code></pre><h2 id="数据范围："><a href="#数据范围：" class="headerlink" title="数据范围："></a>数据范围：</h2><p>   对于30%的数据，$T ≤ 5$，$N ≤ 5$，字符串长度$≤ 20$；</p>
-<p>   对于70%的数据，$T ≤ 5$，$N ≤ 13$，字符串长度$≤ 30$；</p>
-<p>   对于100%的数据，$T ≤ 5$，$N ≤ 15$，字符串长度$≤50$。</p>
-<hr>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>看到这道题，首先去想经典的字符串算法，因为有可以随意匹配的字符？，所以KMP做不了，如果用后缀数组，由于最坏情况下字符串的每一个？都要造26个子串，那么对于长度为50的字符串，就要造$26^{50}$个子串，无论是时间还是空间都无法承受，所以便考虑DP解决，这题的状态设计确实不好想，不同于其他字符串DP，本题数据小，所以应该是状压DP，表示集合的哪一维并不是根据单个串来设计，而是根据所有串是否匹配来表示一个集合。</p>
-<h3 id="状态设计如下："><a href="#状态设计如下：" class="headerlink" title="状态设计如下："></a>状态设计如下：</h3><p>$f[i][j]$表示匹配了$i$个字符的字符串集合$j$所拥有的方案数。</p>
-<h3 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h3><p>首先设计一个数组$g[][]$</p>
-<p>$g[i][j]=x$表示字符$j$可以和$x$集合内的串的第$i$位匹配</p>
-<p>$f[匹配长度][集合]=方案数$</p>
-<p>$f[0][全满集合]=1$</p>
-<p>$f[i][k∩g[i-1][j]]+=f[递推位数i-1][枚举集合k]$</p>
-<h3 id="新技能get！"><a href="#新技能get！" class="headerlink" title="新技能get！"></a>新技能get！</h3><p>统计集合中选取的元素数量可以用lowbit而不是一位一位去算！</p>
-<hr>
-<h3 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h3><pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
+        <h1 id="NOI2016区间"><a href="#NOI2016区间" class="headerlink" title="NOI2016区间"></a>NOI2016区间</h1><p>在数轴上有$ n $个闭区间 $[l_1,r_1],[l_2,r_2],…,[l_n,r_n]$。现在要从中选出 $m $个区间，使得这$ m $个区间共同包含至少一个位置。换句话说，就是使得存在一个 $x$，使得对于每一个被选中的区间$ [l_i,r_i]$，都有 $l_i≤x≤r_i$。</p>
+<p>对于一个合法的选取方案，它的花费为被选中的最长区间长度减去被选中的最短区间长度。区间$ [l_i,r_i] $的长度定义为$ r_i−l_i$，即等于它的右端点的值减去左端点的值。</p>
+<p>求所有合法方案中最小的花费。如果不存在合法的方案，输出 $−1$。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行包含两个正整数$ n,m$，用空格隔开，意义如上文所述。保证$ 1≤m≤n$。</p>
+<p>接下来 $n$行，每行表示一个区间，包含用空格隔开的两个整数 $l_i $和 $r_i$ 为该区间的左右端点。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>只有一行，包含一个正整数，即最小花费。</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>input</p>
+<pre><code>6 3
+3 5
+1 2
+3 4
+2 2
+1 5
+1 4
+</code></pre><p>output</p>
+<pre><code>2
+</code></pre><p>数据范围与约定<br>  $  n&lt;=500000,m&lt;=200000$</p>
+<pre><code>时间限制：3s
+空间限制：256MB
+</code></pre><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>这题暴力还是很好打的，$O(n^2logn)$+离散化可以水过去60分。具体就是枚举重叠的是哪一个点然后暴力计算出哪些区间可以选，然后排序贪心地选连续的$m$个即可。</p>
+<p>正解是用线段树维护。离散化之后，将区间按长度排序，我们可以发现在选择的时候，枚举一个最小和一个最大，即一个左指针，一个右指针，然后可以发现，我们可以用线段树维护每个点被几个区间覆盖了，然后对于线段树维护的全局最大值，如果当前大于$m$，则可以直接在当前选的区间范围内的右端点减去左端点就是当前的$ans$，持续更新即可。</p>
+<p>复杂度$O(nlogn)$。</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><pre><code>#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
 #include&lt;cstring&gt;
+#include&lt;iostream&gt;
 using namespace std;
 
-const int P=1e6+3;
+const int N=5e5+1e3+7;
 
-int t,n,k,f[60][1&lt;&lt;17],g[60][27],ans;
+struct T{
+    int ls,rs,mx,l,r,tag;
+}t[N*4+1];
 
-char s[20][60];
+struct node{
+    int len,l,r;
+}rg[N*2+1];
 
-int lowbit(int x)
+int n,m,x[N],y[N],w[N*2+1],ans=0x7fffffff,now[N],cnt,root;
+
+void update(int now)
 {
-    return x&amp;(-x);
+    int ls=t[now].ls,rs=t[now].rs;
+    t[now].mx=max(t[ls].mx,t[rs].mx);
+}
+
+void pushdown(int now)
+{
+    int ls=t[now].ls,rs=t[now].rs;
+    if(ls)
+    {
+        t[ls].mx+=t[now].tag;
+        t[ls].tag+=t[now].tag;
+    }
+    if(rs)
+    {
+        t[rs].mx+=t[now].tag;
+        t[rs].tag+=t[now].tag;
+    }
+    t[now].tag=0;
+}
+
+int build(int l,int r)
+{
+    int now=++cnt;
+    int mid=(l+r)&gt;&gt;1;
+    t[now].l=l,t[now].r=r;
+    if(l==r)
+        return cnt;
+    t[now].ls=build(l,mid);
+    t[now].rs=build(mid+1,r);
+    return now;
+}
+
+void add(int now,int l,int r,int val)
+{
+    pushdown(now);
+    if(t[now].l&gt;=l&amp;&amp;t[now].r&lt;=r)
+    {
+        t[now].mx+=val;
+        t[now].tag+=val;
+        return;
+    }
+    int mid=(t[now].l+t[now].r)&gt;&gt;1;
+    if(l&lt;=mid)
+        add(t[now].ls,l,r,val);
+    if(r&gt;mid)
+        add(t[now].rs,l,r,val);
+    update(now);
+}
+
+bool cmp(node a,node b)
+{
+    return a.len&lt;b.len;
 }
 
 int main()
 {
-    scanf(&quot;%d&quot;,&amp;t);
-    while(t--)
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for(int i=1;i&lt;=n;i++)
+        scanf(&quot;%d%d&quot;,&amp;x[i],&amp;y[i]);
+    for(int i=1;i&lt;=n;i++)
+        w[i*2-1]=x[i],w[i*2]=y[i];
+    sort(w+1,w+2*n+1);
+    for(int i=1;i&lt;=n;i++)
+        rg[i].l=lower_bound(w+1,w+n*2+1,x[i])-w,rg[i].r=lower_bound(w+1,w+n*2+1,y[i])-w,rg[i].len=y[i]-x[i];
+    sort(rg+1,rg+n+1,cmp);
+    root=build(1,n*2+1);
+    add(root,rg[1].l,rg[1].r,1);
+    int ll=1,rr=2;
+    while(ll&lt;=n)
     {
-        memset(f,0,sizeof(f));
-        memset(s,0,sizeof(s));
-        memset(g,0,sizeof(g));
-        ans=0;
-        scanf(&quot;%d%d&quot;,&amp;n,&amp;k);
-        int full=(1&lt;&lt;n)-1;
-        f[0][full]=1;
-        for(int i=0;i&lt;n;i++)
-            scanf(&quot;%s&quot;,s[i]);
-        int len=strlen(s[0]);    
-        for(int i=0;i&lt;len;i++) 
-            for(int p=0;p&lt;26;p++)
-            {    
-                g[i][p]=0;
-                for(int j=0;j&lt;n;j++)
-                    if(s[j][i]==&apos;?&apos;||s[j][i]==p+&apos;a&apos;)
-                        g[i][p]|=(1&lt;&lt;j);
-            }
-        for(int i=1;i&lt;=len;i++)
-            for(int p=0;p&lt;=full;p++)
-                if(f[i-1][p])
-                    for(int j=0;j&lt;26;j++)
-                    {
-                        f[i-1][p]%=P;
-                        f[i][p&amp;g[i-1][j]]+=f[i-1][p];
-                        f[i][p&amp;g[i-1][j]]%=P;
-                    }
-        for(int p=0;p&lt;=full;p++)
+        while(rr&lt;=n&amp;&amp;t[root].mx&lt;m)
         {
-            int tmp=p,cnt=0;
-            while(tmp)
-            {
-                cnt++;
-                tmp-=lowbit(tmp);
-            }
-            if(cnt==k)
-                ans=(ans+f[len][p])%P;
+            add(root,rg[rr].l,rg[rr].r,1);
+                rr++;
         }
-        printf(&quot;%d\n&quot;,ans);
+        if(t[root].mx&lt;m)
+            break;
+        ans=min(ans,rg[rr-1].len-rg[ll].len);
+        add(root,rg[ll].l,rg[ll].r,-1);
+        ll++;
     }
-}
+    if(ans!=0x7fffffff)
+        printf(&quot;%d&quot;,ans);
+    else
+        printf(&quot;-1&quot;);
+} 
 </code></pre>
       
     </div>
@@ -496,9 +536,9 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/状压DP/" rel="tag"># 状压DP</a>
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
           
-            <a href="/tags/字符串DP/" rel="tag"># 字符串DP</a>
+            <a href="/tags/离散化/" rel="tag"># 离散化</a>
           
         </div>
       
@@ -511,18 +551,14 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/15/ZJOI2007-仓库建设/" rel="next" title="ZJOI2007 仓库建设">
-                <i class="fa fa-chevron-left"></i> ZJOI2007 仓库建设
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/12/NOIP模拟-2017-3-12/" rel="prev" title="NOIP模拟 2017/3/12">
-                NOIP模拟 2017/3/12 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/08/旋转卡壳/" rel="prev" title="计算几何">
+                计算几何 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -677,7 +713,7 @@ int main()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SDOI2009-Bill的挑战"><span class="nav-number">1.</span> <span class="nav-text">SDOI2009 Bill的挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述："><span class="nav-number">1.1.</span> <span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式："><span class="nav-number">1.2.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式："><span class="nav-number">1.3.</span> <span class="nav-text">输出格式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输入："><span class="nav-number">1.4.</span> <span class="nav-text">样例输入：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输出："><span class="nav-number">1.5.</span> <span class="nav-text">样例输出：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据范围："><span class="nav-number">1.6.</span> <span class="nav-text">数据范围：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.7.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态设计如下："><span class="nav-number">1.7.1.</span> <span class="nav-text">状态设计如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态转移方程"><span class="nav-number">1.7.2.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新技能get！"><span class="nav-number">1.7.3.</span> <span class="nav-text">新技能get！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CODE"><span class="nav-number">1.7.4.</span> <span class="nav-text">CODE</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NOI2016区间"><span class="nav-number">1.</span> <span class="nav-text">NOI2016区间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式"><span class="nav-number">1.0.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">1.0.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样例"><span class="nav-number">1.0.3.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.1.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code"><span class="nav-number">1.1.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
