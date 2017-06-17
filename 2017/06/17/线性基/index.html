@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="线性筛法," />
+  <meta name="keywords" content="线性基," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="HAOI2012 外星人 alienDescription艾利欧在她的被子上发现了一个数字$N$，她觉得只要找出最小的$x$使得$\varphi^x(N)=1$。根据这个$x$她就能找到曾经绑架她的外星人的线索了。当然，她是不会去算，请你帮助她算出最小的$x$。 INPUT第一行一个正整数$test$,接下来$test$组数据，每组第一行一个正整数$m$，接下来$m$行每行两个正整数$p_i,q_">
-<meta name="keywords" content="线性筛法">
+<meta name="description" content="线性基定义张成设 $T⊆S$，所有这样的子集 $T$ 的异或和的集合称为集合 S $ S $的张成，记作 $ span(S)$。 线性相关对于集合$S$，如果存在一个元素$S_i$，使得$S$去除这个元素之后得到的集合 $S’$的张成$span(S’)$ 中包含$S_i$则称这个集合线性相关。 也就是说包含一个元素可以由其他元素异或得到。 一个显然的结论是，对于这个线性相关的集合 $S$，去除这个">
+<meta name="keywords" content="线性基">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HAOI2012 Alien 外星人">
-<meta property="og:url" content="http://pb0207.github.io/2017/03/26/HAOI2012-Alien-外星人/index.html">
+<meta property="og:title" content="线性基">
+<meta property="og:url" content="http://pb0207.github.io/2017/06/17/线性基/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:description" content="HAOI2012 外星人 alienDescription艾利欧在她的被子上发现了一个数字$N$，她觉得只要找出最小的$x$使得$\varphi^x(N)=1$。根据这个$x$她就能找到曾经绑架她的外星人的线索了。当然，她是不会去算，请你帮助她算出最小的$x$。 INPUT第一行一个正整数$test$,接下来$test$组数据，每组第一行一个正整数$m$，接下来$m$行每行两个正整数$p_i,q_">
-<meta property="og:updated_time" content="2017-03-26T02:15:23.919Z">
+<meta property="og:description" content="线性基定义张成设 $T⊆S$，所有这样的子集 $T$ 的异或和的集合称为集合 S $ S $的张成，记作 $ span(S)$。 线性相关对于集合$S$，如果存在一个元素$S_i$，使得$S$去除这个元素之后得到的集合 $S’$的张成$span(S’)$ 中包含$S_i$则称这个集合线性相关。 也就是说包含一个元素可以由其他元素异或得到。 一个显然的结论是，对于这个线性相关的集合 $S$，去除这个">
+<meta property="og:updated_time" content="2017-06-17T07:49:25.209Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HAOI2012 Alien 外星人">
-<meta name="twitter:description" content="HAOI2012 外星人 alienDescription艾利欧在她的被子上发现了一个数字$N$，她觉得只要找出最小的$x$使得$\varphi^x(N)=1$。根据这个$x$她就能找到曾经绑架她的外星人的线索了。当然，她是不会去算，请你帮助她算出最小的$x$。 INPUT第一行一个正整数$test$,接下来$test$组数据，每组第一行一个正整数$m$，接下来$m$行每行两个正整数$p_i,q_">
+<meta name="twitter:title" content="线性基">
+<meta name="twitter:description" content="线性基定义张成设 $T⊆S$，所有这样的子集 $T$ 的异或和的集合称为集合 S $ S $的张成，记作 $ span(S)$。 线性相关对于集合$S$，如果存在一个元素$S_i$，使得$S$去除这个元素之后得到的集合 $S’$的张成$span(S’)$ 中包含$S_i$则称这个集合线性相关。 也就是说包含一个元素可以由其他元素异或得到。 一个显然的结论是，对于这个线性相关的集合 $S$，去除这个">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://pb0207.github.io/2017/03/26/HAOI2012-Alien-外星人/"/>
+  <link rel="canonical" href="http://pb0207.github.io/2017/06/17/线性基/"/>
 
 
 
 
 
-  <title> HAOI2012 Alien 外星人 | pb0207 </title>
+  <title> 线性基 | pb0207 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -290,7 +290,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/03/26/HAOI2012-Alien-外星人/">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/06/17/线性基/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pb">
@@ -311,7 +311,7 @@
             
             
               
-                HAOI2012 Alien 外星人
+                线性基
               
             
           </h1>
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T09:36:49+08:00">
-                2017-03-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-17T14:59:56+08:00">
+                2017-06-17
               </time>
             
 
@@ -349,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数论/" itemprop="url" rel="index">
-                    <span itemprop="name">数论</span>
+                  <a href="/categories/线性基/" itemprop="url" rel="index">
+                    <span itemprop="name">线性基</span>
                   </a>
                 </span>
 
@@ -384,111 +384,110 @@
       
 
       
-        <h1 id="HAOI2012-外星人-alien"><a href="#HAOI2012-外星人-alien" class="headerlink" title="HAOI2012 外星人 alien"></a><a href="https://www.luogu.org/problem/show?pid=2350" target="_blank" rel="external">HAOI2012 外星人 alien</a></h1><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>艾利欧在她的被子上发现了一个数字$N$，她觉得只要找出最小的$x$使得$\varphi^x(N)=1$。根据这个$x$她就能找到曾经绑架她的外星人的线索了。当然，她是不会去算，请你帮助她算出最小的$x$。</p>
-<h2 id="INPUT"><a href="#INPUT" class="headerlink" title="INPUT"></a>INPUT</h2><p>第一行一个正整数$test$,接下来$test$组数据，每组第一行一个正整数$m$，接下来$m$行每行两个正整数$p_i,q_i$。</p>
-<p>其中<br>$$\prod_{i=1}^m p{_i}{^{q_i}}$$<br>为$N$的标准分解形式。</p>
-<h2 id="OUTPUT"><a href="#OUTPUT" class="headerlink" title="OUTPUT"></a>OUTPUT</h2><p>输出$test$行，每行一个正整数，表示答案。</p>
-<h2 id="SAMPLE-INPUT"><a href="#SAMPLE-INPUT" class="headerlink" title="SAMPLE INPUT"></a>SAMPLE INPUT</h2><pre><code>1
-2
-2 2
-3 1
-</code></pre><h2 id="SAMPLE-OUTPUT"><a href="#SAMPLE-OUTPUT" class="headerlink" title="SAMPLE OUTPUT"></a>SAMPLE OUTPUT</h2><pre><code>3
-</code></pre><h2 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h2><p>$N=12,\varphi(12)=4,\varphi(4)=2,\varphi(2)=1$,所以答案是$3$。<br>$$\varphi(\prod_{i=1}^m p_i^{q_i})$$</p>
-<p>$$ =\prod_{i=1}^m (p_i-1) p_i^{q_i-1}$$</p>
-<p>$test&lt;=50,p_i&lt;=10^5,1&lt;=q_i&lt;=10^9$</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>首先打出2~20的$\varphi()$表观察一下。</p>
-<pre><code>2 1
-3 2
-4 2
-5 4
-6 2
-7 6
-8 4
-9 6
-10 4
-11 10
-12 4
-13 12
-14 6
-15 8
-16 8
-17 16
-18 6
-19 18
-20 8
-</code></pre><p>可以看得出来，只有$\varphi(2)=1$</p>
-<p>而且根据给出的公式很好证明，给定的正整数分解出来的$2$的个数就是答案。<br>所以线性筛一下，$f[]$数组就代表的是分解出来的$2$的个数</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
+        <h1 id="线性基"><a href="#线性基" class="headerlink" title="线性基"></a>线性基</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="张成"><a href="#张成" class="headerlink" title="张成"></a>张成</h3><p>设 $T⊆S$，所有这样的子集 $T$ 的异或和的集合称为集合 S $ S $的张成，记作 $ span(S)$。</p>
+<h3 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h3><p>对于集合$S$，如果存在一个元素$S_i$，使得$S$去除这个元素之后得到的集合 $S’$的张成$span(S’)$ 中包含$S_i$则称这个集合线性相关。</p>
+<p>也就是说包含一个元素可以由其他元素异或得到。</p>
+<p>一个显然的结论是，对于这个线性相关的集合 $S$，去除这个元素后，集合的张成不变。</p>
+<h3 id="线性基-1"><a href="#线性基-1" class="headerlink" title="线性基"></a>线性基</h3><p>我们称集合$ B $是集合$ S $的线性基，当且仅当：</p>
+<p>$S⊆span(B)$，即$ S $是$ B $的张成的子集；<br>$ B $是线性无关的。<br>集合$ B $中元素的个数，称为线性基的长度。</p>
+<hr>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p><strong>基本性质</strong></p>
+<ul>
+<li><p>$ B $是极小的满足线性基性质的集合，它的任何真子集都不可能是线性基；</p>
+</li>
+<li><p>$ S $ 中的任意元素都可以唯一表示为$ B $中若干个元素异或起来的结果。</p>
+</li>
+</ul>
+<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>集合$S$中最大的数二进制意义下有$L$位，那么$a[0,…，L]$这个数组来储存线性基</p>
+<p>这种构造方法构造的线性基有一个特殊的性质：</p>
+<p>对于任意的$i,a_i$，仅有如下两种情况：</p>
+<p>1.$a_i=0$且</p>
+<ul>
+<li>当且仅当对于$j&gt;i$的$a_i$的第$i$个二进制位<em>可能</em>为$1$</li>
+</ul>
+<p>2.$a_i≠0$且</p>
+<ul>
+<li>整个$a$数组中<em>只有</em>$a_i$的第$i$个二进制位为1</li>
+<li>$a_i$更高的二进制位一定为0</li>
+<li>$a_i$更低的二进制位可能为1<h3 id="具体构造方法"><a href="#具体构造方法" class="headerlink" title="具体构造方法"></a>具体构造方法</h3>首先，线性基是动态构造的，我们只需要从空的$ a $开始，每次考虑在一个已存在的线性基中插入一个数$ t $即可。</li>
+</ul>
+<p>每次插入的时候，从$ t $的最高位的$1$开始考虑，如果这一位存在于线性基当中那么我们需要将$t$的这一位消掉，于是我们可以异或上线性基的这一位，然后继续插入。</p>
+<p>如果不存在，那么我们可以将$t$插入到线性基当前位置上。但是要注意满足上面的性质，见具体流程。</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>逆序枚举$t$所有为$1$的二进制位，$i=for(L-&gt;0)$对于每个$i$</p>
+<ul>
+<li>如果$a_i≠0$,则</li>
+</ul>
+<pre><code>t=t^a[i]
+</code></pre><ul>
+<li>如果$a_i=0$,则</li>
+</ul>
+<pre><code>for(k=0...i)
+     if(t&amp;(1&lt;&lt;k))
+         t=t^a[i];
+for(k=i+1...L)
+    if(a[k]&amp;(1&lt;&lt;j))
+      a[k]=a[k]^t;
+a[j]=t;
+return;
+</code></pre><hr>
+<h3 id="子集最大异或和"><a href="#子集最大异或和" class="headerlink" title="子集最大异或和"></a>子集最大异或和</h3><p>就是线性基的异或和么</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h3><pre><code>const int MAXL = 60;
 
-const int N=1e6+100;
+long long a[MAXL + 1];
 
-int mark[N],prime[N],cnt,phi[N],tot,nn,n,t,f[N];
-
-void calphi()
+void insert(long long t)
 {
-    f[1]=1;
-    for(int i=2;i&lt;=1e6+1;i++)
+    for (int j = MAXL; j &gt;= 0; j--)
+    {
+        if (!(t &amp; (1ll &lt;&lt; j))) continue;
+        if (a[j]) t ^= a[j];
+        else
         {
-            if(mark[i]==false)
-                prime[cnt++]=i,phi[i]=i-1,f[i]=f[i-1];
-            for(int j=0;j&lt;cnt&amp;&amp;i*prime[j]&lt;=1e6+1;j++)
+            for(int k=0;k&lt;j;k++) 
+                if(t&amp;(1ll&lt;&lt;k)) 
+                    t^=a[k];
+            for(int k=j+1;k&lt;=MAXL;k++) 
+                if(a[k]&amp;(1ll&lt;&lt;j))
+                    a[k]^=t;
+            a[j]=t;
+            return;
+        }
+    }
+}
+
+long long queryMax()
+{
+    long long ret=0;
+    for(int i=0;i&lt;=MAXL;i++) 
+        res^=a[i];
+    return res;
+}
+</code></pre><h3 id="子集K小异或和"><a href="#子集K小异或和" class="headerlink" title="子集K小异或和"></a>子集K小异或和</h3><p>首先根据我们构造的线性基，显然可以知道，最高位的$1$异或上肯定最大，之后的$1$再异或也会变大因为如果跟之前高位的$1$有重复就不满足之前的性质，也就是插入的时候如果当前位有的话，会异或上然后消掉。于是第K大就是K的二进制分解来选取线性基中的元素。</p>
+<p>code：</p>
+<pre><code>//这里用一个vector &lt;int&gt; v保存了线性基，因为可以动态插入快速查询大小。
+long long query(long long k) 
+{
+        if (int(v.size()) != n)
+        {
+            k--;
+        }
+
+        if (k &gt; (1ll &lt;&lt; v.size()) - 1) 
+            return -1;
+
+        long long ans = 0;
+        for (size_t i = 0; i &lt; v.size(); i++) 
+        {
+            if (k &amp; (1ll &lt;&lt; i))
             {
-                mark[i*prime[j]]=true;
-                f[prime[j]*i]=f[i]+f[prime[j]];
-                if(i%prime[j]==0)
-                {
-                    phi[i*prime[j]]=phi[i]*prime[j];
-                    break;
-                }
-                else
-                    phi[i*prime[j]]=phi[i]*(prime[j]-1);
+                ans ^= v[i];
             }
         }
-}
 
-void bl()   //30&apos;暴力
-{
-    long long phii=1;
-    for(int i=1;i&lt;=n;i++)
-    {
-        int p,q;
-        scanf(&quot;%d%d&quot;,&amp;p,&amp;q);
-        phii*=(p-1);
-        for(int i=1;i&lt;q;i++)
-            phii*=p;
+        return ans;
     }
-    long long i=phii;
-    while(phi[i]!=1)
-    {
-        i=phi[i];
-        tot++;
-    }
-    tot++; 
-} 
-int main()
-{
-    calphi();
-    scanf(&quot;%d&quot;,&amp;t);
-    while(t--)
-    {
-        tot=1;
-        scanf(&quot;%d&quot;,&amp;n);
-        //bl();
-        long long yes=1,ans=0;
-        for(int i=1;i&lt;=n;i++)
-        {
-            int p,q;
-            scanf(&quot;%d%d&quot;,&amp;p,&amp;q);
-            if(p==2)
-                yes=0;
-            ans+=(long long)f[p]*q;
-        }
-        printf(&quot;%lld\n&quot;,yes+ans);
-    }
-}
-</code></pre>
+</code></pre><p>后续例题见博客更新</p>
+
       
     </div>
 
@@ -511,7 +510,7 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/线性筛法/" rel="tag"># 线性筛法</a>
+            <a href="/tags/线性基/" rel="tag"># 线性基</a>
           
         </div>
       
@@ -524,18 +523,14 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/04/HAOI2011-problem-b/" rel="next" title="HAOI2011 problem b">
-                <i class="fa fa-chevron-left"></i> HAOI2011 problem b
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/17/NOIP-模拟-2017-03-17/" rel="prev" title="NOIP 模拟 2017 03 17">
-                NOIP 模拟 2017 03 17 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/16/NOI2016-区间/" rel="prev" title="NOI2016 区间">
+                NOI2016 区间 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -690,7 +685,7 @@ int main()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HAOI2012-外星人-alien"><span class="nav-number">1.</span> <span class="nav-text">HAOI2012 外星人 alien</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INPUT"><span class="nav-number">1.2.</span> <span class="nav-text">INPUT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OUTPUT"><span class="nav-number">1.3.</span> <span class="nav-text">OUTPUT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAMPLE-INPUT"><span class="nav-number">1.4.</span> <span class="nav-text">SAMPLE INPUT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAMPLE-OUTPUT"><span class="nav-number">1.5.</span> <span class="nav-text">SAMPLE OUTPUT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HINT"><span class="nav-number">1.6.</span> <span class="nav-text">HINT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.7.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">1.8.</span> <span class="nav-text">code</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线性基"><span class="nav-number">1.</span> <span class="nav-text">线性基</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#张成"><span class="nav-number">1.1.1.</span> <span class="nav-text">张成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性相关"><span class="nav-number">1.1.2.</span> <span class="nav-text">线性相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性基-1"><span class="nav-number">1.1.3.</span> <span class="nav-text">线性基</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性质"><span class="nav-number">1.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造"><span class="nav-number">1.3.</span> <span class="nav-text">构造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#具体构造方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">具体构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程"><span class="nav-number">1.3.2.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子集最大异或和"><span class="nav-number">1.3.3.</span> <span class="nav-text">子集最大异或和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code"><span class="nav-number">1.3.4.</span> <span class="nav-text">code:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子集K小异或和"><span class="nav-number">1.3.5.</span> <span class="nav-text">子集K小异或和</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
