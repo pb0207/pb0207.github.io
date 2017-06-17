@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/06/08/旋转卡壳/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
-<meta property="og:updated_time" content="2017-06-08T08:48:41.263Z">
+<meta property="og:updated_time" content="2017-06-17T02:39:25.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算几何">
 <meta name="twitter:description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
@@ -401,11 +401,11 @@
 <p>$(a,b)×(c,d)=ad-bc$</p>
 <p><strong>Attention:这是一个向量</strong></p>
 <p><strong>同时，两个点相减是向量，相加无意义</strong></p>
-<p><strong>两向量共线，则点积为$0$，垂直则叉积为$\vec 0$</strong></p>
+<p><strong>两向量垂直，则点积为$0$，共线则叉积为$\vec 0$</strong></p>
 <p>code</p>
 <pre><code>struct P{
-double x,y;
-P(double x=0,double y=0):x(x),y(y);
+    double x,y;
+    P(double x=0,double y=0):x(x),y(y);
 };
 
 P operator +(P a,P b)
@@ -442,7 +442,8 @@ double dis(P a,P b)
 {
     return sqrt(dot(b-a,b-a));
 } 
-</code></pre><hr>
+</code></pre><p><strong>注意精度</strong></p>
+<hr>
 <h2 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h2><h3 id="定义：凸包是可以包裹平面上某个点集的最小凸多边形。"><a href="#定义：凸包是可以包裹平面上某个点集的最小凸多边形。" class="headerlink" title="定义：凸包是可以包裹平面上某个点集的最小凸多边形。"></a>定义：凸包是可以包裹平面上某个点集的最小凸多边形。</h3><h3 id="性质：凸包的定点一定在点集内。"><a href="#性质：凸包的定点一定在点集内。" class="headerlink" title="性质：凸包的定点一定在点集内。"></a>性质：凸包的定点一定在点集内。</h3><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>Granham算法的变种：Andrew（更快更好记）</p>
 <p>思路：先对点按x，y排序，然后进行从左到右扫描先求出下凸包，再求出上凸包。</p>
 <p>Code：cogs896圈奶牛</p>
