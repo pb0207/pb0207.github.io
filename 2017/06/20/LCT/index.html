@@ -1,0 +1,1318 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="平衡树,树," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="动态树—维护树的连通性的强力武器 功能LCT(link-cut tree)支持树（森林）的link,cnt,换根(makeroot)等等操作，而且也能维护树上的权值。 实现比较神奇。每个点都有一个preferred son。但是这不一定是由子树大小来决定的。他们两个之间的边称为preferred edge。 动态树使用更加灵活的Splay来实现。对于一段连续的边，即一条由preferred edg">
+<meta name="keywords" content="平衡树,树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCT">
+<meta property="og:url" content="http://pb0207.github.io/2017/06/20/LCT/index.html">
+<meta property="og:site_name" content="pb0207">
+<meta property="og:description" content="动态树—维护树的连通性的强力武器 功能LCT(link-cut tree)支持树（森林）的link,cnt,换根(makeroot)等等操作，而且也能维护树上的权值。 实现比较神奇。每个点都有一个preferred son。但是这不一定是由子树大小来决定的。他们两个之间的边称为preferred edge。 动态树使用更加灵活的Splay来实现。对于一段连续的边，即一条由preferred edg">
+<meta property="og:updated_time" content="2017-06-20T08:09:37.798Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LCT">
+<meta name="twitter:description" content="动态树—维护树的连通性的强力武器 功能LCT(link-cut tree)支持树（森林）的link,cnt,换根(makeroot)等等操作，而且也能维护树上的权值。 实现比较神奇。每个点都有一个preferred son。但是这不一定是由子树大小来决定的。他们两个之间的边称为preferred edge。 动态树使用更加灵活的Splay来实现。对于一段连续的边，即一条由preferred edg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://pb0207.github.io/2017/06/20/LCT/"/>
+
+
+
+
+
+  <title> LCT | pb0207 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">pb0207</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/06/20/LCT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pb">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/genji.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pb0207">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LCT
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-20T15:35:49+08:00">
+                2017-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/动态树/" itemprop="url" rel="index">
+                    <span itemprop="name">动态树</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="动态树"><a href="#动态树" class="headerlink" title="动态树"></a>动态树</h1><p>—维护树的连通性的强力武器</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>LCT(link-cut tree)支持树（森林）的link,cnt,换根(makeroot)等等操作，而且也能维护树上的权值。</p>
+<p>实现比较神奇。每个点都有一个preferred son。但是这不一定是由子树大小来决定的。他们两个之间的边称为preferred edge。</p>
+<p>动态树使用更加灵活的Splay来实现。对于一段连续的边，即一条由preferred edge组成的preferred path上的点，保存在同一颗Splay中。Splay按深度关系来维护这些点。同时根节点的父亲指向当前Splay中深度最浅的点在原树中的父亲，但是这个父亲的儿子并不是这个点，所以可以依据这个来判断是不是根。</p>
+<p>由以下核心操作来实现</p>
+<p><em>Access x</em>  将x到根节点的路径变为preferred path</p>
+<p><em>Split x y</em> 将x,y变到同一个Splay中</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+const int N=1e5+1e3+7;
+
+int n,m,fa[N],son[N][2],size[N],key[N],sum[N],mx[N],tag[N],rev[N];
+
+bool isroot(int x)
+{
+    return son[fa[x]][0]!=x&amp;&amp;son[fa[x]][1]!=x;
+}
+
+void add(int x,int v)
+{
+    key[x]+=v;
+    sum[x]+=v*size[x];
+    mx[x]+=v;
+    tag[x]+=v;
+}
+
+void pushup(int x)
+{
+    sum[x]=sum[son[x][0]]+sum[son[x][1]]+key[x];
+    mx[x]=max(max(mx[son[x][0]],mx[son[x][1]]),key[x]);
+    size[x]=size[son[x][0]]+size[son[x][1]]+1;
+}
+
+void pushdown(int x)
+{
+    if(rev[x])
+    {
+        rev[x]^=1;
+        rev[son[x][0]]^=1;
+        rev[son[x][1]]^=1;
+        swap(son[x][0],son[x][1]);
+    }
+    if(tag[x])
+    {
+        add(son[x][0],tag[x]);
+        add(son[x][1],tag[x]);
+        tag[x]=0;
+    }
+}
+
+
+
+void rotate(int x)
+{
+    pushdown(fa[x]),pushdown(x);
+    int y=fa[x],z=fa[y],t=son[y][0]==x;
+    if(!isroot(y))
+        son[z][son[z][1]==y]=x;
+    fa[x]=z;
+    son[y][!t]=son[x][t];
+    fa[son[y][!t]]=y;
+    son[x][t]=y;
+    fa[y]=x;
+    pushup(y);
+    pushup(x);
+}
+
+void splay(int x)
+{
+    pushdown(x);
+    while(!isroot(x))
+    {
+        int y=fa[x],z=fa[y];
+        if(!isroot(y))
+        {
+            if((son[x][0]==x)^(son[z][0]==y))
+                rotate(x);
+            else
+                rotate(y);
+        }
+        rotate(x);
+    }
+}
+
+void access(int x)
+{
+    for(int y=0;x;y=x,x=fa[x])
+    {
+        splay(x);
+        son[x][1]=y;
+        pushup(x);
+    }
+}
+
+void makeroot(int x)
+{
+    access(x);
+    splay(x);
+    rev[x]^=1;
+}
+
+void split(int x,int y)
+{
+    makeroot(x);
+    access(y);
+    splay(x);
+}
+
+void link(int x,int y)
+{
+    makeroot(x);
+    fa[x]=y;
+}
+
+void cut(int x,int y)
+{
+    split(x,y);
+    son[x][1]=fa[y]=0;
+}
+
+int find(int x)
+{
+    access(x);
+    splay(x);
+    while(son[x][0]) 
+        x=son[x][0];
+    return x;
+}
+
+int main()
+{
+    mx[0]=-0x7fffffff;
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for(int i=1,x;i&lt;=n;i++)
+      scanf(&quot;%d&quot;,&amp;x),size[i]=1,add(i,x),tag[i]=0;
+    for(int i=1,opt,x,y,z;i&lt;=m;i++)
+    {
+        scanf(&quot;%d%d%d&quot;,&amp;opt,&amp;x,&amp;y);
+        if(opt==1) link(x,y);
+        else if(opt==2) cut(x,y);
+        else if(opt==3) splay(x),key[x]=y,pushup(x); //更改x的权值为y
+        else if(opt==4) split(x,y),printf(&quot;%d\n&quot;,mx[x]); //求x到y路径上的最大值
+        else if(opt==5) split(x,y),printf(&quot;%d\n&quot;,sum[x]); //求x到y路径上的和
+        else if(opt==6) printf(&quot;%d\n&quot;,find(x)==find(y));  //判断x和y是否连通
+        else scanf(&quot;%d&quot;,&amp;z),split(x,y),add(x,z);  //将x到y路径上加z
+    }
+}
+</code></pre><p>每个操作的实现都比较清晰明了。</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="弹飞绵羊-bzoj-2002"><a href="#弹飞绵羊-bzoj-2002" class="headerlink" title="弹飞绵羊(bzoj 2002)"></a><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2002" target="_blank" rel="external">弹飞绵羊(bzoj 2002)</a></h3><p>只包括简单地连边操作。对于每一个会跳飞的结点，我们可以设置一个结点，即n+1来连边。事实上一个点能跳的步数就是将这棵树反过来之后(makeroot)在Splay上的左儿子的size，即深度比其浅的点。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+using namespace std;
+
+const int N=2e5+1e3+7;
+
+int son[N][2],n,m,fa[N],rev[N],size[N],k[N];
+
+int isroot(int x)
+{
+    return son[fa[x]][0]!=x&amp;&amp;son[fa[x]][1]!=x;
+}
+
+void pushup(int x)
+{
+    size[x]=size[son[x][0]]+size[son[x][1]]+1;
+}
+
+void pushdown(int x)
+{
+    if(rev[x])
+    {
+        rev[x]^=1;
+        rev[son[x][0]]^=1;
+        rev[son[x][1]]^=1;
+        swap(son[x][0],son[x][1]);
+    }
+}
+
+void rotate(int x)
+{
+    pushdown(fa[x]),pushdown(x);
+    int y=fa[x],z=fa[y],t=son[y][0]==x;
+    if(!isroot(y))
+        son[z][son[z][1]==y]=x;
+    fa[x]=z;
+    son[y][!t]=son[x][t];
+    fa[son[y][!t]]=y;
+    son[x][t]=y;
+    fa[y]=x;
+    pushup(y);
+    pushup(x);
+}
+
+void splay(int x)
+{
+    pushdown(x);
+    while(!isroot(x))
+    {
+        int y=fa[x],z=fa[y];
+        if(!isroot(y))
+        {
+            if(son[y][0]==x^son[z][0]==y)
+                rotate(x);
+            else
+                rotate(y);
+        }
+        rotate(x);
+    }
+}
+
+void access(int x)
+{
+    for(int y=0;x;y=x,x=fa[x])
+    {
+        splay(x);
+        son[x][1]=y;
+        pushup(x);
+    }
+}
+
+void makeroot(int x)
+{
+    access(x);
+    splay(x);
+    rev[x]^=1;
+}
+
+void split(int x,int y)
+{
+    makeroot(x);
+    access(y);
+    splay(x);
+}
+
+void link(int x,int y)
+{
+    makeroot(x);
+    fa[x]=y;
+}
+
+void cut(int x,int y)
+{
+    split(x,y);
+    son[x][1]=fa[y]=0;
+}
+
+int main()
+{
+    freopen(&quot;bzoj_2002.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;bzoj_2002.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++)
+    {
+        scanf(&quot;%d&quot;,&amp;k[i]);
+        if(k[i]+i&gt;=n+1)
+            k[i]=n+1-i;
+        link(i,i+k[i]);
+        size[i]=1;
+    }
+    size[n+1]=1;
+    scanf(&quot;%d&quot;,&amp;m);
+    for(int i=1;i&lt;=m;i++)
+    {
+        int op,x,val;
+        scanf(&quot;%d%d&quot;,&amp;op,&amp;x);
+        x++;
+        if(op==1)
+        {
+            makeroot(n+1);
+            access(x),splay(x);
+            printf(&quot;%d\n&quot;,size[son[x][0]]);
+        }
+        else
+        {
+            scanf(&quot;%d&quot;,&amp;val);
+            cut(x,x+k[x]);
+            k[x]=val;
+            if(k[x]+x&gt;=n+1)
+                k[x]=n+1-x;
+            link(x,x+k[x]);
+        }
+    }
+}
+</code></pre><h3 id="洞穴勘测"><a href="#洞穴勘测" class="headerlink" title="洞穴勘测"></a><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2049" target="_blank" rel="external">洞穴勘测</a></h3><p>这题就是最基础的link和cut还有find(判断一个点所在树的根)</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+using namespace std;
+
+const int N=2e5+1e3+7;
+
+int son[N][2],n,m,fa[N],rev[N],size[N],k[N];
+
+int isroot(int x)
+{
+    return son[fa[x]][0]!=x&amp;&amp;son[fa[x]][1]!=x;
+}
+
+void pushup(int x)
+{
+    size[x]=size[son[x][0]]+size[son[x][1]]+1;
+}
+
+void pushdown(int x)
+{
+    if(rev[x])
+    {
+        rev[x]^=1;
+        rev[son[x][0]]^=1;
+        rev[son[x][1]]^=1;
+        swap(son[x][0],son[x][1]);
+    }
+}
+
+void rotate(int x)
+{
+    pushdown(fa[x]),pushdown(x);
+    int y=fa[x],z=fa[y],t=son[y][0]==x;
+    if(!isroot(y))
+        son[z][son[z][1]==y]=x;
+    fa[x]=z;
+    son[y][!t]=son[x][t];
+    fa[son[y][!t]]=y;
+    son[x][t]=y;
+    fa[y]=x;
+    pushup(y);
+    pushup(x);
+}
+
+void splay(int x)
+{
+    pushdown(x);
+    while(!isroot(x))
+    {
+        int y=fa[x],z=fa[y];
+        if(!isroot(y))
+        {
+            if(son[y][0]==x^son[z][0]==y)
+                rotate(x);
+            else
+                rotate(y);
+        }
+        rotate(x);
+    }
+}
+
+void access(int x)
+{
+    for(int y=0;x;y=x,x=fa[x])
+    {
+        splay(x);
+        son[x][1]=y;
+        pushup(x);
+    }
+}
+
+void makeroot(int x)
+{
+    access(x);
+    splay(x);
+    rev[x]^=1;
+}
+
+void split(int x,int y)
+{
+    makeroot(x);
+    access(y);
+    splay(x);
+}
+
+void link(int x,int y)
+{
+    makeroot(x);
+    fa[x]=y;
+}
+
+void cut(int x,int y)
+{
+    split(x,y);
+    son[x][1]=fa[y]=0;
+}
+int main(){
+//    freopen(&quot;sdoi2008_cave.in&quot;,&quot;r&quot;,stdin);
+//    freopen(&quot;sdoi2008_cave.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d%d&quot;,&amp;m,&amp;n);
+    for (int i = 1;i &lt;= n;i++){
+        int x,y;
+        scanf(&quot;%s&quot;,s);
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+        if (s[0] == &apos;C&apos;)    link(x,y);
+        else if (s[0] == &apos;D&apos;)    cut(x,y);
+        else {
+            if (find(x) == find(y))    printf(&quot;Yes\n&quot;);
+            else printf(&quot;No\n&quot;);
+        }
+    }
+    return 0;
+}
+</code></pre><h3 id="COGS动态树"><a href="#COGS动态树" class="headerlink" title="COGS动态树"></a><a href="http://cogs.pro/cogs/problem/problem.php?pid=2701" target="_blank" rel="external">COGS动态树</a></h3><p>这题是FoolMike大佬刚出的啊。这题需要一些奇怪的操作，维护子树大小的信息。但是普通的LCT不能搞啊。我们需要在树上再记录一个信息，即其非preferred son的子树大小，然后size去掉这个。这样的话，就可以在access的时候灵活地修改了</p>
+<p>但是好像还有别的高级LCT可以解决这个问题啊</p>
+<p>留一个<strong>tag</strong></p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+
+const int N=2e5+1e3+7;
+
+int n,m,fa[N],son[N][2],size[N],key[N],rev[N],vir[N];
+
+bool isroot(int x)
+{
+    return son[fa[x]][0]!=x&amp;&amp;son[fa[x]][1]!=x;
+}
+
+void pushup(int x)
+{
+    size[x]=vir[x]+size[son[x][0]]+size[son[x][1]]+1;
+}
+
+void pushdown(int x)
+{
+    if(rev[x])
+    {
+        rev[son[x][0]]^=1;
+        rev[son[x][1]]^=1;
+        swap(son[x][0],son[x][1]);
+        rev[x]^=1;
+    }
+}
+
+void rotate(int x)
+{
+    pushdown(fa[x]),pushdown(x);
+    int y=fa[x],z=fa[y],t=(son[y][0]==x);
+    if(!isroot(y))
+        son[z][son[z][1]==y]=x;
+    fa[x]=z;
+    son[y][!t]=son[x][t];
+    fa[son[y][!t]]=y;
+    son[x][t]=y;
+    fa[y]=x;
+    pushup(y);
+    pushup(x);
+}
+
+void splay(int x)
+{
+    pushdown(x);
+    while(!isroot(x))
+    {
+        int y=fa[x],z=fa[y];
+        if(!isroot(y))
+        {
+            if((son[y][0]==x)^(son[z][0]==y))
+                rotate(x);
+            else
+                rotate(y);
+        }
+        rotate(x);
+    }
+}
+
+void access(int x)
+{
+    for(int y=0;x;y=x,x=fa[x])
+    {
+        splay(x);
+        vir[x]-=size[y];
+        vir[x]+=size[son[x][1]];
+        son[x][1]=y;
+        pushup(x);
+    }
+}
+
+void makeroot(int x)
+{
+    access(x);
+    splay(x);
+    rev[x]^=1;
+}
+
+void link(int x,int y)
+{
+    makeroot(y);
+    fa[y]=x;
+    vir[x]+=size[y];
+}
+
+int find(int x)
+{
+    access(x);
+    splay(x);
+    while(son[x][0]) 
+        x=son[x][0];
+    return x;
+}
+
+int main()
+{
+    freopen(&quot;dynamic_tree.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;dynamic_tree.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for(int i=1;i&lt;=n;i++)
+      size[i]=1;
+    for(int i=1;i&lt;=m;i++)
+    {
+        int u,opt;
+        scanf(&quot;%d%d&quot;,&amp;opt,&amp;u);
+        if(opt==1)
+            makeroot(u);
+        if(opt==2)
+        {
+            access(u);
+            printf(&quot;%d\n&quot;,vir[u]+1); 
+        }
+        if(opt==3)
+        {
+            int v;
+            scanf(&quot;%d&quot;,&amp;v);
+            int k=find(u);
+            link(u,v);
+            makeroot(k);
+        }
+    }
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/平衡树/" rel="tag"># 平衡树</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/20/二逼平衡树/" rel="next" title="“二逼平衡树”">
+                <i class="fa fa-chevron-left"></i> “二逼平衡树”
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/17/线性基/" rel="prev" title="线性基">
+                线性基 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/genji.jpg"
+               alt="pb" />
+          <p class="site-author-name" itemprop="name">pb</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pb0207" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://prostkhala.github.io/" title="ProSTKhala" target="_blank">ProSTKhala</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://allamend.blog.163.com/" title="allamend" target="_blank">allamend</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态树"><span class="nav-number">1.</span> <span class="nav-text">动态树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能"><span class="nav-number">1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">1.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#弹飞绵羊-bzoj-2002"><span class="nav-number">1.3.1.</span> <span class="nav-text">弹飞绵羊(bzoj 2002)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#洞穴勘测"><span class="nav-number">1.3.2.</span> <span class="nav-text">洞穴勘测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COGS动态树"><span class="nav-number">1.3.3.</span> <span class="nav-text">COGS动态树</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pb</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
