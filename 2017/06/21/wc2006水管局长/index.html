@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="平衡树,树," />
+  <meta name="keywords" content="最小生成树,动态树," />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="动态树—维护树的连通性的强力武器 功能LCT(link-cut tree)支持树（森林）的link,cnt,换根(makeroot)等等操作，而且也能维护树上的权值。 实现比较神奇。每个点都有一个preferred son。但是这不一定是由子树大小来决定的。他们两个之间的边称为preferred edge。 动态树使用更加灵活的Splay来实现。对于一段连续的边，即一条由preferred edg">
-<meta name="keywords" content="平衡树,树">
+<meta name="description" content="wc2006水管局长&amp;amp;数据加强版本题有数据加强版，在cogs上开了O2跑跑还是很轻松的，但是在bzoj上就成了练习优化LCT和卡常或者底层优化的又一道题了233…. 【问题描述】SC 省 MY 市有着庞大的地下水管网络，嘟嘟是 MY 市的水管局长（就是管水管的啦），嘟嘟作为水管局长的工作就是：每天供水公司可能要将一定量的水从$ x$处运往 $y$ 处，嘟嘟需要为供水公司找到一条从$ A $">
+<meta name="keywords" content="最小生成树,动态树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LCT">
-<meta property="og:url" content="http://pb0207.github.io/2017/06/20/LCT/index.html">
+<meta property="og:title" content="wc2006水管局长">
+<meta property="og:url" content="http://pb0207.github.io/2017/06/21/wc2006水管局长/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:description" content="动态树—维护树的连通性的强力武器 功能LCT(link-cut tree)支持树（森林）的link,cnt,换根(makeroot)等等操作，而且也能维护树上的权值。 实现比较神奇。每个点都有一个preferred son。但是这不一定是由子树大小来决定的。他们两个之间的边称为preferred edge。 动态树使用更加灵活的Splay来实现。对于一段连续的边，即一条由preferred edg">
-<meta property="og:updated_time" content="2017-06-20T08:09:37.798Z">
+<meta property="og:description" content="wc2006水管局长&amp;amp;数据加强版本题有数据加强版，在cogs上开了O2跑跑还是很轻松的，但是在bzoj上就成了练习优化LCT和卡常或者底层优化的又一道题了233…. 【问题描述】SC 省 MY 市有着庞大的地下水管网络，嘟嘟是 MY 市的水管局长（就是管水管的啦），嘟嘟作为水管局长的工作就是：每天供水公司可能要将一定量的水从$ x$处运往 $y$ 处，嘟嘟需要为供水公司找到一条从$ A $">
+<meta property="og:updated_time" content="2017-06-21T00:37:41.750Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LCT">
-<meta name="twitter:description" content="动态树—维护树的连通性的强力武器 功能LCT(link-cut tree)支持树（森林）的link,cnt,换根(makeroot)等等操作，而且也能维护树上的权值。 实现比较神奇。每个点都有一个preferred son。但是这不一定是由子树大小来决定的。他们两个之间的边称为preferred edge。 动态树使用更加灵活的Splay来实现。对于一段连续的边，即一条由preferred edg">
+<meta name="twitter:title" content="wc2006水管局长">
+<meta name="twitter:description" content="wc2006水管局长&amp;amp;数据加强版本题有数据加强版，在cogs上开了O2跑跑还是很轻松的，但是在bzoj上就成了练习优化LCT和卡常或者底层优化的又一道题了233…. 【问题描述】SC 省 MY 市有着庞大的地下水管网络，嘟嘟是 MY 市的水管局长（就是管水管的啦），嘟嘟作为水管局长的工作就是：每天供水公司可能要将一定量的水从$ x$处运往 $y$ 处，嘟嘟需要为供水公司找到一条从$ A $">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://pb0207.github.io/2017/06/20/LCT/"/>
+  <link rel="canonical" href="http://pb0207.github.io/2017/06/21/wc2006水管局长/"/>
 
 
 
 
 
-  <title> LCT | pb0207 </title>
+  <title> wc2006水管局长 | pb0207 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -290,7 +290,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/06/20/LCT/">
+    <link itemprop="mainEntityOfPage" href="http://pb0207.github.io/2017/06/21/wc2006水管局长/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pb">
@@ -311,7 +311,7 @@
             
             
               
-                LCT
+                wc2006水管局长
               
             
           </h1>
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-20T15:35:49+08:00">
-                2017-06-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-21T08:20:39+08:00">
+                2017-06-21
               </time>
             
 
@@ -384,174 +384,67 @@
       
 
       
-        <h1 id="动态树"><a href="#动态树" class="headerlink" title="动态树"></a>动态树</h1><p>—维护树的连通性的强力武器</p>
-<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>LCT(link-cut tree)支持树（森林）的link,cnt,换根(makeroot)等等操作，而且也能维护树上的权值。</p>
-<p>实现比较神奇。每个点都有一个preferred son。但是这不一定是由子树大小来决定的。他们两个之间的边称为preferred edge。</p>
-<p>动态树使用更加灵活的Splay来实现。对于一段连续的边，即一条由preferred edge组成的preferred path上的点，保存在同一颗Splay中。Splay按深度关系来维护这些点。同时根节点的父亲指向当前Splay中深度最浅的点在原树中的父亲，但是这个父亲的儿子并不是这个点，所以可以依据这个来判断是不是根。</p>
-<p>由以下核心操作来实现</p>
-<p><em>Access x</em>  将x到根节点的路径变为preferred path</p>
-<p><em>Split x y</em> 将x,y变到同一个Splay中</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
+        <h1 id="wc2006水管局长-amp-数据加强版"><a href="#wc2006水管局长-amp-数据加强版" class="headerlink" title="wc2006水管局长&amp;数据加强版"></a><a href="http://cogs.pro/cogs/problem/problem.php?pid=27" target="_blank" rel="external">wc2006水管局长</a>&amp;<a href="http://cogs.pro/cogs/problem/problem.php?pid=1885" target="_blank" rel="external">数据加强版</a></h1><p>本题有数据加强版，在cogs上开了O2跑跑还是很轻松的，但是在bzoj上就成了练习优化LCT和卡常或者底层优化的又一道题了233….</p>
+<h2 id="【问题描述】"><a href="#【问题描述】" class="headerlink" title="【问题描述】"></a>【问题描述】</h2><p>SC 省 MY 市有着庞大的地下水管网络，嘟嘟是 MY 市的水管局长（就是管水管的啦），嘟嘟作为水管局长的工作就是：每天供水公司可能要将一定量的水从$ x$处运往 $y$ 处，嘟嘟需要为供水公司找到一条从$ A $至$ B $的水管的路径，接着通过信息化的控制中心通知路径上的水管进入准备送水状态，等到路径上每一条水管都准备好了，供水公司就可以开始送水了。嘟嘟一次只能处理一项送水任务，等到当前的送水任务完成了，才能处理下一项。</p>
+<p>在处理每项送水任务之前，路径上的水管都要进行一系列的准备操作，如清洗、消毒等等。嘟嘟在控制中心一声令下，这些水管的准备操作同时开始，但由于各条管道的长度、内径不同，进行准备操作需要的时间可能不同。供水公司总是希望嘟嘟能找到这样一条送水路径，路径上的所有管道全都准备就绪所需要的时间尽量短。嘟嘟希望你能帮助他完成这样的一个选择路径的系统，以满足供水公司的要求。另外，由于 MY 市的水管年代久远，一些水管会不时出现故障导致不能使用，你的程序必须考虑到这一点。</p>
+<p>不妨将 MY 市的水管网络看作一幅简单无向图（即没有自环或重边）：水管是图中的边，水管的连接处为图中的结点。</p>
+<h2 id="【输入格式】"><a href="#【输入格式】" class="headerlink" title="【输入格式】"></a>【输入格式】</h2><p>输入文件第一行为 3 个整数：$ N $，$ M $，$ Q $分别表示管道连接处（结点）的数目、目前水管（无向边）的数目，以及你的程序需要处理的任务数目（包括寻找一条满足要求的路径和接受某条水管坏掉的事实）。</p>
+<p>以下 $M $行，每行$ 3$ 个整数$ x $，$ y$ 和$ t$ ，描述一条对应的水管。$ x $和 $y$ 表示水管两端结点的编号， t 表示准备送水所需要的时间。我们不妨为结点从$ 1 $至 $N $编号，这样所有的 $x $和 $y $都在范围 $[1,N] $内。</p>
+<p>以下 $Q $行，每行描述一项任务。其中第一个整数为$ k$ ：若 $k=1 $则后跟两个整数$ A $和$ B $，表示你需要为供水公司寻找一条满足要求的从$ A $到 $B$ 的水管路径；若$ k=2 $，则后跟两个整数$ x$ 和$ y $，表示直接连接$ x $和 $y$ 的水管宣布报废（保证合法，即在此之前直接连接 $x $和 $y$ 尚未报废的水管一定存在）。</p>
+<h2 id="【输出格式】"><a href="#【输出格式】" class="headerlink" title="【输出格式】"></a>【输出格式】</h2><p>按顺序对应输入文件中每一项$ k=1 $的任务，你需要输出一个数字和一个回车 / 换行符。该数字表示：你寻找到的水管路径中所有管道全都完成准备工作所需要的时间（当然要求最短）。</p>
+<h2 id="【输入样例】"><a href="#【输入样例】" class="headerlink" title="【输入样例】"></a>【输入样例】</h2><pre><code>tube.in
+4 4 3
+1 2 2
+2 3 3
+3 4 2
+1 4 2
+1 1 4
+2 1 4
+1 1 4
+</code></pre><h2 id="【输入样例】-1"><a href="#【输入样例】-1" class="headerlink" title="【输入样例】"></a>【输入样例】</h2><pre><code>tube.out
+2
+3
+</code></pre><h2 id="【约束条件】"><a href="#【约束条件】" class="headerlink" title="【约束条件】"></a>【约束条件】</h2><p>$N ≤ 1000 $<br>$M ≤ 100000$<br>$ Q ≤ 100000$<br>测试数据中宣布报废的水管不超过$ 5000 条$；且任何时候我们考虑的水管网络都是连通的，即从任一结点 $A $必有至少一条水管路径通往任一结点$ B$ 。</p>
+<hr>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>感觉支持删边的除了LCT没谁了。这题删边，显然根据套路就是反过来加边，毕竟不要求在线。但是很烦的是原图并不是一棵树。不过不用担心，题目求得两点之间最长路线最小，就是最小瓶颈生成树，而最小生成树一定是一棵最小瓶颈生成树。</p>
+<p>因为保证始终连通，我们可以在最终状态做一下最小生成树。但是我们如何在给定删除边的情况下来找到这条边打上不能用的tag呢，这时可以把边按起始点和终止点进行递增排序，然后就可以快速地二分查找了。然而权值是在边上，这样LCT不能维护的。但是LCT有一个套路，那就是第$i$条连接$x,y$的边，权值为$w$，可以转化为两条边：$x&lt;-&gt;n+i$＆$n+i&lt;-&gt;y$，其中$n+i$点权值为$w$。这样就可以维护了。那么如何反向操作呢，我们只需要找到加边两点路径上的最大值，如果比当前要加的边权值大，那我们就把原来的边cut掉，然后把心边link上，然后自动update最大值即可（因为每条边在预处理时都转化了，所以link操作会更新最大值）。</p>
+<p>这题的思想比较多，编程比较复杂（话说这两天完成了我学OI迄今为止最长（行数）的两个程序），适合练习码力，不过思想还是比较值得借鉴，一是LCT维护边权，不只像树链剖分一样转化到父亲点上就可以，二是把不好实现的删除改为添加，以后在做题的时候都要多注意一下。</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><pre><code>#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
 #include&lt;cstring&gt;
 using namespace std;
 
-const int N=1e5+1e3+7;
+const int N=1e6+1e3+7;
 
-int n,m,fa[N],son[N][2],size[N],key[N],sum[N],mx[N],tag[N],rev[N];
+int son[N][2],fa[N],size[N],mx[N],root,rev[N],key[N],k[N],u[N],v[N],qe[N],ans[N],cnt,tag[N];
 
-bool isroot(int x)
+int n,m,q;
+
+int isroot(int x)
 {
     return son[fa[x]][0]!=x&amp;&amp;son[fa[x]][1]!=x;
 }
 
 void add(int x,int v)
 {
-    key[x]+=v;
-    sum[x]+=v*size[x];
-    mx[x]+=v;
-    tag[x]+=v;
+    key[x]=v;
+    mx[x]=x;
 }
 
-void pushup(int x)
+void upd(int x)
 {
-    sum[x]=sum[son[x][0]]+sum[son[x][1]]+key[x];
-    mx[x]=max(max(mx[son[x][0]],mx[son[x][1]]),key[x]);
-    size[x]=size[son[x][0]]+size[son[x][1]]+1;
-}
-
-void pushdown(int x)
-{
-    if(rev[x])
-    {
-        rev[x]^=1;
-        rev[son[x][0]]^=1;
-        rev[son[x][1]]^=1;
-        swap(son[x][0],son[x][1]);
-    }
-    if(tag[x])
-    {
-        add(son[x][0],tag[x]);
-        add(son[x][1],tag[x]);
-        tag[x]=0;
-    }
-}
-
-
-
-void rotate(int x)
-{
-    pushdown(fa[x]),pushdown(x);
-    int y=fa[x],z=fa[y],t=son[y][0]==x;
-    if(!isroot(y))
-        son[z][son[z][1]==y]=x;
-    fa[x]=z;
-    son[y][!t]=son[x][t];
-    fa[son[y][!t]]=y;
-    son[x][t]=y;
-    fa[y]=x;
-    pushup(y);
-    pushup(x);
-}
-
-void splay(int x)
-{
-    pushdown(x);
-    while(!isroot(x))
-    {
-        int y=fa[x],z=fa[y];
-        if(!isroot(y))
-        {
-            if((son[x][0]==x)^(son[z][0]==y))
-                rotate(x);
-            else
-                rotate(y);
-        }
-        rotate(x);
-    }
-}
-
-void access(int x)
-{
-    for(int y=0;x;y=x,x=fa[x])
-    {
-        splay(x);
-        son[x][1]=y;
-        pushup(x);
-    }
-}
-
-void makeroot(int x)
-{
-    access(x);
-    splay(x);
-    rev[x]^=1;
-}
-
-void split(int x,int y)
-{
-    makeroot(x);
-    access(y);
-    splay(x);
-}
-
-void link(int x,int y)
-{
-    makeroot(x);
-    fa[x]=y;
-}
-
-void cut(int x,int y)
-{
-    split(x,y);
-    son[x][1]=fa[y]=0;
-}
-
-int find(int x)
-{
-    access(x);
-    splay(x);
-    while(son[x][0]) 
-        x=son[x][0];
-    return x;
-}
-
-int main()
-{
-    mx[0]=-0x7fffffff;
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-    for(int i=1,x;i&lt;=n;i++)
-      scanf(&quot;%d&quot;,&amp;x),size[i]=1,add(i,x),tag[i]=0;
-    for(int i=1,opt,x,y,z;i&lt;=m;i++)
-    {
-        scanf(&quot;%d%d%d&quot;,&amp;opt,&amp;x,&amp;y);
-        if(opt==1) link(x,y);
-        else if(opt==2) cut(x,y);
-        else if(opt==3) splay(x),key[x]=y,pushup(x); //更改x的权值为y
-        else if(opt==4) split(x,y),printf(&quot;%d\n&quot;,mx[x]); //求x到y路径上的最大值
-        else if(opt==5) split(x,y),printf(&quot;%d\n&quot;,sum[x]); //求x到y路径上的和
-        else if(opt==6) printf(&quot;%d\n&quot;,find(x)==find(y));  //判断x和y是否连通
-        else scanf(&quot;%d&quot;,&amp;z),split(x,y),add(x,z);  //将x到y路径上加z
-    }
-}
-</code></pre><p>每个操作的实现都比较清晰明了。</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="弹飞绵羊-bzoj-2002"><a href="#弹飞绵羊-bzoj-2002" class="headerlink" title="弹飞绵羊(bzoj 2002)"></a><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2002" target="_blank" rel="external">弹飞绵羊(bzoj 2002)</a></h3><p>只包括简单地连边操作。对于每一个会跳飞的结点，我们可以设置一个结点，即n+1来连边。事实上一个点能跳的步数就是将这棵树反过来之后(makeroot)在Splay上的左儿子的size，即深度比其浅的点。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-
-const int N=2e5+1e3+7;
-
-int son[N][2],n,m,fa[N],rev[N],size[N],k[N];
-
-int isroot(int x)
-{
-    return son[fa[x]][0]!=x&amp;&amp;son[fa[x]][1]!=x;
+    if(key[mx[son[x][0]]]&gt;key[mx[x]])
+        mx[x]=mx[son[x][0]];
+    if(key[mx[son[x][1]]]&gt;key[mx[x]])
+        mx[x]=mx[son[x][1]];
 }
 
 void pushup(int x)
 {
     size[x]=size[son[x][0]]+size[son[x][1]]+1;
+    mx[x]=x;  
+    upd(x);
 }
 
 void pushdown(int x)
@@ -633,285 +526,132 @@ void cut(int x,int y)
     son[x][1]=fa[y]=0;
 }
 
-int main()
+int find(int x)
 {
-    freopen(&quot;bzoj_2002.in&quot;,&quot;r&quot;,stdin);
-    freopen(&quot;bzoj_2002.out&quot;,&quot;w&quot;,stdout);
-    scanf(&quot;%d&quot;,&amp;n);
-    for(int i=1;i&lt;=n;i++)
-    {
-        scanf(&quot;%d&quot;,&amp;k[i]);
-        if(k[i]+i&gt;=n+1)
-            k[i]=n+1-i;
-        link(i,i+k[i]);
-        size[i]=1;
-    }
-    size[n+1]=1;
-    scanf(&quot;%d&quot;,&amp;m);
+    access(x);
+    splay(x);
+    while(son[x][0])
+        x=son[x][0];
+    return x;
+}
+
+struct node{
+    int fr,to,w,id,del;
+}edg[N*2+1];
+
+int f[N*2+1];
+
+int gf(int x)
+{
+    return x==f[x]?x:f[x]=gf(f[x]);
+}
+
+bool cmp(node a,node b)
+{
+    return a.w&lt;b.w;
+}
+
+bool cmpid(node a,node b)
+{
+    return a.id&lt;b.id;
+}
+
+void kruskal()
+{
+    sort(edg+1,edg+m+1,cmpid);
     for(int i=1;i&lt;=m;i++)
-    {
-        int op,x,val;
-        scanf(&quot;%d%d&quot;,&amp;op,&amp;x);
-        x++;
-        if(op==1)
+        f[i]=i;
+    int tot=0;
+    for(int i=1;i&lt;=m;i++)
+        if(!edg[i].del)
         {
-            makeroot(n+1);
-            access(x),splay(x);
-            printf(&quot;%d\n&quot;,size[son[x][0]]);
+            int u=gf(edg[i].fr),v=gf(edg[i].to);
+            if(u!=v)
+            {
+                tot++;
+                f[u]=v;
+                link(edg[i].fr,i+n);
+                link(i+n,edg[i].to);
+            }
+            if(tot==n-1)
+                break;
         }
+}
+
+bool cmpu(node a,node b)
+{
+    return a.fr&lt;b.fr||(a.fr==b.fr&amp;&amp;a.to&lt;b.to);
+}
+
+int findid(int x,int y)
+{
+    int l=1,r=m+1;
+    while(r-l&gt;1)
+    {
+        int mid=(l+r)&gt;&gt;1;
+        if(edg[mid].fr&gt;x||(edg[mid].fr==x&amp;&amp;edg[mid].to&gt;y))
+            r=mid;
         else
-        {
-            scanf(&quot;%d&quot;,&amp;val);
-            cut(x,x+k[x]);
-            k[x]=val;
-            if(k[x]+x&gt;=n+1)
-                k[x]=n+1-x;
-            link(x,x+k[x]);
-        }
+            l=mid;
     }
-}
-</code></pre><h3 id="洞穴勘测"><a href="#洞穴勘测" class="headerlink" title="洞穴勘测"></a><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2049" target="_blank" rel="external">洞穴勘测</a></h3><p>这题就是最基础的link和cut还有find(判断一个点所在树的根)</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-
-const int N=2e5+1e3+7;
-
-int son[N][2],n,m,fa[N],rev[N],size[N],k[N];
-
-int isroot(int x)
-{
-    return son[fa[x]][0]!=x&amp;&amp;son[fa[x]][1]!=x;
+    return l;
 }
 
-void pushup(int x)
-{
-    size[x]=size[son[x][0]]+size[son[x][1]]+1;
-}
-
-void pushdown(int x)
-{
-    if(rev[x])
-    {
-        rev[x]^=1;
-        rev[son[x][0]]^=1;
-        rev[son[x][1]]^=1;
-        swap(son[x][0],son[x][1]);
-    }
-}
-
-void rotate(int x)
-{
-    pushdown(fa[x]),pushdown(x);
-    int y=fa[x],z=fa[y],t=son[y][0]==x;
-    if(!isroot(y))
-        son[z][son[z][1]==y]=x;
-    fa[x]=z;
-    son[y][!t]=son[x][t];
-    fa[son[y][!t]]=y;
-    son[x][t]=y;
-    fa[y]=x;
-    pushup(y);
-    pushup(x);
-}
-
-void splay(int x)
-{
-    pushdown(x);
-    while(!isroot(x))
-    {
-        int y=fa[x],z=fa[y];
-        if(!isroot(y))
-        {
-            if(son[y][0]==x^son[z][0]==y)
-                rotate(x);
-            else
-                rotate(y);
-        }
-        rotate(x);
-    }
-}
-
-void access(int x)
-{
-    for(int y=0;x;y=x,x=fa[x])
-    {
-        splay(x);
-        son[x][1]=y;
-        pushup(x);
-    }
-}
-
-void makeroot(int x)
-{
-    access(x);
-    splay(x);
-    rev[x]^=1;
-}
-
-void split(int x,int y)
-{
-    makeroot(x);
-    access(y);
-    splay(x);
-}
-
-void link(int x,int y)
-{
-    makeroot(x);
-    fa[x]=y;
-}
-
-void cut(int x,int y)
+int query(int x,int y)
 {
     split(x,y);
-    son[x][1]=fa[y]=0;
-}
-int main(){
-//    freopen(&quot;sdoi2008_cave.in&quot;,&quot;r&quot;,stdin);
-//    freopen(&quot;sdoi2008_cave.out&quot;,&quot;w&quot;,stdout);
-    scanf(&quot;%d%d&quot;,&amp;m,&amp;n);
-    for (int i = 1;i &lt;= n;i++){
-        int x,y;
-        scanf(&quot;%s&quot;,s);
-        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
-        if (s[0] == &apos;C&apos;)    link(x,y);
-        else if (s[0] == &apos;D&apos;)    cut(x,y);
-        else {
-            if (find(x) == find(y))    printf(&quot;Yes\n&quot;);
-            else printf(&quot;No\n&quot;);
-        }
-    }
-    return 0;
-}
-</code></pre><h3 id="COGS动态树"><a href="#COGS动态树" class="headerlink" title="COGS动态树"></a><a href="http://cogs.pro/cogs/problem/problem.php?pid=2701" target="_blank" rel="external">COGS动态树</a></h3><p>这题是FoolMike大佬刚出的啊。这题需要一些奇怪的操作，维护子树大小的信息。但是普通的LCT不能搞啊。我们需要在树上再记录一个信息，即其非preferred son的子树大小，然后size去掉这个。这样的话，就可以在access的时候灵活地修改了</p>
-<p>但是好像还有别的高级LCT可以解决这个问题啊</p>
-<p>留一个<strong>tag</strong></p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-
-const int N=2e5+1e3+7;
-
-int n,m,fa[N],son[N][2],size[N],key[N],rev[N],vir[N];
-
-bool isroot(int x)
-{
-    return son[fa[x]][0]!=x&amp;&amp;son[fa[x]][1]!=x;
-}
-
-void pushup(int x)
-{
-    size[x]=vir[x]+size[son[x][0]]+size[son[x][1]]+1;
-}
-
-void pushdown(int x)
-{
-    if(rev[x])
-    {
-        rev[son[x][0]]^=1;
-        rev[son[x][1]]^=1;
-        swap(son[x][0],son[x][1]);
-        rev[x]^=1;
-    }
-}
-
-void rotate(int x)
-{
-    pushdown(fa[x]),pushdown(x);
-    int y=fa[x],z=fa[y],t=(son[y][0]==x);
-    if(!isroot(y))
-        son[z][son[z][1]==y]=x;
-    fa[x]=z;
-    son[y][!t]=son[x][t];
-    fa[son[y][!t]]=y;
-    son[x][t]=y;
-    fa[y]=x;
-    pushup(y);
-    pushup(x);
-}
-
-void splay(int x)
-{
-    pushdown(x);
-    while(!isroot(x))
-    {
-        int y=fa[x],z=fa[y];
-        if(!isroot(y))
-        {
-            if((son[y][0]==x)^(son[z][0]==y))
-                rotate(x);
-            else
-                rotate(y);
-        }
-        rotate(x);
-    }
-}
-
-void access(int x)
-{
-    for(int y=0;x;y=x,x=fa[x])
-    {
-        splay(x);
-        vir[x]-=size[y];
-        vir[x]+=size[son[x][1]];
-        son[x][1]=y;
-        pushup(x);
-    }
-}
-
-void makeroot(int x)
-{
-    access(x);
-    splay(x);
-    rev[x]^=1;
-}
-
-void link(int x,int y)
-{
-    makeroot(y);
-    fa[y]=x;
-    vir[x]+=size[y];
-}
-
-int find(int x)
-{
-    access(x);
-    splay(x);
-    while(son[x][0]) 
-        x=son[x][0];
-    return x;
+    return mx[x];
 }
 
 int main()
 {
-    freopen(&quot;dynamic_tree.in&quot;,&quot;r&quot;,stdin);
-    freopen(&quot;dynamic_tree.out&quot;,&quot;w&quot;,stdout);
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-    for(int i=1;i&lt;=n;i++)
-      size[i]=1;
+//    freopen(&quot;tube.in&quot;,&quot;r&quot;,stdin);
+//    freopen(&quot;tube.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;q);
     for(int i=1;i&lt;=m;i++)
     {
-        int u,opt;
-        scanf(&quot;%d%d&quot;,&amp;opt,&amp;u);
-        if(opt==1)
-            makeroot(u);
-        if(opt==2)
+        scanf(&quot;%d%d%d&quot;,&amp;edg[i].fr,&amp;edg[i].to,&amp;edg[i].w);
+        if(edg[i].fr&gt;edg[i].to)
+            swap(edg[i].fr,edg[i].to);
+    }
+    sort(edg+1,edg+m+1,cmp);
+    for(int i=1;i&lt;=m;i++)
+    {
+        edg[i].id=i;
+        add(i+n,edg[i].w);
+    }
+    sort(edg+1,edg+m+1,cmpu);
+    for(int i=1;i&lt;=q;i++)
+        scanf(&quot;%d%d%d&quot;,&amp;k[i],&amp;u[i],&amp;v[i]);
+    for(int i=1;i&lt;=q;i++)
+    {
+        if(k[i]==2)
         {
-            access(u);
-            printf(&quot;%d\n&quot;,vir[u]+1); 
-        }
-        if(opt==3)
-        {
-            int v;
-            scanf(&quot;%d&quot;,&amp;v);
-            int k=find(u);
-            link(u,v);
-            makeroot(k);
+            if(u[i]&gt;v[i])
+                swap(u[i],v[i]);
+            int k=findid(u[i],v[i]);
+            edg[k].del=1;
+            qe[i]=edg[k].id;
         }
     }
+    kruskal();
+    for(int i=q;i&gt;=1;i--)
+    {
+        if(k[i]==1)
+            ans[++ans[0]]=key[query(u[i],v[i])];
+        if(k[i]==2)
+        {
+            int x=u[i],y=v[i],k=qe[i],t=query(x,y);   
+            if(edg[k].w&lt;key[t])
+            {  
+                cut(edg[t-n].fr,t);
+                cut(edg[t-n].to,t);  
+                link(x,k+n),link(k+n,y);
+            }  
+        }
+    }
+    for(int i=ans[0];i&gt;=1;i--)
+        printf(&quot;%d\n&quot;,ans[i]);
 }
 </code></pre>
       
@@ -936,9 +676,9 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/平衡树/" rel="tag"># 平衡树</a>
+            <a href="/tags/最小生成树/" rel="tag"># 最小生成树</a>
           
-            <a href="/tags/树/" rel="tag"># 树</a>
+            <a href="/tags/动态树/" rel="tag"># 动态树</a>
           
         </div>
       
@@ -951,18 +691,14 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/20/二逼平衡树/" rel="next" title="“二逼平衡树”">
-                <i class="fa fa-chevron-left"></i> “二逼平衡树”
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/17/线性基/" rel="prev" title="线性基">
-                线性基 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/20/二逼平衡树/" rel="prev" title="“二逼平衡树”">
+                “二逼平衡树” <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1117,7 +853,7 @@ int main()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态树"><span class="nav-number">1.</span> <span class="nav-text">动态树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能"><span class="nav-number">1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-number">1.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#弹飞绵羊-bzoj-2002"><span class="nav-number">1.3.1.</span> <span class="nav-text">弹飞绵羊(bzoj 2002)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#洞穴勘测"><span class="nav-number">1.3.2.</span> <span class="nav-text">洞穴勘测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COGS动态树"><span class="nav-number">1.3.3.</span> <span class="nav-text">COGS动态树</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#wc2006水管局长-amp-数据加强版"><span class="nav-number">1.</span> <span class="nav-text">wc2006水管局长&数据加强版</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【问题描述】"><span class="nav-number">1.1.</span> <span class="nav-text">【问题描述】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入格式】"><span class="nav-number">1.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出格式】"><span class="nav-number">1.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入样例】"><span class="nav-number">1.4.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入样例】-1"><span class="nav-number">1.5.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【约束条件】"><span class="nav-number">1.6.</span> <span class="nav-text">【约束条件】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.7.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#code"><span class="nav-number">1.7.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
