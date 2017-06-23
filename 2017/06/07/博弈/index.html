@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/06/07/博弈/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n  mod  3=0$必败，否则必胜。因为当$n  mod  3=0$时，后手只需">
-<meta property="og:updated_time" content="2017-06-07T02:37:05.550Z">
+<meta property="og:updated_time" content="2017-06-23T07:21:31.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博弈">
 <meta name="twitter:description" content="博弈博弈在OI中大概是解决两个人玩一个游戏，在两个人都采用最优策略的情况下，当前局面是必胜还是必败。 博弈大概分以下几种解决方法： 找出必胜策略，DFS或者DP直接求，SG函数 找出必胜策略这种方法并不常见。 例1：有一堆石子有$n$个，每次可以拿$1$个或者$2$个，不能拿就输了。问先手必胜还是必败。 解：如果$n  mod  3=0$必败，否则必胜。因为当$n  mod  3=0$时，后手只需">
@@ -433,26 +433,8 @@
 <h3 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h3><p>有$k$堆石子，对于一个集合$S={a[i]|i\in[1,n]}$，可以从一堆石子中拿随意的$x\in S$个，不能拿就输了，问初始局面先手必胜还是必败。</p>
 <p>解：<br>如果我们进行$k$维次DP的话，时间复杂度无法接受，为$O(a[1]a[2]a[3]…a[n])$。</p>
 <p>考虑直接计算SG值，用一个集合来维护，递归解决。</p>
-<pre><code>int mex(set&lt;int&gt;S)
-{
-    int ret=0;
-    while(S.count(ret))
-        ret++;
-}
-
-int SG(int x)
-{
-    if(done[x])
-        return SG[x];
-    set&lt;int&gt; S;
-    for(int i=1;i&lt;=n;i++)
-        if(x-a[i])
-            S.insert(SG(x-a[i]));
-    done[x]=true;
-    SG[x]=mex(S);
-    return SG[x];
-}
-</code></pre><p>时间复杂度$O(nk)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">mex</span><span class="params">(<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;S)</span></span></div><div class="line">   &#123;</div><div class="line">   	<span class="keyword">int</span> ret=<span class="number">0</span>;</div><div class="line">       <span class="keyword">while</span>(S.count(ret))</div><div class="line">       	ret++;</div><div class="line">   &#125;</div><div class="line">   </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">SG</span><span class="params">(<span class="keyword">int</span> x)</span></span></div><div class="line">   &#123;</div><div class="line">   	<span class="keyword">if</span>(done[x])</div><div class="line">       	<span class="keyword">return</span> SG[x];</div><div class="line">   	<span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; S;</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">       	<span class="keyword">if</span>(x-a[i])</div><div class="line">           	S.insert(SG(x-a[i]));</div><div class="line">       done[x]=<span class="literal">true</span>;</div><div class="line">       SG[x]=mex(S);</div><div class="line">       <span class="keyword">return</span> SG[x];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>时间复杂度$O(nk)$</p>
 <h2 id="大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"><a href="#大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化" class="headerlink" title="大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化"></a>大多数博弈问题都可以转化为NIM游戏，主要是考虑如何转化</h2>
       
     </div>

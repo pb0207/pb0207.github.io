@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/06/17/线性基/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="线性基定义张成设 $T⊆S$，所有这样的子集 $T$ 的异或和的集合称为集合 S $ S $的张成，记作 $ span(S)$。 线性相关对于集合$S$，如果存在一个元素$S_i$，使得$S$去除这个元素之后得到的集合 $S’$的张成$span(S’)$ 中包含$S_i$则称这个集合线性相关。 也就是说包含一个元素可以由其他元素异或得到。 一个显然的结论是，对于这个线性相关的集合 $S$，去除这个">
-<meta property="og:updated_time" content="2017-06-17T07:49:25.209Z">
+<meta property="og:updated_time" content="2017-06-23T07:20:58.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性基">
 <meta name="twitter:description" content="线性基定义张成设 $T⊆S$，所有这样的子集 $T$ 的异或和的集合称为集合 S $ S $的张成，记作 $ span(S)$。 线性相关对于集合$S$，如果存在一个元素$S_i$，使得$S$去除这个元素之后得到的集合 $S’$的张成$span(S’)$ 中包含$S_i$则称这个集合线性相关。 也就是说包含一个元素可以由其他元素异或得到。 一个显然的结论是，对于这个线性相关的集合 $S$，去除这个">
@@ -421,72 +421,14 @@
 </code></pre><ul>
 <li>如果$a_i=0$,则</li>
 </ul>
-<pre><code>for(k=0...i)
-     if(t&amp;(1&lt;&lt;k))
-         t=t^a[i];
-for(k=i+1...L)
-    if(a[k]&amp;(1&lt;&lt;j))
-      a[k]=a[k]^t;
-a[j]=t;
-return;
-</code></pre><hr>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(k=<span class="number">0.</span>..i)</div><div class="line"> 	<span class="keyword">if</span>(t&amp;(<span class="number">1</span>&lt;&lt;k))</div><div class="line">    		t=t^a[i];</div><div class="line">   <span class="keyword">for</span>(k=i+<span class="number">1.</span>..L)</div><div class="line">   	<span class="keyword">if</span>(a[k]&amp;(<span class="number">1</span>&lt;&lt;j))</div><div class="line">     	a[k]=a[k]^t;</div><div class="line">   a[j]=t;</div><div class="line">   <span class="keyword">return</span>;</div></pre></td></tr></table></figure>
+<hr>
 <h3 id="子集最大异或和"><a href="#子集最大异或和" class="headerlink" title="子集最大异或和"></a>子集最大异或和</h3><p>就是线性基的异或和么</p>
-<h3 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h3><pre><code>const int MAXL = 60;
-
-long long a[MAXL + 1];
-
-void insert(long long t)
-{
-    for (int j = MAXL; j &gt;= 0; j--)
-    {
-        if (!(t &amp; (1ll &lt;&lt; j))) continue;
-        if (a[j]) t ^= a[j];
-        else
-        {
-            for(int k=0;k&lt;j;k++) 
-                if(t&amp;(1ll&lt;&lt;k)) 
-                    t^=a[k];
-            for(int k=j+1;k&lt;=MAXL;k++) 
-                if(a[k]&amp;(1ll&lt;&lt;j))
-                    a[k]^=t;
-            a[j]=t;
-            return;
-        }
-    }
-}
-
-long long queryMax()
-{
-    long long ret=0;
-    for(int i=0;i&lt;=MAXL;i++) 
-        res^=a[i];
-    return res;
-}
-</code></pre><h3 id="子集K小异或和"><a href="#子集K小异或和" class="headerlink" title="子集K小异或和"></a>子集K小异或和</h3><p>首先根据我们构造的线性基，显然可以知道，最高位的$1$异或上肯定最大，之后的$1$再异或也会变大因为如果跟之前高位的$1$有重复就不满足之前的性质，也就是插入的时候如果当前位有的话，会异或上然后消掉。于是第K大就是K的二进制分解来选取线性基中的元素。</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXL = <span class="number">60</span>;</div><div class="line">   </div><div class="line">   <span class="keyword">long</span> <span class="keyword">long</span> a[MAXL + <span class="number">1</span>];</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> t)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> j = MAXL; j &gt;= <span class="number">0</span>; j--)</div><div class="line">       &#123;</div><div class="line">           <span class="keyword">if</span> (!(t &amp; (<span class="number">1l</span>l &lt;&lt; j))) <span class="keyword">continue</span>;</div><div class="line">           <span class="keyword">if</span> (a[j]) t ^= a[j];</div><div class="line">           <span class="keyword">else</span></div><div class="line">           &#123;</div><div class="line">               <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;j;k++) </div><div class="line">                   <span class="keyword">if</span>(t&amp;(<span class="number">1l</span>l&lt;&lt;k)) </div><div class="line">                       t^=a[k];</div><div class="line">               <span class="keyword">for</span>(<span class="keyword">int</span> k=j+<span class="number">1</span>;k&lt;=MAXL;k++) </div><div class="line">                   <span class="keyword">if</span>(a[k]&amp;(<span class="number">1l</span>l&lt;&lt;j))</div><div class="line">                       a[k]^=t;</div><div class="line">               a[j]=t;</div><div class="line">               <span class="keyword">return</span>;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">queryMax</span><span class="params">()</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">long</span> <span class="keyword">long</span> ret=<span class="number">0</span>;</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=MAXL;i++) </div><div class="line">       	res^=a[i];</div><div class="line">       <span class="keyword">return</span> res;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h3 id="子集K小异或和"><a href="#子集K小异或和" class="headerlink" title="子集K小异或和"></a>子集K小异或和</h3><p>首先根据我们构造的线性基，显然可以知道，最高位的$1$异或上肯定最大，之后的$1$再异或也会变大因为如果跟之前高位的$1$有重复就不满足之前的性质，也就是插入的时候如果当前位有的话，会异或上然后消掉。于是第K大就是K的二进制分解来选取线性基中的元素。</p>
 <p>code：</p>
-<pre><code>//这里用一个vector &lt;int&gt; v保存了线性基，因为可以动态插入快速查询大小。
-long long query(long long k) 
-{
-        if (int(v.size()) != n)
-        {
-            k--;
-        }
-
-        if (k &gt; (1ll &lt;&lt; v.size()) - 1) 
-            return -1;
-
-        long long ans = 0;
-        for (size_t i = 0; i &lt; v.size(); i++) 
-        {
-            if (k &amp; (1ll &lt;&lt; i))
-            {
-                ans ^= v[i];
-            }
-        }
-
-        return ans;
-    }
-</code></pre><p>后续例题见博客更新</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这里用一个vector &lt;int&gt; v保存了线性基，因为可以动态插入快速查询大小。</span></div><div class="line">   <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">query</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> k)</span> </span></div><div class="line">   &#123;</div><div class="line">           <span class="keyword">if</span> (<span class="keyword">int</span>(v.size()) != n)</div><div class="line">           &#123;</div><div class="line">               k--;</div><div class="line">           &#125;</div><div class="line"></div><div class="line">           <span class="keyword">if</span> (k &gt; (<span class="number">1l</span>l &lt;&lt; v.size()) - <span class="number">1</span>) </div><div class="line">           	<span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line"></div><div class="line">           <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</div><div class="line">           <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; v.size(); i++) </div><div class="line">           &#123;</div><div class="line">               <span class="keyword">if</span> (k &amp; (<span class="number">1l</span>l &lt;&lt; i))</div><div class="line">               &#123;</div><div class="line">                   ans ^= v[i];</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line"></div><div class="line">           <span class="keyword">return</span> ans;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>后续例题见博客更新</p>
 
       
     </div>

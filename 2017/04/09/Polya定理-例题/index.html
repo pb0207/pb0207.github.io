@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/04/09/Polya定理-例题/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="Pólya定理先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多) 就先从例题说一下吧 例题SGU 282 同构题目描述我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不">
-<meta property="og:updated_time" content="2017-04-10T13:52:10.464Z">
+<meta property="og:updated_time" content="2017-06-23T07:16:24.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pólya定理 例题">
 <meta name="twitter:description" content="Pólya定理先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多) 就先从例题说一下吧 例题SGU 282 同构题目描述我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不">
@@ -403,76 +403,7 @@
 <pre><code>20
 </code></pre><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><pre><code>$n$个点的图有$n!$个置换，枚举肯定不可能的所以可以把$n$分解成若干个环，那么剩下的多于计算的就可以省去了那么不同环上的$a，b$两点，显然轮换个数为$gcd(n_a,n_b)$然后套polya即可
 #uncomplete
-</code></pre><h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-#include&lt;cmath&gt;
-using namespace std;
-#define maxn 1111
-typedef long long ll;
-ll num[maxn],cnt[maxn],res,factor[maxn],n,m,p,ans;
-void init()
-{
-    ans=res=0;
-    factor[0]=1;
-    for(int i=1;i&lt;maxn;i++)
-        factor[i]=factor[i-1]*i%p;
-}
-ll gcd(ll a,ll b)
-{
-    if(a&lt;b)return gcd(b,a);
-    if(b==0)return a;
-    return gcd(b,a%b);
-} 
-ll mod_pow(ll a,ll b,ll p)
-{
-    ll ans=1ll;
-    a%=p;
-    while(b)
-    {
-        if(b&amp;1) ans=(ans*a)%p;
-        a=(a*a)%p;
-        b&gt;&gt;=1;
-    } 
-    return ans;
-}
-void dfs(ll now,ll left)
-{
-    if(left==0)
-    {
-        ll a=1,b=0;
-        for(ll i=0;i&lt;res;i++)
-        {
-            a=a*mod_pow(num[i],cnt[i],p)%p*factor[cnt[i]]%p;
-            b+=cnt[i]*(cnt[i]-1)/2*num[i]+num[i]/2*cnt[i];
-            for(ll j=i+1;j&lt;res;j++)
-                b+=cnt[i]*cnt[j]*gcd(num[i],num[j]);
-        }
-        a=mod_pow(a,p-2,p)*factor[n]%p;
-        ans=(ans+a*mod_pow(m,b,p)%p)%p;
-    }
-    if(now&gt;left)return ;
-    dfs(now+1,left);
-    for(ll i=1;i*now&lt;=left;i++)
-    {
-        num[res]=now,cnt[res++]=i;
-        dfs(now+1,left-i*now);
-        res--;
-    }
-}
-int main()
-{
-    while(~scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;m,&amp;p))
-    {
-        init();
-        dfs(1,n);
-        ans=ans*mod_pow(factor[n],p-2,p)%p;
-        printf(&quot;%lld\n&quot;,ans);
-    }
-    return 0;
-}
-</code></pre>
+</code></pre><h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1111</span></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line">ll num[maxn],cnt[maxn],res,factor[maxn],n,m,p,ans;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    ans=res=<span class="number">0</span>;</div><div class="line">    factor[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;maxn;i++)</div><div class="line">        factor[i]=factor[i<span class="number">-1</span>]*i%p;</div><div class="line">&#125;</div><div class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(a&lt;b)<span class="keyword">return</span> gcd(b,a);</div><div class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)<span class="keyword">return</span> a;</div><div class="line">    <span class="keyword">return</span> gcd(b,a%b);</div><div class="line">&#125; </div><div class="line"><span class="function">ll <span class="title">mod_pow</span><span class="params">(ll a,ll b,ll p)</span></span></div><div class="line">&#123;</div><div class="line">    ll ans=<span class="number">1l</span>l;</div><div class="line">    a%=p;</div><div class="line">    <span class="keyword">while</span>(b)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) ans=(ans*a)%p;</div><div class="line">        a=(a*a)%p;</div><div class="line">        b&gt;&gt;=<span class="number">1</span>;</div><div class="line">    &#125; </div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(ll now,ll left)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(left==<span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ll a=<span class="number">1</span>,b=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;res;i++)</div><div class="line">        &#123;</div><div class="line">            a=a*mod_pow(num[i],cnt[i],p)%p*factor[cnt[i]]%p;</div><div class="line">            b+=cnt[i]*(cnt[i]<span class="number">-1</span>)/<span class="number">2</span>*num[i]+num[i]/<span class="number">2</span>*cnt[i];</div><div class="line">            <span class="keyword">for</span>(ll j=i+<span class="number">1</span>;j&lt;res;j++)</div><div class="line">                b+=cnt[i]*cnt[j]*gcd(num[i],num[j]);</div><div class="line">        &#125;</div><div class="line">        a=mod_pow(a,p<span class="number">-2</span>,p)*factor[n]%p;</div><div class="line">        ans=(ans+a*mod_pow(m,b,p)%p)%p;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(now&gt;left)<span class="keyword">return</span> ;</div><div class="line">    dfs(now+<span class="number">1</span>,left);</div><div class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i*now&lt;=left;i++)</div><div class="line">    &#123;</div><div class="line">        num[res]=now,cnt[res++]=i;</div><div class="line">        dfs(now+<span class="number">1</span>,left-i*now);</div><div class="line">        res--;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;n,&amp;m,&amp;p))</div><div class="line">    &#123;</div><div class="line">        init();</div><div class="line">        dfs(<span class="number">1</span>,n);</div><div class="line">        ans=ans*mod_pow(factor[n],p<span class="number">-2</span>,p)%p;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 

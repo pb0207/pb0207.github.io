@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/04/04/HAOI2011-problem-b/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="HAOI2011 problem b题目描述对于给出的$n$个询问，每次求有多少个数对$(x,y)$，满足$a≤x≤b，c≤y≤d$，且$gcd(x,y) = k，gcd(x,y)$函数为x和$y$的最大公约数。 输入输出格式输入格式：第一行一个整数n，接下来n行每行五个整数，分别表示$a、b、c、d、k$ 输出格式：共$n$行，每行一个整数表示满足要求的数对$(x,y)$的个数 输入输出样例输入">
-<meta property="og:updated_time" content="2017-04-04T08:16:06.097Z">
+<meta property="og:updated_time" content="2017-06-23T07:16:39.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HAOI2011 problem b">
 <meta name="twitter:description" content="HAOI2011 problem b题目描述对于给出的$n$个询问，每次求有多少个数对$(x,y)$，满足$a≤x≤b，c≤y≤d$，且$gcd(x,y) = k，gcd(x,y)$函数为x和$y$的最大公约数。 输入输出格式输入格式：第一行一个整数n，接下来n行每行五个整数，分别表示$a、b、c、d、k$ 输出格式：共$n$行，每行一个整数表示满足要求的数对$(x,y)$的个数 输入输出样例输入">
@@ -407,70 +407,7 @@
 <p>但是直接枚举$d$就TLE了</p>
 <p>于是采用分块处理</p>
 <p>但是很显然有下限，于是容斥原理<br>(画下图就知道了。。。)</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre><code>#include &lt;iostream&gt;
-#include &lt;cmath&gt;
-#include &lt;algorithm&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#define LL long long
-using namespace std;
-int check[50005],mu[50005],p[50005],sum[50005];
-void Getmobius()
-{
-    memset(check,0,sizeof(check));
-    mu[1]=1;
-    int tot=0;
-    for(int i=2;i&lt;=50000;i++)
-    {
-        if (!check[i])
-        {
-            p[++tot]=i;
-            mu[i]=-1;
-        }
-        for(int j=1;j&lt;=tot;j++)
-        {
-            if (i*p[j]&gt;50000) break;
-            check[i*p[j]]=1;
-            if (i%p[j]==0)
-            {
-                mu[i*p[j]]=0;
-                break;
-            }
-            else mu[i*p[j]]=-mu[i];
-        }
-    }
-    sum[0]=0;
-    for(int i=1;i&lt;=50000;i++)
-        sum[i]=sum[i-1]+mu[i];
-}
-LL Calc(int a,int b)
-{    
-    LL ans=0LL;
-    int pos;
-    for(int d=1;d&lt;=min(a,b);d=pos+1)
-    {
-        pos=min(a/(a/d),b/(b/d));
-        ans+=(LL)(sum[pos]-sum[d-1])*(a/d)*(b/d);
-    }
-    return ans;
-}
-int main()
-{
-        Getmobius();
-    int T;
-    scanf(&quot;%d&quot;,&amp;T);
-    while (T--)
-    {
-        int a,b,c,d,k;
-        scanf(&quot;%d%d%d%d%d&quot;,&amp;a,&amp;b,&amp;c,&amp;d,&amp;k);
-        a=(a-1)/k,b/=k,c=(c-1)/k,d/=k;
-        LL ans=0LL;
-        ans=Calc(b,d)-Calc(a,d)-Calc(c,b)+Calc(a,c);
-        printf(&quot;%lld\n&quot;,ans);
-    }
-    return 0;
-}
-</code></pre>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> check[<span class="number">50005</span>],mu[<span class="number">50005</span>],p[<span class="number">50005</span>],sum[<span class="number">50005</span>];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Getmobius</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">memset</span>(check,<span class="number">0</span>,<span class="keyword">sizeof</span>(check));</div><div class="line">	mu[<span class="number">1</span>]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> tot=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">50000</span>;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span> (!check[i])</div><div class="line">		&#123;</div><div class="line">			p[++tot]=i;</div><div class="line">			mu[i]=<span class="number">-1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=tot;j++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span> (i*p[j]&gt;<span class="number">50000</span>) <span class="keyword">break</span>;</div><div class="line">			check[i*p[j]]=<span class="number">1</span>;</div><div class="line">			<span class="keyword">if</span> (i%p[j]==<span class="number">0</span>)</div><div class="line">			&#123;</div><div class="line">				mu[i*p[j]]=<span class="number">0</span>;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> mu[i*p[j]]=-mu[i];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	sum[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">50000</span>;i++)</div><div class="line">		sum[i]=sum[i<span class="number">-1</span>]+mu[i];</div><div class="line">&#125;</div><div class="line"><span class="function">LL <span class="title">Calc</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></div><div class="line">&#123;	</div><div class="line">	LL ans=<span class="number">0L</span>L;</div><div class="line">	<span class="keyword">int</span> pos;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">1</span>;d&lt;=min(a,b);d=pos+<span class="number">1</span>)</div><div class="line">	&#123;</div><div class="line">		pos=min(a/(a/d),b/(b/d));</div><div class="line">		ans+=(LL)(sum[pos]-sum[d<span class="number">-1</span>])*(a/d)*(b/d);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">        Getmobius();</div><div class="line">	<span class="keyword">int</span> T;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</div><div class="line">	<span class="keyword">while</span> (T--)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> a,b,c,d,k;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d%d"</span>,&amp;a,&amp;b,&amp;c,&amp;d,&amp;k);</div><div class="line">		a=(a<span class="number">-1</span>)/k,b/=k,c=(c<span class="number">-1</span>)/k,d/=k;</div><div class="line">		LL ans=<span class="number">0L</span>L;</div><div class="line">		ans=Calc(b,d)-Calc(a,d)-Calc(c,b)+Calc(a,c);</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 

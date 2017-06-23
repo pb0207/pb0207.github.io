@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/06/08/旋转卡壳/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
-<meta property="og:updated_time" content="2017-06-17T02:40:50.256Z">
+<meta property="og:updated_time" content="2017-06-23T07:19:16.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算几何">
 <meta name="twitter:description" content="计算几何解决几何问题的有力工具OI中的几何知识考查通常是需要大规模运算的问题。如果对于每道题都去现成的推公式，必将会浪费大量的时间。对此，可以解决一切几何问题的解析几何便十分常用。而将解析几何模式化的工具就是向量。 向量的基本运算向量的表示：$\vec a $   向量a 向量的加减运算:满足平行四边形法则 $\vec {AB}+\vec {BC}=\vec{AC}$ $(a,b)+(c,d)=(">
@@ -402,129 +402,13 @@
 <p><strong>Attention:这是一个向量</strong></p>
 <p><strong>同时，两个点相减是向量，相加无意义</strong></p>
 <p><strong>两向量垂直，则点积为$0$，共线则叉积为$\vec 0$</strong></p>
-<p>code</p>
-<pre><code>struct P{
-    double x,y;
-    P(double x=0,double y=0):x(x),y(y);
-};
-
-P operator +(P a,P b)
-{
-    return P(a.x+b.x,a.y+b.y);
-}
-
-P operator -(P a,P b)
-{
-    return P(a.x-b.x,a.y-b.y);
-}
-
-double cross(P a,P b)
-{
-    return a.x*b.y-a.y*b.x;    
-}
-
-double dot(P a,P b)
-{
-    return a.x*b.x+a.y*b.y;
-}
-
-bool ver(P a,P b)//判断是否垂直 
-{
-    return dot(a,b)==0; 
-}
-
-bool col(P a,P b)//判断是否共线
-{
-    return cross(a,b)==0;
-}
-
-double dis(P a,P b)
-{
-    return sqrt(dot(b-a,b-a));
-} 
-</code></pre><p><strong>注意精度</strong></p>
+<p>code<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> P&#123;</div><div class="line">       <span class="keyword">double</span> x,y;</div><div class="line">       P(<span class="keyword">double</span> x=<span class="number">0</span>,<span class="keyword">double</span> y=<span class="number">0</span>):x(x),y(y);</div><div class="line">   &#125;;</div><div class="line"></div><div class="line">   P <span class="keyword">operator</span> +(P a,P b)</div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> P(a.x+b.x,a.y+b.y);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   P <span class="keyword">operator</span> -(P a,P b)</div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> P(a.x-b.x,a.y-b.y);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">double</span> <span class="title">cross</span><span class="params">(P a,P b)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> a.x*b.y-a.y*b.x;	</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">double</span> <span class="title">dot</span><span class="params">(P a,P b)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> a.x*b.x+a.y*b.y;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">bool</span> <span class="title">ver</span><span class="params">(P a,P b)</span><span class="comment">//判断是否垂直 </span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> dot(a,b)==<span class="number">0</span>; </div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">bool</span> <span class="title">col</span><span class="params">(P a,P b)</span><span class="comment">//判断是否共线</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> cross(a,b)==<span class="number">0</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">double</span> <span class="title">dis</span><span class="params">(P a,P b)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> <span class="built_in">sqrt</span>(dot(b-a,b-a));</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p><strong>注意精度</strong></p>
 <hr>
 <h2 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h2><h3 id="定义：凸包是可以包裹平面上某个点集的最小凸多边形。"><a href="#定义：凸包是可以包裹平面上某个点集的最小凸多边形。" class="headerlink" title="定义：凸包是可以包裹平面上某个点集的最小凸多边形。"></a>定义：凸包是可以包裹平面上某个点集的最小凸多边形。</h3><h3 id="性质：凸包的顶点一定在点集内。"><a href="#性质：凸包的顶点一定在点集内。" class="headerlink" title="性质：凸包的顶点一定在点集内。"></a>性质：凸包的顶点一定在点集内。</h3><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>Granham算法的变种：Andrew（更快更好记）</p>
 <p>思路：先对点按x，y排序，然后进行从左到右扫描先求出下凸包，再求出上凸包。</p>
-<p>Code：cogs896圈奶牛</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;cmath&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-
-const int N=1e4+1e3+1;
-
-struct P{
-    double x,y;
-}pt[N],ch[N*2];
-
-double cross(P a,P b)
-{
-    return a.x*b.y-b.x*a.y;
-}
-
-bool cmp(P a,P b)
-{
-    return a.x&lt;b.x;
-    if(a.x==b.x)
-        return a.y&lt;b.y;
-}
-
-P operator -(P a,P b)
-{
-    P ret;
-    ret.x=a.x-b.x;
-    ret.y=a.y-b.y;
-    return ret;
-}
-
-double dot(P a,P b)
-{
-    return a.x*b.x+a.y*b.y;
-}
-
-double len(P a)
-{
-    return sqrt(dot(a,a));
-}
-
-int n,m;
-
-void ConvexHull()
-{
-    sort(pt+1,pt+n+1,cmp);
-    for(int i=1;i&lt;=n;i++)
-    {
-        while(m&gt;1&amp;&amp;cross(ch[m]-ch[m-1],pt[i]-ch[m-1])&lt;=0)
-            m--;
-        ch[++m]=pt[i];
-    }
-    int k=m;
-    for(int i=n-1;i&gt;=1;i--)
-    {
-        while(m&gt;k&amp;&amp;cross(ch[m]-ch[m-1],pt[i]-ch[m-1])&lt;=0)
-            m--;
-        ch[++m]=pt[i];
-    }
-    if(n&gt;1)
-        m--;
-}
-
-int main()
-{
-    freopen(&quot;fc.in&quot;,&quot;r&quot;,stdin);
-    freopen(&quot;fc.out&quot;,&quot;w&quot;,stdout);
-    scanf(&quot;%d&quot;,&amp;n);
-    for(int i=1;i&lt;=n;i++)
-        scanf(&quot;%lf%lf&quot;,&amp;pt[i].x,&amp;pt[i].y);
-    double ans=0;
-    for(int i=2;i&lt;=m;i++)
-        ans+=len(ch[i]-ch[i-1]);
-    ans+=len(ch[1]-ch[m]);
-    printf(&quot;%.2lf&quot;,ans);
-}
-</code></pre><p><em>题目有待补充</em></p>
+<p>Code：cogs896圈奶牛<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">   <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line">   <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line">   <span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e4</span>+<span class="number">1e3</span>+<span class="number">1</span>;</div><div class="line"></div><div class="line">   <span class="keyword">struct</span> P&#123;</div><div class="line">       <span class="keyword">double</span> x,y;</div><div class="line">   &#125;pt[N],ch[N*<span class="number">2</span>];</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">double</span> <span class="title">cross</span><span class="params">(P a,P b)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> a.x*b.y-b.x*a.y;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(P a,P b)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> a.x&lt;b.x;</div><div class="line">       <span class="keyword">if</span>(a.x==b.x)</div><div class="line">           <span class="keyword">return</span> a.y&lt;b.y;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   P <span class="keyword">operator</span> -(P a,P b)</div><div class="line">   &#123;</div><div class="line">       P ret;</div><div class="line">       ret.x=a.x-b.x;</div><div class="line">       ret.y=a.y-b.y;</div><div class="line">       <span class="keyword">return</span> ret;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">double</span> <span class="title">dot</span><span class="params">(P a,P b)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> a.x*b.x+a.y*b.y;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">double</span> <span class="title">len</span><span class="params">(P a)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> <span class="built_in">sqrt</span>(dot(a,a));</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="keyword">int</span> n,m;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">ConvexHull</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">   	sort(pt+<span class="number">1</span>,pt+n+<span class="number">1</span>,cmp);</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">       &#123;</div><div class="line">           <span class="keyword">while</span>(m&gt;<span class="number">1</span>&amp;&amp;cross(ch[m]-ch[m<span class="number">-1</span>],pt[i]-ch[m<span class="number">-1</span>])&lt;=<span class="number">0</span>)</div><div class="line">               m--;</div><div class="line">           ch[++m]=pt[i];</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">int</span> k=m;</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)</div><div class="line">       &#123;</div><div class="line">           <span class="keyword">while</span>(m&gt;k&amp;&amp;cross(ch[m]-ch[m<span class="number">-1</span>],pt[i]-ch[m<span class="number">-1</span>])&lt;=<span class="number">0</span>)</div><div class="line">               m--;</div><div class="line">           ch[++m]=pt[i];</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span>(n&gt;<span class="number">1</span>)</div><div class="line">           m--;</div><div class="line">&#125;</div><div class="line">   </div><div class="line">   <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">   &#123;</div><div class="line">       freopen(<span class="string">"fc.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">       freopen(<span class="string">"fc.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line">       <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">           <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;pt[i].x,&amp;pt[i].y);</div><div class="line">       <span class="keyword">double</span> ans=<span class="number">0</span>;</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=m;i++)</div><div class="line">           ans+=len(ch[i]-ch[i<span class="number">-1</span>]);</div><div class="line">       ans+=len(ch[<span class="number">1</span>]-ch[m]);</div><div class="line">       <span class="built_in">printf</span>(<span class="string">"%.2lf"</span>,ans);</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p><em>题目有待补充</em></p>
 <hr>
 <h2 id="半平面交"><a href="#半平面交" class="headerlink" title="半平面交"></a>半平面交</h2><h3 id="定义：求几个半平面相交的部分。"><a href="#定义：求几个半平面相交的部分。" class="headerlink" title="定义：求几个半平面相交的部分。"></a>定义：求几个半平面相交的部分。</h3><h3 id="算法：排序增量算法"><a href="#算法：排序增量算法" class="headerlink" title="算法：排序增量算法"></a>算法：排序增量算法</h3><h3 id="表示：规定一条向量的左边是这条向量对应的半平面"><a href="#表示：规定一条向量的左边是这条向量对应的半平面" class="headerlink" title="表示：规定一条向量的左边是这条向量对应的半平面"></a>表示：规定一条向量的左边是这条向量对应的半平面</h3><p><strong>According to：经典论文：</strong></p>
 <p>求n个半平面的交有三种做法： 第一种就是用每个平面去切割已有的凸多边形，复杂度O(n^2)。 </p>
@@ -551,200 +435,13 @@ int main()
 <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1038" target="_blank" rel="external">ZJOI2008瞭望塔</a></p>
 <p>题面较长，简单描述一下：大概是要求一些点，这些点之间的连线下面都是山，然后要在一个点上选一个最低高度使得这个点可以看到所有点。</p>
 <p>题解：对于相邻的两个点构造向量，求半平面交。<br>半平面交求得的区域就是可以建瞭望塔的区域，然后就是求得到的区域的边界与下方折线的边界的最近距离。<br>这个最短距离只可能出现在上下边界的顶点上，所以计算出来取最小值即可。</p>
-<pre><code>#include&lt;iostream&gt;  
-#include&lt;cstdio&gt;  
-#include&lt;cmath&gt;  
-#include&lt;cstdlib&gt;  
-#include&lt;cstring&gt;  
-#include&lt;algorithm&gt;  
-#define F(i,j,n) for(int i=j;i&lt;=n;i++)  
-#define D(i,j,n) for(int i=j;i&gt;=n;i--)  
-#define ll long long  
-#define maxn 1005  
-#define eps 1e-8  
-#define inf 1000000000  
-using namespace std;  
-int n,cnt,tot;  
-double ans=1e60;  
-struct P{double x,y;}p[maxn],a[maxn];  
-struct L{P a,b;double angle;}l[maxn],q[maxn];  
-inline int read()  
-{  
-    int x=0,f=1;char ch=getchar();  
-    while (ch&lt;&apos;0&apos;||ch&gt;&apos;9&apos;){if (ch==&apos;-&apos;) f=-1;ch=getchar();}  
-    while (ch&gt;=&apos;0&apos;&amp;&amp;ch&lt;=&apos;9&apos;){x=x*10+ch-&apos;0&apos;;ch=getchar();}  
-    return x*f;  
-}  
-inline P operator -(P a,P b){return (P){a.x-b.x,a.y-b.y};}  
-inline double operator *(P a,P b){return a.x*b.y-a.y*b.x;}  
-inline bool operator &lt;(L a,L b)  
-{  
-    if (fabs(a.angle-b.angle)&lt;eps) return (a.b-a.a)*(b.b-a.a)&gt;0;  
-    else return a.angle&lt;b.angle;  
-}  
-inline P inter(L l1,L l2)  
-{  
-    double k1=(l2.b-l1.a)*(l1.b-l1.a),k2=(l1.b-l1.a)*(l2.a-l1.a),t=k1/(k1+k2);  
-    return (P){l2.b.x+(l2.a.x-l2.b.x)*t,l2.b.y+(l2.a.y-l2.b.y)*t};  
-}  
-inline bool judge(L l1,L l2,L t)  
-{  
-    P p=inter(l1,l2);  
-    return (t.b-t.a)*(p-t.a)&lt;0;  
-}  
-inline void pre()  
-{  
-    p[0].x=p[1].x;p[0].y=inf;  
-    p[n+1].x=p[n].x;p[n+1].y=inf;  
-    F(i,0,n) l[++cnt]=(L){p[i],p[i+1]};  
-    F(i,1,cnt) l[i].angle=atan2(l[i].b.y-l[i].a.y,l[i].b.x-l[i].a.x);  
-    sort(l+1,l+cnt+1);  
-}  
-inline void hpi()  
-{  
-    int top=0,bot=1;  
-    tot=1;  
-    F(i,2,cnt)  
-    {  
-        if (fabs(l[i].angle-l[i-1].angle)&gt;=eps) tot++;  
-        l[tot]=l[i];  
-    }  
-    cnt=tot;  
-    q[++top]=l[1];q[++top]=l[2];  
-    F(i,3,cnt)  
-    {  
-        while (bot&lt;top&amp;&amp;judge(q[top-1],q[top],l[i])) top--;  
-        while (bot&lt;top&amp;&amp;judge(q[bot+1],q[bot],l[i])) bot++;  
-        q[++top]=l[i];  
-    }  
-    while (bot&lt;top&amp;&amp;judge(q[top-1],q[top],q[bot])) top--;  
-    while (bot&lt;top&amp;&amp;judge(q[bot+1],q[bot],q[top])) bot++;  
-    tot=0;  
-    F(i,bot,top-1) a[++tot]=inter(q[i],q[i+1]);  
-}  
-inline void getans()  
-{  
-    F(k,1,tot) F(i,1,n-1)  
-    {  
-        P t=(P){a[k].x,-1};  
-        if (a[k].x&gt;=p[i].x&amp;&amp;a[k].x&lt;=p[i+1].x)  
-            ans=min(ans,a[k].y-inter((L){p[i],p[i+1]},(L){t,a[k]}).y);  
-    }  
-    F(k,1,n) F(i,1,tot-1)  
-    {  
-        P t=(P){p[k].x,-1};  
-        if (p[k].x&gt;=a[i].x&amp;&amp;p[k].x&lt;=a[i+1].x)  
-            ans=min(ans,inter((L){a[i],a[i+1]},(L){t,p[k]}).y-p[k].y);  
-    }  
-}  
-int main()  
-{  
-    n=read();  
-    F(i,1,n) p[i].x=read();  
-    F(i,1,n) p[i].y=read();  
-    pre();  
-    hpi();  
-    getans();  
-    printf(&quot;%.3lf\n&quot;,ans);  
-    return 0;  
-}  
-</code></pre><h1 id="旋转卡壳"><a href="#旋转卡壳" class="headerlink" title="旋转卡壳"></a>旋转卡壳</h1><p>思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于需要计算的凸多边形来操作就行了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> F(i,j,n) for(int i=j;i&lt;=n;i++)  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> D(i,j,n) for(int i=j;i&gt;=n;i--)  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 1005  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> eps 1e-8  </span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 1000000000  </span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </div><div class="line"><span class="keyword">int</span> n,cnt,tot;  </div><div class="line"><span class="keyword">double</span> ans=<span class="number">1e60</span>;  </div><div class="line"><span class="keyword">struct</span> P&#123;<span class="keyword">double</span> x,y;&#125;p[maxn],a[maxn];  </div><div class="line"><span class="keyword">struct</span> L&#123;P a,b;<span class="keyword">double</span> angle;&#125;l[maxn],q[maxn];  </div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();  </div><div class="line">    <span class="keyword">while</span> (ch&lt;<span class="string">'0'</span>||ch&gt;<span class="string">'9'</span>)&#123;<span class="keyword">if</span> (ch==<span class="string">'-'</span>) f=<span class="number">-1</span>;ch=getchar();&#125;  </div><div class="line">    <span class="keyword">while</span> (ch&gt;=<span class="string">'0'</span>&amp;&amp;ch&lt;=<span class="string">'9'</span>)&#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;  </div><div class="line">    <span class="keyword">return</span> x*f;  </div><div class="line">&#125;  </div><div class="line"><span class="keyword">inline</span> P <span class="keyword">operator</span> -(P a,P b)&#123;<span class="keyword">return</span> (P)&#123;a.x-b.x,a.y-b.y&#125;;&#125;  </div><div class="line"><span class="keyword">inline</span> <span class="keyword">double</span> <span class="keyword">operator</span> *(P a,P b)&#123;<span class="keyword">return</span> a.x*b.y-a.y*b.x;&#125;  </div><div class="line"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(L a,L b)  </div><div class="line">&#123;  </div><div class="line">    <span class="keyword">if</span> (<span class="built_in">fabs</span>(a.angle-b.angle)&lt;eps) <span class="keyword">return</span> (a.b-a.a)*(b.b-a.a)&gt;<span class="number">0</span>;  </div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> a.angle&lt;b.angle;  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">inline</span> P <span class="title">inter</span><span class="params">(L l1,L l2)</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">double</span> k1=(l2.b-l1.a)*(l1.b-l1.a),k2=(l1.b-l1.a)*(l2.a-l1.a),t=k1/(k1+k2);  </div><div class="line">    <span class="keyword">return</span> (P)&#123;l2.b.x+(l2.a.x-l2.b.x)*t,l2.b.y+(l2.a.y-l2.b.y)*t&#125;;  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">judge</span><span class="params">(L l1,L l2,L t)</span>  </span></div><div class="line">&#123;  </div><div class="line">    P p=inter(l1,l2);  </div><div class="line">    <span class="keyword">return</span> (t.b-t.a)*(p-t.a)&lt;<span class="number">0</span>;  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pre</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    p[<span class="number">0</span>].x=p[<span class="number">1</span>].x;p[<span class="number">0</span>].y=inf;  </div><div class="line">    p[n+<span class="number">1</span>].x=p[n].x;p[n+<span class="number">1</span>].y=inf;  </div><div class="line">    F(i,<span class="number">0</span>,n) l[++cnt]=(L)&#123;p[i],p[i+<span class="number">1</span>]&#125;;  </div><div class="line">    F(i,<span class="number">1</span>,cnt) l[i].angle=<span class="built_in">atan2</span>(l[i].b.y-l[i].a.y,l[i].b.x-l[i].a.x);  </div><div class="line">    sort(l+<span class="number">1</span>,l+cnt+<span class="number">1</span>);  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">hpi</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> top=<span class="number">0</span>,bot=<span class="number">1</span>;  </div><div class="line">    tot=<span class="number">1</span>;  </div><div class="line">    F(i,<span class="number">2</span>,cnt)  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">if</span> (<span class="built_in">fabs</span>(l[i].angle-l[i<span class="number">-1</span>].angle)&gt;=eps) tot++;  </div><div class="line">        l[tot]=l[i];  </div><div class="line">    &#125;  </div><div class="line">    cnt=tot;  </div><div class="line">    q[++top]=l[<span class="number">1</span>];q[++top]=l[<span class="number">2</span>];  </div><div class="line">    F(i,<span class="number">3</span>,cnt)  </div><div class="line">    &#123;  </div><div class="line">        <span class="keyword">while</span> (bot&lt;top&amp;&amp;judge(q[top<span class="number">-1</span>],q[top],l[i])) top--;  </div><div class="line">        <span class="keyword">while</span> (bot&lt;top&amp;&amp;judge(q[bot+<span class="number">1</span>],q[bot],l[i])) bot++;  </div><div class="line">        q[++top]=l[i];  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">while</span> (bot&lt;top&amp;&amp;judge(q[top<span class="number">-1</span>],q[top],q[bot])) top--;  </div><div class="line">    <span class="keyword">while</span> (bot&lt;top&amp;&amp;judge(q[bot+<span class="number">1</span>],q[bot],q[top])) bot++;  </div><div class="line">    tot=<span class="number">0</span>;  </div><div class="line">    F(i,bot,top<span class="number">-1</span>) a[++tot]=inter(q[i],q[i+<span class="number">1</span>]);  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getans</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    F(k,<span class="number">1</span>,tot) F(i,<span class="number">1</span>,n<span class="number">-1</span>)  </div><div class="line">    &#123;  </div><div class="line">        P t=(P)&#123;a[k].x,<span class="number">-1</span>&#125;;  </div><div class="line">        <span class="keyword">if</span> (a[k].x&gt;=p[i].x&amp;&amp;a[k].x&lt;=p[i+<span class="number">1</span>].x)  </div><div class="line">            ans=min(ans,a[k].y-inter((L)&#123;p[i],p[i+<span class="number">1</span>]&#125;,(L)&#123;t,a[k]&#125;).y);  </div><div class="line">    &#125;  </div><div class="line">    F(k,<span class="number">1</span>,n) F(i,<span class="number">1</span>,tot<span class="number">-1</span>)  </div><div class="line">    &#123;  </div><div class="line">        P t=(P)&#123;p[k].x,<span class="number">-1</span>&#125;;  </div><div class="line">        <span class="keyword">if</span> (p[k].x&gt;=a[i].x&amp;&amp;p[k].x&lt;=a[i+<span class="number">1</span>].x)  </div><div class="line">            ans=min(ans,inter((L)&#123;a[i],a[i+<span class="number">1</span>]&#125;,(L)&#123;t,p[k]&#125;).y-p[k].y);  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    n=read();  </div><div class="line">    F(i,<span class="number">1</span>,n) p[i].x=read();  </div><div class="line">    F(i,<span class="number">1</span>,n) p[i].y=read();  </div><div class="line">    pre();  </div><div class="line">    hpi();  </div><div class="line">    getans();  </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%.3lf\n"</span>,ans);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="旋转卡壳"><a href="#旋转卡壳" class="headerlink" title="旋转卡壳"></a>旋转卡壳</h1><p>思路就是固定一条边，然后逆时针旋转着计算答案。因为边逆时针枚举，所以贡献答案的点也是逆时针旋转的，只要对于需要计算的凸多边形来操作就行了。</p>
 <p>POJ2185</p>
 <p>给出n个点，求平面内的最远点对。</p>
 <p>题解：<br>首先答案肯定在凸包上。先求出凸包之后，只需要求凸包的直径，这时采用旋转卡壳来求。</p>
-<p>code</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;cmath&gt;
-using namespace std; 
-
-const int N=1e5+1e3+7;
-
-const double eps=1e-12;
-
-struct P{
-    double x,y;
-}p[N],ch[N];
-
-int n,m;
-
-double ans;
-
-P operator -(P a,P b)
-{
-    P ret;
-    ret.x=a.x-b.x;
-    ret.y=a.y-b.y;
-    return ret;
-}
-
-double cross(P a,P b)
-{
-    return a.x*b.y-a.y*b.x;
-}
-
-double dot(P a,P b)
-{
-    return a.x*b.x+a.y*b.y;
-}
-
-double dis(P a,P b)
-{
-    return dot(b-a,b-a);
-}
-
-bool cmp(P a,P b)
-{
-    return (a.x&lt;b.x)||(a.x==b.x&amp;&amp;a.y&lt;=b.y);
-}
-
-void pre()
-{
-    sort(p+1,p+n+1,cmp);
-    for(int i=1;i&lt;=n;i++)
-    {
-        while(m&gt;1&amp;&amp;cross(ch[m]-ch[m-1],p[i]-ch[m-1])&lt;=0)
-            m--;
-        ch[++m]=p[i];
-    }
-    int k=m;
-    for(int i=n-1;i&gt;=1;i--)
-    {
-        while(m&gt;k&amp;&amp;cross(ch[m]-ch[m-1],p[i]-ch[m-1])&lt;=0)
-            m--;
-        ch[++m]=p[i];
-    }
-    if(n&gt;1)
-        m--;
-}
-
-void GR()
-{
-    ch[m+1]=ch[1];
-    int now=2;
-    for(int i=1;i&lt;=m;i++)
-    {
-        while(cross((ch[i+1]-ch[i]),(ch[now]-ch[i]))&lt;cross((ch[i+1]-ch[i]),(ch[now+1]-ch[i])))
-        {
-            now++;
-            if(now==m+1)
-                now=1;
-        }
-        ans=max(ans,dis(ch[now],ch[i]));
-    }
-}
-
-int main()
-{
-    scanf(&quot;%d&quot;,&amp;n);
-    for(int i=1;i&lt;=n;i++)
-        scanf(&quot;%lf%lf&quot;,&amp;p[i].x,&amp;p[i].y);
-    pre();
-    GR();
-    printf(&quot;%d&quot;,(int)(ans));
-}
-</code></pre><p><strong>例题见后续博客</strong></p>
+<p>code<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">1e3</span>+<span class="number">7</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">1e-12</span>;</div><div class="line"></div><div class="line"><span class="keyword">struct</span> P&#123;</div><div class="line">    <span class="keyword">double</span> x,y;</div><div class="line">&#125;p[N],ch[N];</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,m;</div><div class="line"></div><div class="line"><span class="keyword">double</span> ans;</div><div class="line"></div><div class="line">P <span class="keyword">operator</span> -(P a,P b)</div><div class="line">&#123;</div><div class="line">    P ret;</div><div class="line">    ret.x=a.x-b.x;</div><div class="line">    ret.y=a.y-b.y;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">cross</span><span class="params">(P a,P b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> a.x*b.y-a.y*b.x;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">dot</span><span class="params">(P a,P b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> a.x*b.x+a.y*b.y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">dis</span><span class="params">(P a,P b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> dot(b-a,b-a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(P a,P b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> (a.x&lt;b.x)||(a.x==b.x&amp;&amp;a.y&lt;=b.y);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">pre</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    sort(p+<span class="number">1</span>,p+n+<span class="number">1</span>,cmp);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">while</span>(m&gt;<span class="number">1</span>&amp;&amp;cross(ch[m]-ch[m<span class="number">-1</span>],p[i]-ch[m<span class="number">-1</span>])&lt;=<span class="number">0</span>)</div><div class="line">            m--;</div><div class="line">        ch[++m]=p[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> k=m;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">while</span>(m&gt;k&amp;&amp;cross(ch[m]-ch[m<span class="number">-1</span>],p[i]-ch[m<span class="number">-1</span>])&lt;=<span class="number">0</span>)</div><div class="line">            m--;</div><div class="line">        ch[++m]=p[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(n&gt;<span class="number">1</span>)</div><div class="line">        m--;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">GR</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    ch[m+<span class="number">1</span>]=ch[<span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span> now=<span class="number">2</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">while</span>(cross((ch[i+<span class="number">1</span>]-ch[i]),(ch[now]-ch[i]))&lt;cross((ch[i+<span class="number">1</span>]-ch[i]),(ch[now+<span class="number">1</span>]-ch[i])))</div><div class="line">        &#123;</div><div class="line">            now++;</div><div class="line">            <span class="keyword">if</span>(now==m+<span class="number">1</span>)</div><div class="line">                now=<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        ans=max(ans,dis(ch[now],ch[i]));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;p[i].x,&amp;p[i].y);</div><div class="line">    pre();</div><div class="line">    GR();</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,(<span class="keyword">int</span>)(ans));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>例题见后续博客</strong></p>
 
       
     </div>

@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/pb0207/pb0207.github.io/master/image%20sa/sa%26%26rank.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/pb0207/pb0207.github.io/master/image%20sa/get%20rank.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/pb0207/pb0207.github.io/master/image%20sa/calheight.PNG">
-<meta property="og:updated_time" content="2017-03-14T09:59:03.563Z">
+<meta property="og:updated_time" content="2017-06-23T07:26:56.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后缀数组">
 <meta name="twitter:description" content="简介后缀数组可以解决一些有限制条件的字串问题，程序短小，但较为抽象，需要一定时间阅读代码理解。结合论文可以更好地理解后缀数组，论文下载链接附在上面。 1 后缀数组的实现1.1定义1.子串(substring)：字符串$S$的子串$r[i…j]$ $(0&amp;lt;i≤j&amp;lt;len(s))$即为$r[i],r[i+1],r[i+2]…r[j]$所构成的字符串。 2.后缀(suffix)：从某个位置$">
@@ -398,42 +398,8 @@
 <p>6.基数排序：在后缀数组的计算中，论文中主要讲到了$O(n)$的基数排序，也可以使用$O(n*log(n))$的快速排序，由于时间复杂度比较低，在此不做讲解。</p>
 <h2 id="1-2倍增算法的实现"><a href="#1-2倍增算法的实现" class="headerlink" title="1.2倍增算法的实现"></a>1.2倍增算法的实现</h2><p>倍增算法的主要思路是：用倍增的方法对每个字符开始的长度为$2^k$的子字<br>符串进行排序，求出排名，即$rank$值。$k$从$0$开始，每次加$1$，当$2^k$大于$n$以<br>后，每个字符开始的长度为$2^k$的子字符串便相当于所有的后缀。并且这些子字<br>符串都一定已经比较出大小，即$rank$值中没有相同的值，那么此时的$rank$值就<br>是最后的结果。每一次排序都利用上次长度为$2^{k-1}$的字符串的$rank$值，那么长<br>度为$2^k$的字符串就可以用两个长度为$2^{k-1}$ 的字符串的排名作为关键字表示，然<br>后进行基数排序，便得出了长度为$2^k$的字符串的$rank$值。以字符串 $“aabaaaab ”$<br>为例，整个过程如图所示。其中$x$、$y$是表示长度为$2^k$的字符串的两个关键字 。</p>
 <p><img src="https://raw.githubusercontent.com/pb0207/pb0207.github.io/master/image%20sa/get%20rank.PNG" alt=""></p>
-<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><pre><code>int cmp(int *r,int a,int b,int l)
-{
-    return r[a]==r[b]&amp;&amp;r[a+l]==r[b+l];
-}
-
-void da(char *r,int *sa,int n,int m)
-{
-    int i,j,p,*x=wa,*y=wb,*t;
-    memset(tong,0,sizeof(tong));
-    for(i=0;i&lt;n;i++) 
-        tong[x[i]=r[i]]++;
-    for(i=1;i&lt;m;i++) 
-        tong[i]+=tong[i-1];
-    for(i=n-1;i&gt;=0;i--) 
-        sa[--tong[x[i]]]=i;    
-    for(j=1,p=1;p&lt;n;j*=2,m=p)
-    {
-        for(p=0,i=n-j;i&lt;n;i++)
-            y[p++]=i;
-        for(i=0;i&lt;n;i++) 
-            if(sa[i]&gt;=j) 
-                y[p++]=sa[i]-j;
-        for(i=0;i&lt;n;i++) 
-            wv[i]=x[y[i]];
-        memset(tong,0,sizeof(tong));
-        for(i=0;i&lt;n;i++) 
-            tong[wv[i]]++;
-        for(i=1;i&lt;m;i++) 
-            tong[i]+=tong[i-1];
-        for(i=n-1;i&gt;=0;i--) 
-            sa[--tong[wv[i]]]=y[i];
-        for(t=x,x=y,y=t,p=1,x[sa[0]]=0,i=1;i&lt;n;i++)
-            x[sa[i]]=cmp(y,sa[i-1],sa[i],j)?p-1:p++;
-    }
-}
-</code></pre><h4 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h4><p>1.后缀数组$sa[]$本代码求出的是从$0$开始的，看清题目要求，再做。</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> *r,<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> l)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> r[a]==r[b]&amp;&amp;r[a+l]==r[b+l];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">da</span><span class="params">(<span class="keyword">char</span> *r,<span class="keyword">int</span> *sa,<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i,j,p,*x=wa,*y=wb,*t;</div><div class="line">    <span class="built_in">memset</span>(tong,<span class="number">0</span>,<span class="keyword">sizeof</span>(tong));</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++) </div><div class="line">        tong[x[i]=r[i]]++;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++) </div><div class="line">        tong[i]+=tong[i<span class="number">-1</span>];</div><div class="line">    <span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) </div><div class="line">        sa[--tong[x[i]]]=i;	</div><div class="line">    <span class="keyword">for</span>(j=<span class="number">1</span>,p=<span class="number">1</span>;p&lt;n;j*=<span class="number">2</span>,m=p)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(p=<span class="number">0</span>,i=n-j;i&lt;n;i++)</div><div class="line">            y[p++]=i;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++) </div><div class="line">            <span class="keyword">if</span>(sa[i]&gt;=j) </div><div class="line">                y[p++]=sa[i]-j;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++) </div><div class="line">            wv[i]=x[y[i]];</div><div class="line">        <span class="built_in">memset</span>(tong,<span class="number">0</span>,<span class="keyword">sizeof</span>(tong));</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++) </div><div class="line">            tong[wv[i]]++;</div><div class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++) </div><div class="line">            tong[i]+=tong[i<span class="number">-1</span>];</div><div class="line">        <span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) </div><div class="line">            sa[--tong[wv[i]]]=y[i];</div><div class="line">        <span class="keyword">for</span>(t=x,x=y,y=t,p=<span class="number">1</span>,x[sa[<span class="number">0</span>]]=<span class="number">0</span>,i=<span class="number">1</span>;i&lt;n;i++)</div><div class="line">            x[sa[i]]=cmp(y,sa[i<span class="number">-1</span>],sa[i],j)?p<span class="number">-1</span>:p++;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h4><p>1.后缀数组$sa[]$本代码求出的是从$0$开始的，看清题目要求，再做。</p>
 <p>2.$da()$函数调用时要传递进去$len(s)+1$，具体原因请读者自行思考。</p>
 <p>3.代码逐行解释参考论文。</p>
 <h1 id="2-后缀数组的应用"><a href="#2-后缀数组的应用" class="headerlink" title="2.后缀数组的应用"></a>2.后缀数组的应用</h1><h2 id="2-1-最长公共前缀"><a href="#2-1-最长公共前缀" class="headerlink" title="2.1 最长公共前缀"></a>2.1 最长公共前缀</h2><h3 id="attention！"><a href="#attention！" class="headerlink" title="attention！"></a>attention！</h3><h3 id="以下内容十分重要，需要认真阅读，这对题目的分析有很大帮助"><a href="#以下内容十分重要，需要认真阅读，这对题目的分析有很大帮助" class="headerlink" title="以下内容十分重要，需要认真阅读，这对题目的分析有很大帮助"></a>以下内容十分重要，需要认真阅读，这对题目的分析有很大帮助</h3><p>1.定义$height[]$数组，其中$height[i]$为$suffix(sa[i-1])$和$suffix(sa[i])$的最长公共前缀，即排名相邻的两个后缀的最长公共前缀。那么对于$j$和$k$，不妨设$rank[j]&lt;rank[k]$,则有以下性质：</p>
@@ -445,15 +411,8 @@ void da(char *r,int *sa,int n,int m)
 <p>$h[i] ≥ h[i-1]-1$</p>
 <p>证明：</p>
 <p>设$suffix(k)$是排在$suffix(i-1)$前一名的后缀，则它们的最长公共前缀是$h[i-1]$。那么$suffix(k+1)$将排在$suffix(i)$的前面（这里要求$h[i-1]&gt;1$，如果$h[i-1]≤1$，原式显然成立）并且$suffix(k+1)$和$suffix(i)$的最长公共前缀是$h[i-1]-1$，所以$suffix(i)$和在它前一名的后缀的最长公共前缀至少是$h[i-1]-1$。按照$h[1],h[2],…,h[n]$的顺序计算,并利用$h[]$数组的性质，时间复杂度可以降为$O(n)$。</p>
-<h3 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h3><pre><code>void calheight(char *r,int *sa,int n)
-{
-    int i,j,k=0;
-    for(i=1;i&lt;=n;i++) 
-        rank[sa[i]]=i;
-    for(i=0;i&lt;n;height[rank[i++]]=k)
-        for(k?k--:0,j=sa[rank[i]-1];r[i+k]==r[j+k];k++);
-}
-</code></pre><h3 id="模板题-sa与height计算-UOJ35"><a href="#模板题-sa与height计算-UOJ35" class="headerlink" title="模板题(sa与height计算) UOJ35"></a>模板题(sa与height计算) <a href="http://uoj.ac/problem/35" target="_blank" rel="external">UOJ35</a></h3><h1 id="3-论文例题"><a href="#3-论文例题" class="headerlink" title="3.论文例题"></a>3.论文例题</h1><hr>
+<h3 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">calheight</span><span class="params">(<span class="keyword">char</span> *r,<span class="keyword">int</span> *sa,<span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i,j,k=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++) </div><div class="line">        rank[sa[i]]=i;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;height[rank[i++]]=k)</div><div class="line">        <span class="keyword">for</span>(k?k--:<span class="number">0</span>,j=sa[rank[i]<span class="number">-1</span>];r[i+k]==r[j+k];k++);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="模板题-sa与height计算-UOJ35"><a href="#模板题-sa与height计算-UOJ35" class="headerlink" title="模板题(sa与height计算) UOJ35"></a>模板题(sa与height计算) <a href="http://uoj.ac/problem/35" target="_blank" rel="external">UOJ35</a></h3><h1 id="3-论文例题"><a href="#3-论文例题" class="headerlink" title="3.论文例题"></a>3.论文例题</h1><hr>
 <h2 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h2><h3 id="最长公共前缀"><a href="#最长公共前缀" class="headerlink" title="最长公共前缀"></a>最长公共前缀</h3><h4 id="给定某个字符串，询问某两个后缀的最长公共前缀。"><a href="#给定某个字符串，询问某两个后缀的最长公共前缀。" class="headerlink" title="给定某个字符串，询问某两个后缀的最长公共前缀。"></a>给定某个字符串，询问某两个后缀的最长公共前缀。</h4><p>按照上面所说的做法，求两个后缀的最长公共前缀可以转化为求某个区间上的最小值。对于这个RMQ问题（如果对RMQ问题不熟悉，请阅读其他相关资料），可以用$O(nlog(n))$的时间先预处理，以后每次回答询问的时间为$O(1)$。所以对于本问题，预处理时间为$O(nlog(n))$,次回答询问的时间为$O(1)$ 。如果RMQ问题用$O(nlog(n))$ 的时间预处理，那么本问题的时间复杂度可以做到$O(nlog(n))$ 。</p>
 <hr>
 <h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><h3 id="重复子串：字符串-R-在字符串-L-中至少出现两次，则称-R-是-L-的重复子串"><a href="#重复子串：字符串-R-在字符串-L-中至少出现两次，则称-R-是-L-的重复子串" class="headerlink" title="重复子串：字符串$R$在字符串$L$中至少出现两次，则称$R$是$L$的重复子串"></a>重复子串：字符串$R$在字符串$L$中至少出现两次，则称$R$是$L$的重复子串</h3><hr>

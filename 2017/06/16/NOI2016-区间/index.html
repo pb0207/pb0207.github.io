@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/06/16/NOI2016-区间/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="NOI2016区间在数轴上有$ n $个闭区间 $[l_1,r_1],[l_2,r_2],…,[l_n,r_n]$。现在要从中选出 $m $个区间，使得这$ m $个区间共同包含至少一个位置。换句话说，就是使得存在一个 $x$，使得对于每一个被选中的区间$ [l_i,r_i]$，都有 $l_i≤x≤r_i$。 对于一个合法的选取方案，它的花费为被选中的最长区间长度减去被选中的最短区间长度。区间$">
-<meta property="og:updated_time" content="2017-06-16T08:07:43.085Z">
+<meta property="og:updated_time" content="2017-06-23T07:15:55.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOI2016 区间">
 <meta name="twitter:description" content="NOI2016区间在数轴上有$ n $个闭区间 $[l_1,r_1],[l_2,r_2],…,[l_n,r_n]$。现在要从中选出 $m $个区间，使得这$ m $个区间共同包含至少一个位置。换句话说，就是使得存在一个 $x$，使得对于每一个被选中的区间$ [l_i,r_i]$，都有 $l_i≤x≤r_i$。 对于一个合法的选取方案，它的花费为被选中的最长区间长度减去被选中的最短区间长度。区间$">
@@ -406,114 +406,7 @@
 </code></pre><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>这题暴力还是很好打的，$O(n^2logn)$+离散化可以水过去60分。具体就是枚举重叠的是哪一个点然后暴力计算出哪些区间可以选，然后排序贪心地选连续的$m$个即可。</p>
 <p>正解是用线段树维护。离散化之后，将区间按长度排序，我们可以发现在选择的时候，枚举一个最小和一个最大，即一个左指针，一个右指针，然后可以发现，我们可以用线段树维护每个点被几个区间覆盖了，然后对于线段树维护的全局最大值，如果当前大于$m$，则可以直接在当前选的区间范围内的右端点减去左端点就是当前的$ans$，持续更新即可。</p>
 <p>复杂度$O(nlogn)$。</p>
-<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><pre><code>#include&lt;cstdio&gt;
-#include&lt;vector&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-#include&lt;iostream&gt;
-using namespace std;
-
-const int N=5e5+1e3+7;
-
-struct T{
-    int ls,rs,mx,l,r,tag;
-}t[N*4+1];
-
-struct node{
-    int len,l,r;
-}rg[N*2+1];
-
-int n,m,x[N],y[N],w[N*2+1],ans=0x7fffffff,now[N],cnt,root;
-
-void update(int now)
-{
-    int ls=t[now].ls,rs=t[now].rs;
-    t[now].mx=max(t[ls].mx,t[rs].mx);
-}
-
-void pushdown(int now)
-{
-    int ls=t[now].ls,rs=t[now].rs;
-    if(ls)
-    {
-        t[ls].mx+=t[now].tag;
-        t[ls].tag+=t[now].tag;
-    }
-    if(rs)
-    {
-        t[rs].mx+=t[now].tag;
-        t[rs].tag+=t[now].tag;
-    }
-    t[now].tag=0;
-}
-
-int build(int l,int r)
-{
-    int now=++cnt;
-    int mid=(l+r)&gt;&gt;1;
-    t[now].l=l,t[now].r=r;
-    if(l==r)
-        return cnt;
-    t[now].ls=build(l,mid);
-    t[now].rs=build(mid+1,r);
-    return now;
-}
-
-void add(int now,int l,int r,int val)
-{
-    pushdown(now);
-    if(t[now].l&gt;=l&amp;&amp;t[now].r&lt;=r)
-    {
-        t[now].mx+=val;
-        t[now].tag+=val;
-        return;
-    }
-    int mid=(t[now].l+t[now].r)&gt;&gt;1;
-    if(l&lt;=mid)
-        add(t[now].ls,l,r,val);
-    if(r&gt;mid)
-        add(t[now].rs,l,r,val);
-    update(now);
-}
-
-bool cmp(node a,node b)
-{
-    return a.len&lt;b.len;
-}
-
-int main()
-{
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-    for(int i=1;i&lt;=n;i++)
-        scanf(&quot;%d%d&quot;,&amp;x[i],&amp;y[i]);
-    for(int i=1;i&lt;=n;i++)
-        w[i*2-1]=x[i],w[i*2]=y[i];
-    sort(w+1,w+2*n+1);
-    for(int i=1;i&lt;=n;i++)
-        rg[i].l=lower_bound(w+1,w+n*2+1,x[i])-w,rg[i].r=lower_bound(w+1,w+n*2+1,y[i])-w,rg[i].len=y[i]-x[i];
-    sort(rg+1,rg+n+1,cmp);
-    root=build(1,n*2+1);
-    add(root,rg[1].l,rg[1].r,1);
-    int ll=1,rr=2;
-    while(ll&lt;=n)
-    {
-        while(rr&lt;=n&amp;&amp;t[root].mx&lt;m)
-        {
-            add(root,rg[rr].l,rg[rr].r,1);
-                rr++;
-        }
-        if(t[root].mx&lt;m)
-            break;
-        ans=min(ans,rg[rr-1].len-rg[ll].len);
-        add(root,rg[ll].l,rg[ll].r,-1);
-        ll++;
-    }
-    if(ans!=0x7fffffff)
-        printf(&quot;%d&quot;,ans);
-    else
-        printf(&quot;-1&quot;);
-} 
-</code></pre>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line">   <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line">   <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line">   <span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">5e5</span>+<span class="number">1e3</span>+<span class="number">7</span>;</div><div class="line"></div><div class="line">   <span class="keyword">struct</span> T&#123;</div><div class="line">       <span class="keyword">int</span> ls,rs,mx,l,r,tag;</div><div class="line">   &#125;t[N*<span class="number">4</span>+<span class="number">1</span>];</div><div class="line"></div><div class="line">   <span class="keyword">struct</span> node&#123;</div><div class="line">       <span class="keyword">int</span> len,l,r;</div><div class="line">   &#125;rg[N*<span class="number">2</span>+<span class="number">1</span>];</div><div class="line"></div><div class="line">   <span class="keyword">int</span> n,m,x[N],y[N],w[N*<span class="number">2</span>+<span class="number">1</span>],ans=<span class="number">0x7fffffff</span>,now[N],cnt,root;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> now)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">int</span> ls=t[now].ls,rs=t[now].rs;</div><div class="line">       t[now].mx=max(t[ls].mx,t[rs].mx);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> now)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">int</span> ls=t[now].ls,rs=t[now].rs;</div><div class="line">       <span class="keyword">if</span>(ls)</div><div class="line">       &#123;</div><div class="line">           t[ls].mx+=t[now].tag;</div><div class="line">           t[ls].tag+=t[now].tag;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span>(rs)</div><div class="line">       &#123;</div><div class="line">           t[rs].mx+=t[now].tag;</div><div class="line">           t[rs].tag+=t[now].tag;</div><div class="line">       &#125;</div><div class="line">       t[now].tag=<span class="number">0</span>;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">int</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">int</span> now=++cnt;</div><div class="line">       <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">       t[now].l=l,t[now].r=r;</div><div class="line">       <span class="keyword">if</span>(l==r)</div><div class="line">           <span class="keyword">return</span> cnt;</div><div class="line">       t[now].ls=build(l,mid);</div><div class="line">       t[now].rs=build(mid+<span class="number">1</span>,r);</div><div class="line">       <span class="keyword">return</span> now;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> now,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> val)</span></span></div><div class="line">   &#123;</div><div class="line">       pushdown(now);</div><div class="line">       <span class="keyword">if</span>(t[now].l&gt;=l&amp;&amp;t[now].r&lt;=r)</div><div class="line">       &#123;</div><div class="line">           t[now].mx+=val;</div><div class="line">           t[now].tag+=val;</div><div class="line">           <span class="keyword">return</span>;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">int</span> mid=(t[now].l+t[now].r)&gt;&gt;<span class="number">1</span>;</div><div class="line">       <span class="keyword">if</span>(l&lt;=mid)</div><div class="line">           add(t[now].ls,l,r,val);</div><div class="line">       <span class="keyword">if</span>(r&gt;mid)</div><div class="line">           add(t[now].rs,l,r,val);</div><div class="line">       update(now);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="keyword">return</span> a.len&lt;b.len;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">   &#123;</div><div class="line">       <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">           <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x[i],&amp;y[i]);</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">           w[i*<span class="number">2</span><span class="number">-1</span>]=x[i],w[i*<span class="number">2</span>]=y[i];</div><div class="line">       sort(w+<span class="number">1</span>,w+<span class="number">2</span>*n+<span class="number">1</span>);</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">           rg[i].l=lower_bound(w+<span class="number">1</span>,w+n*<span class="number">2</span>+<span class="number">1</span>,x[i])-w,rg[i].r=lower_bound(w+<span class="number">1</span>,w+n*<span class="number">2</span>+<span class="number">1</span>,y[i])-w,rg[i].len=y[i]-x[i];</div><div class="line">       sort(rg+<span class="number">1</span>,rg+n+<span class="number">1</span>,cmp);</div><div class="line">       root=build(<span class="number">1</span>,n*<span class="number">2</span>+<span class="number">1</span>);</div><div class="line">       add(root,rg[<span class="number">1</span>].l,rg[<span class="number">1</span>].r,<span class="number">1</span>);</div><div class="line">       <span class="keyword">int</span> ll=<span class="number">1</span>,rr=<span class="number">2</span>;</div><div class="line">       <span class="keyword">while</span>(ll&lt;=n)</div><div class="line">       &#123;</div><div class="line">           <span class="keyword">while</span>(rr&lt;=n&amp;&amp;t[root].mx&lt;m)</div><div class="line">           &#123;</div><div class="line">               add(root,rg[rr].l,rg[rr].r,<span class="number">1</span>);</div><div class="line">                   rr++;</div><div class="line">           &#125;</div><div class="line">           <span class="keyword">if</span>(t[root].mx&lt;m)</div><div class="line">               <span class="keyword">break</span>;</div><div class="line">           ans=min(ans,rg[rr<span class="number">-1</span>].len-rg[ll].len);</div><div class="line">           add(root,rg[ll].l,rg[ll].r,<span class="number">-1</span>);</div><div class="line">           ll++;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span>(ans!=<span class="number">0x7fffffff</span>)</div><div class="line">           <span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</div><div class="line">       <span class="keyword">else</span></div><div class="line">           <span class="built_in">printf</span>(<span class="string">"-1"</span>);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
       
     </div>
 

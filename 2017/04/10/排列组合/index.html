@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://e.hiphotos.baidu.com/baike/s%3D264/sign=9f69732613ce36d3a60484360ef13a24/37d12f2eb9389b508b1e6fae8335e5dde6116e6d.jpg">
 <meta property="og:image" content="http://g.hiphotos.baidu.com/baike/s%3D261/sign=9ff76854af014c081d3b2fa33b79025b/0d338744ebf81a4c27dc0934d12a6059242da665.jpg">
 <meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/a7589a99f7137c74fd85940231971082679f12c3">
-<meta property="og:updated_time" content="2017-04-11T09:54:23.401Z">
+<meta property="og:updated_time" content="2017-06-23T07:20:13.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="由浅入深排列组合">
 <meta name="twitter:description" content="排列组合排列组合顾名思义，就是解决一些排列和组合方法的问题。 加法与乘法原理加法原理定义:做一件事情，完成它有$N$类方式，第一类方式有$M_1$种方法，第二类方式有$M_2$种方法，……，第$N$类方式有$M_N$种方法，那么完成这件事情共有$M_1+M_2+……+M_N$种方法。举个例子：比如AC第一题有三种算法，第二题有二种算法，第三题有四种算法，那么只AC一道题就有$2+3+4=9$种方法">
@@ -396,28 +396,8 @@
 <p>显然对于这个数的每个质因子都可以选$[0,t_i]$个，所以有$t_i+1$种选择，所以根据乘法原理，就可以得到因子个数。</p>
 <h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>大水题，$n*n$的棋盘上摆放$n$个互不攻击的车，有多少种方法。</p>
 <p>根据乘法原理，第一行放置有$n$个格子可以选择，但是放置之后，第二行就只有$n-1$个格子了，所以依次下去，答案就是$n!$</p>
-<p>code</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-using namespace std;
-
-const int N=21;
-
-long long n,fac[N];
-
-void calfac()
-{
-    fac[0]=1;
-    for(int i=1;i&lt;N;i++)
-        fac[i]=fac[i-1]*i;
-}
-int main()
-{
-    calfac();
-    scanf(&quot;%lld&quot;,&amp;n);
-    printf(&quot;%lld&quot;,fac[n]);
-}
-</code></pre><hr>
+<p>code<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">21</span>;</div><div class="line"></div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,fac[N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">calfac</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    fac[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;N;i++)</div><div class="line">    	fac[i]=fac[i<span class="number">-1</span>]*i;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    calfac();</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,fac[n]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
 <h2 id="Polya定理"><a href="#Polya定理" class="headerlink" title="Pólya定理"></a>Pólya定理</h2><p>先挖个坑 回头慢慢填 前面的太长了(群论基础到转置到polya 好多)</p>
 <p>就先从例题说一下吧</p>
 <h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><h3 id="SGU-282-同构"><a href="#SGU-282-同构" class="headerlink" title="SGU 282 同构"></a>SGU 282 同构</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>我们把使得每对顶点都被恰好一条边连接，且被M种不同颜色之一染色的无向图叫做染色图。如果可以把某张染色图的顶点重新编号使得它和另一张染色图完全相同（即每条对应边的颜色都相同），我们就说这两张染色图是同构的。<br>给你$N,M$和素数$P$。你需要找到有N个顶点的两两互不同构的染色图数量。输出这个数模P的值。</p>
@@ -437,76 +417,77 @@ int main()
 <pre><code>20
 </code></pre><h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><pre><code>$n$个点的图有$n!$个置换，枚举肯定不可能的所以可以把$n$分解成若干个环，那么剩下的多于计算的就可以省去了那么不同环上的$a，b$两点，显然轮换个数为$gcd(n_a,n_b)$然后套polya即可
 #uncomplete
-</code></pre><h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-#include&lt;cmath&gt;
-using namespace std;
-#define maxn 1111
-typedef long long ll;
+</code></pre><h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><pre><code class="cpp"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="meta">#<span class="meta-keyword">define</span> maxn 1111</span>
+<span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;
 ll num[maxn],cnt[maxn],res,factor[maxn],n,m,p,ans;
-void init()
-{
-    ans=res=0;
-    factor[0]=1;
-    for(int i=1;i&lt;maxn;i++)
-        factor[i]=factor[i-1]*i%p;
+<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span>
+</span>{
+    ans=res=<span class="number">0</span>;
+    factor[<span class="number">0</span>]=<span class="number">1</span>;
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;maxn;i++)
+        factor[i]=factor[i<span class="number">-1</span>]*i%p;
 }
-ll gcd(ll a,ll b)
-{
-    if(a&lt;b)return gcd(b,a);
-    if(b==0)return a;
-    return gcd(b,a%b);
+<span class="function">ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span>
+</span>{
+    <span class="keyword">if</span>(a&lt;b)<span class="keyword">return</span> gcd(b,a);
+    <span class="keyword">if</span>(b==<span class="number">0</span>)<span class="keyword">return</span> a;
+    <span class="keyword">return</span> gcd(b,a%b);
 } 
-ll mod_pow(ll a,ll b,ll p)
-{
-    ll ans=1ll;
+<span class="function">ll <span class="title">mod_pow</span><span class="params">(ll a,ll b,ll p)</span>
+</span>{
+    ll ans=<span class="number">1l</span>l;
     a%=p;
-    while(b)
+    <span class="keyword">while</span>(b)
     {
-        if(b&amp;1) ans=(ans*a)%p;
+        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) ans=(ans*a)%p;
         a=(a*a)%p;
-        b&gt;&gt;=1;
+        b&gt;&gt;=<span class="number">1</span>;
     } 
-    return ans;
+    <span class="keyword">return</span> ans;
 }
-void dfs(ll now,ll left)
-{
-    if(left==0)
+<span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(ll now,ll left)</span>
+</span>{
+    <span class="keyword">if</span>(left==<span class="number">0</span>)
     {
-        ll a=1,b=0;
-        for(ll i=0;i&lt;res;i++)
+        ll a=<span class="number">1</span>,b=<span class="number">0</span>;
+        <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;res;i++)
         {
             a=a*mod_pow(num[i],cnt[i],p)%p*factor[cnt[i]]%p;
-            b+=cnt[i]*(cnt[i]-1)/2*num[i]+num[i]/2*cnt[i];
-            for(ll j=i+1;j&lt;res;j++)
+            b+=cnt[i]*(cnt[i]<span class="number">-1</span>)/<span class="number">2</span>*num[i]+num[i]/<span class="number">2</span>*cnt[i];
+            <span class="keyword">for</span>(ll j=i+<span class="number">1</span>;j&lt;res;j++)
                 b+=cnt[i]*cnt[j]*gcd(num[i],num[j]);
         }
-        a=mod_pow(a,p-2,p)*factor[n]%p;
+        a=mod_pow(a,p<span class="number">-2</span>,p)*factor[n]%p;
         ans=(ans+a*mod_pow(m,b,p)%p)%p;
     }
-    if(now&gt;left)return ;
-    dfs(now+1,left);
-    for(ll i=1;i*now&lt;=left;i++)
+    <span class="keyword">if</span>(now&gt;left)<span class="keyword">return</span> ;
+    dfs(now+<span class="number">1</span>,left);
+    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i*now&lt;=left;i++)
     {
         num[res]=now,cnt[res++]=i;
-        dfs(now+1,left-i*now);
+        dfs(now+<span class="number">1</span>,left-i*now);
         res--;
     }
 }
-int main()
-{
-    while(~scanf(&quot;%lld%lld%lld&quot;,&amp;n,&amp;m,&amp;p))
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;n,&amp;m,&amp;p))
     {
         init();
-        dfs(1,n);
-        ans=ans*mod_pow(factor[n],p-2,p)%p;
-        printf(&quot;%lld\n&quot;,ans);
+        dfs(<span class="number">1</span>,n);
+        ans=ans*mod_pow(factor[n],p<span class="number">-2</span>,p)%p;
+        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);
     }
-    return 0;
+    <span class="keyword">return</span> <span class="number">0</span>;
 }
-</code></pre><hr>
+</code></pre>
+<hr>
 <h2 id="组合数"><a href="#组合数" class="headerlink" title="组合数"></a>组合数</h2><p>这是一个基于乘法原理的东西。<br>首先看看什么是</p>
 <h3 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h3><h4 id="定义：从-n-个不同的元素中，有次序的选取-r-个元素，记为-n-中取-r-个的排列，数量记为-A-n-r-当-n-r-时，叫做全排列"><a href="#定义：从-n-个不同的元素中，有次序的选取-r-个元素，记为-n-中取-r-个的排列，数量记为-A-n-r-当-n-r-时，叫做全排列" class="headerlink" title="定义：从$n$个不同的元素中，有次序的选取$r$个元素，记为$n$中取$r$个的排列，数量记为$A(n,r)$,当$n=r$时，叫做全排列"></a><strong>定义：从$n$个不同的元素中，有次序的选取$r$个元素，记为$n$中取$r$个的排列，数量记为$A(n,r)$,当$n=r$时，叫做全排列</strong></h4><p>$$A(n,r)=\frac {n!} {(n-r)!}$$</p>
 <p>而且$A(n,r)通常表示为A^n_r$</p>

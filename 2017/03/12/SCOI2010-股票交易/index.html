@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/03/12/SCOI2010-股票交易/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="SCOI2010 股票交易题目描述最近lxhgww又迷上了投资股票，通过一段时间的观察和学习，他总结出了股票行情的一些规律。 通过一段时间的观察，lxhgww预测到了未来T天内某只股票的走势，第i天的股票买入价为每股$APi$，第i天的股票卖出价为每股BPi（数据保证对于每个$i$，都有$AP$i&amp;gt;=$BPi$），但是每天不能无限制地交易，于是股票交易所规定第i天的一次买入至多只能购买$AS">
-<meta property="og:updated_time" content="2017-03-16T01:50:55.217Z">
+<meta property="og:updated_time" content="2017-06-23T07:27:28.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SCOI2010 股票交易">
 <meta name="twitter:description" content="SCOI2010 股票交易题目描述最近lxhgww又迷上了投资股票，通过一段时间的观察和学习，他总结出了股票行情的一些规律。 通过一段时间的观察，lxhgww预测到了未来T天内某只股票的走势，第i天的股票买入价为每股$APi$，第i天的股票卖出价为每股BPi（数据保证对于每个$i$，都有$AP$i&amp;gt;=$BPi$），但是每天不能无限制地交易，于是股票交易所规定第i天的一次买入至多只能购买$AS">
@@ -410,86 +410,15 @@
 <p>$x=ap[i];$</p>
 <p>$j≤k&lt;min(j+bs[i],maxp)$</p>
 <p>$x=bp[i]$</p>
-<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;cstring&gt;
-using namespace std;
-
-const int N=2009,M=2009;
-
-int t,maxp,w,ap[N],bp[N],as[N],bs[N],f[N][M];
-
-int main()
-{
-    scanf(&quot;%d%d%d&quot;,&amp;t,&amp;maxp,&amp;w);
-    for(int i=1;i&lt;=t;i++)
-        scanf(&quot;%d%d%d%d&quot;,&amp;ap[i],&amp;bp[i],&amp;as[i],&amp;bs[i]);
-    memset(f,-0x3f,sizeof(f));
-    for(int i=1;i&lt;=t;i++)
-    {
-        for(int j=0;j&lt;=as[i];j++)
-            f[i][j]=-ap[i]*j;
-        for(int j=0;j&lt;=maxp;j++)
-        {
-            f[i][j]=max(f[i][j],f[i-1][j]);
-            if(i-w-1&gt;=0)
-                for(int k=max(j-as[i],0);k&lt;=j;k++)
-                    f[i][j]=max(f[i][j],f[i-w-1][k]+(k-j)*ap[i]);
-            if(i-w-1&gt;=0)
-                for(int k=j;k&lt;=min(j+bs[i],maxp);k++)
-                    f[i][j]=max(f[i][j],f[i-w-1][k]+(k-j)*bp[i]);
-        }
-    }
-    printf(&quot;%d&quot;,f[n][0]);
-}
-</code></pre><p>那么这个算法只有70分，应该如何优化呢？</p>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2009</span>,M=<span class="number">2009</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> t,maxp,w,ap[N],bp[N],as[N],bs[N],f[N][M];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;t,&amp;maxp,&amp;w);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;ap[i],&amp;bp[i],&amp;as[i],&amp;bs[i]);</div><div class="line">    <span class="built_in">memset</span>(f,<span class="number">-0x3f</span>,<span class="keyword">sizeof</span>(f));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=as[i];j++)</div><div class="line">            f[i][j]=-ap[i]*j;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=maxp;j++)</div><div class="line">        &#123;</div><div class="line">            f[i][j]=max(f[i][j],f[i<span class="number">-1</span>][j]);</div><div class="line">            <span class="keyword">if</span>(i-w<span class="number">-1</span>&gt;=<span class="number">0</span>)</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=max(j-as[i],<span class="number">0</span>);k&lt;=j;k++)</div><div class="line">                    f[i][j]=max(f[i][j],f[i-w<span class="number">-1</span>][k]+(k-j)*ap[i]);</div><div class="line">            <span class="keyword">if</span>(i-w<span class="number">-1</span>&gt;=<span class="number">0</span>)</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=j;k&lt;=min(j+bs[i],maxp);k++)</div><div class="line">                    f[i][j]=max(f[i][j],f[i-w<span class="number">-1</span>][k]+(k-j)*bp[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,f[n][<span class="number">0</span>]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么这个算法只有70分，应该如何优化呢？</p>
 <hr>
 <h3 id="O-t-maxp"><a href="#O-t-maxp" class="headerlink" title="$O(t*maxp)$"></a>$O(t*maxp)$</h3><p>这里用到了单调队列优化。</p>
 <p>既然要用单调队列又化，就必须证明此问题的决策具有单调性。</p>
 <p>由于证明比较麻烦，打决策表观察可得知。</p>
 <p>代码如下</p>
-<h4 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-using namespace std;
-const int N = 2017;
-int t,maxp,w,head,tail,ap[N],bp[N],as[N],bs[N],f[N][N],q[2*N];
-int main()
-{
-    scanf(&quot;%d%d%d&quot;,&amp;t,&amp;maxp,&amp;w);
-    for(int i=1;i&lt;=t;++i)scanf(&quot;%d%d%d%d&quot;,ap+i,bp+i,as+i,bs+i);
-    memset(f,-0x3f,sizeof(f));
-    for(int i=1;i&lt;=t;++i)
-    {
-        for(int j=0;j&lt;=as[i];++j)    f[i][j]=-ap[i]*j;
-        for(int j=0;j&lt;=maxp;++j)    f[i][j]=max(f[i][j],f[i-1][j]);
-        if(i-w-1&gt;=0)
-        {
-            head=1,tail=0;
-            for(int j=0;j&lt;=maxp;++j)
-            {
-                while(head&lt;=tail&amp;&amp;q[head]&lt;max(0,j-as[i]))head++;
-                if(head&lt;=tail)
-                    f[i][j]=max(f[i][j],f[i-w-1][q[head]]-(j-q[head])*ap[i]);
-                while(head&lt;=tail&amp;&amp;f[i-w-1][j]+j*ap[i]&gt;=f[i-w-1][q[tail]]+q[tail]*ap[i])
-                tail--;
-                q[++tail]=j;
-            }
-            head=1,tail=0;
-            for(int j=maxp;j&gt;=0;--j) 
-            {
-                while(head&lt;=tail&amp;&amp;q[head]&gt;min(maxp,j+bs[i]))head++;
-                if(head&lt;=tail)
-                    f[i][j]=max(f[i][j],f[i-w-1][q[head]]+(q[head]-j)*bp[i]);
-                while(head&lt;=tail&amp;&amp;f[i-w-1][j]+j*bp[i]&gt;=f[i-w-1][q[tail]]+q[tail]*bp[i])
-                tail--;
-                q[++tail]=j;
-            }
-        }
-    }
-    printf(&quot;%d&quot;,f[t][0]);
-}
-</code></pre>
+<h4 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2017</span>;</div><div class="line"><span class="keyword">int</span> t,maxp,w,head,tail,ap[N],bp[N],as[N],bs[N],f[N][N],q[<span class="number">2</span>*N];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;t,&amp;maxp,&amp;w);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;++i)<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,ap+i,bp+i,as+i,bs+i);</div><div class="line">    <span class="built_in">memset</span>(f,<span class="number">-0x3f</span>,<span class="keyword">sizeof</span>(f));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=as[i];++j)    f[i][j]=-ap[i]*j;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=maxp;++j)    f[i][j]=max(f[i][j],f[i<span class="number">-1</span>][j]);</div><div class="line">        <span class="keyword">if</span>(i-w<span class="number">-1</span>&gt;=<span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            head=<span class="number">1</span>,tail=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=maxp;++j)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">while</span>(head&lt;=tail&amp;&amp;q[head]&lt;max(<span class="number">0</span>,j-as[i]))head++;</div><div class="line">                <span class="keyword">if</span>(head&lt;=tail)</div><div class="line">                    f[i][j]=max(f[i][j],f[i-w<span class="number">-1</span>][q[head]]-(j-q[head])*ap[i]);</div><div class="line">                <span class="keyword">while</span>(head&lt;=tail&amp;&amp;f[i-w<span class="number">-1</span>][j]+j*ap[i]&gt;=f[i-w<span class="number">-1</span>][q[tail]]+q[tail]*ap[i])</div><div class="line">                tail--;</div><div class="line">                q[++tail]=j;</div><div class="line">            &#125;</div><div class="line">            head=<span class="number">1</span>,tail=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=maxp;j&gt;=<span class="number">0</span>;--j) </div><div class="line">            &#123;</div><div class="line">                <span class="keyword">while</span>(head&lt;=tail&amp;&amp;q[head]&gt;min(maxp,j+bs[i]))head++;</div><div class="line">                <span class="keyword">if</span>(head&lt;=tail)</div><div class="line">                    f[i][j]=max(f[i][j],f[i-w<span class="number">-1</span>][q[head]]+(q[head]-j)*bp[i]);</div><div class="line">                <span class="keyword">while</span>(head&lt;=tail&amp;&amp;f[i-w<span class="number">-1</span>][j]+j*bp[i]&gt;=f[i-w<span class="number">-1</span>][q[tail]]+q[tail]*bp[i])</div><div class="line">                tail--;</div><div class="line">                q[++tail]=j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,f[t][<span class="number">0</span>]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
 

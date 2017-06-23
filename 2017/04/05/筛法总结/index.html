@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="筛法总结欧拉筛法埃氏筛法比较弱，复杂度太高，就不介绍了，在此之上有优化过的欧拉筛法，复杂度是线性的，所以也叫线性筛，可以在$O(n)$处理出$[2,n]$的质数表。 具体的优化就在于每个数都只被其最小质因子筛去。 codefor(int i=2;i&amp;lt;=n;i++)     {         if(mark[i]==false)//mark[i]==false=&amp;gt;是质数">
+<meta name="description" content="筛法总结欧拉筛法埃氏筛法比较弱，复杂度太高，就不介绍了，在此之上有优化过的欧拉筛法，复杂度是线性的，所以也叫线性筛，可以在$O(n)$处理出$[2,n]$的质数表。 具体的优化就在于每个数都只被其最小质因子筛去。 code1234567891011for(int i=2;i&amp;lt;=n;i++)    &amp;#123;        if(mark[i]==false)//mark[i]==false">
 <meta name="keywords" content="筛法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="筛法总结">
 <meta property="og:url" content="http://pb0207.github.io/2017/04/05/筛法总结/index.html">
 <meta property="og:site_name" content="pb0207">
-<meta property="og:description" content="筛法总结欧拉筛法埃氏筛法比较弱，复杂度太高，就不介绍了，在此之上有优化过的欧拉筛法，复杂度是线性的，所以也叫线性筛，可以在$O(n)$处理出$[2,n]$的质数表。 具体的优化就在于每个数都只被其最小质因子筛去。 codefor(int i=2;i&amp;lt;=n;i++)     {         if(mark[i]==false)//mark[i]==false=&amp;gt;是质数">
-<meta property="og:updated_time" content="2017-04-05T08:00:17.243Z">
+<meta property="og:description" content="筛法总结欧拉筛法埃氏筛法比较弱，复杂度太高，就不介绍了，在此之上有优化过的欧拉筛法，复杂度是线性的，所以也叫线性筛，可以在$O(n)$处理出$[2,n]$的质数表。 具体的优化就在于每个数都只被其最小质因子筛去。 code1234567891011for(int i=2;i&amp;lt;=n;i++)    &amp;#123;        if(mark[i]==false)//mark[i]==false">
+<meta property="og:updated_time" content="2017-06-23T07:26:06.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="筛法总结">
-<meta name="twitter:description" content="筛法总结欧拉筛法埃氏筛法比较弱，复杂度太高，就不介绍了，在此之上有优化过的欧拉筛法，复杂度是线性的，所以也叫线性筛，可以在$O(n)$处理出$[2,n]$的质数表。 具体的优化就在于每个数都只被其最小质因子筛去。 codefor(int i=2;i&amp;lt;=n;i++)     {         if(mark[i]==false)//mark[i]==false=&amp;gt;是质数">
+<meta name="twitter:description" content="筛法总结欧拉筛法埃氏筛法比较弱，复杂度太高，就不介绍了，在此之上有优化过的欧拉筛法，复杂度是线性的，所以也叫线性筛，可以在$O(n)$处理出$[2,n]$的质数表。 具体的优化就在于每个数都只被其最小质因子筛去。 code1234567891011for(int i=2;i&amp;lt;=n;i++)    &amp;#123;        if(mark[i]==false)//mark[i]==false">
 
 
 
@@ -386,62 +386,13 @@
       
         <h1 id="筛法总结"><a href="#筛法总结" class="headerlink" title="筛法总结"></a>筛法总结</h1><h2 id="欧拉筛法"><a href="#欧拉筛法" class="headerlink" title="欧拉筛法"></a>欧拉筛法</h2><p>埃氏筛法比较弱，复杂度太高，就不介绍了，在此之上有优化过的欧拉筛法，复杂度是线性的，所以也叫线性筛，可以在$O(n)$处理出$[2,n]$的质数表。</p>
 <p>具体的优化就在于每个数都只被其最小质因子筛去。</p>
-<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><pre><code>for(int i=2;i&lt;=n;i++)
-    {
-        if(mark[i]==false)//mark[i]==false=&gt;是质数
-            prime[num++]=i; //prime记录下质数表
-        for(int j=0;j&lt;num&amp;&amp;prime[j]*i&lt;=n;j++)
-        {
-            mark[prime[j]*i]=true;
-            if(i%prime[j]==0)
-                break;//优化
-        }
-    }
-</code></pre><h2 id="欧拉函数-varphi"><a href="#欧拉函数-varphi" class="headerlink" title="欧拉函数$\varphi()$"></a>欧拉函数$\varphi()$</h2><h3 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h3><p>如果一个数论函数(定义没什么用，在此不叙述)$f(x)$满足<br>$$f(xy)=f(x)×f(y),x,y\in prime$$<br>那么$f(x)$就称为积性函数</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(mark[i]==<span class="literal">false</span>)<span class="comment">//mark[i]==false=&gt;是质数</span></div><div class="line">            prime[num++]=i; <span class="comment">//prime记录下质数表</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;num&amp;&amp;prime[j]*i&lt;=n;j++)</div><div class="line">        &#123;</div><div class="line">            mark[prime[j]*i]=<span class="literal">true</span>;</div><div class="line">            <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>)</div><div class="line">                <span class="keyword">break</span>;<span class="comment">//优化</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="欧拉函数-varphi"><a href="#欧拉函数-varphi" class="headerlink" title="欧拉函数$\varphi()$"></a>欧拉函数$\varphi()$</h2><h3 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h3><p>如果一个数论函数(定义没什么用，在此不叙述)$f(x)$满足<br>$$f(xy)=f(x)×f(y),x,y\in prime$$<br>那么$f(x)$就称为积性函数</p>
 <p>特别的  如果对于任意$x,y$都有上式成立，则$f(x)$为完全积性函数。</p>
 <h3 id="欧拉函数是一个积性函数"><a href="#欧拉函数是一个积性函数" class="headerlink" title="欧拉函数是一个积性函数"></a>欧拉函数是一个积性函数</h3><h3 id="积性函数可以用线性筛快速求"><a href="#积性函数可以用线性筛快速求" class="headerlink" title="积性函数可以用线性筛快速求"></a>积性函数可以用线性筛快速求</h3><p>根据其性质直接求即可</p>
-<pre><code>void calphi()
-{
-    for(int i=2;i&lt;=1e6+1;i++)
-        {
-            if(mark[i]==false)
-                prime[cnt++]=i,phi[i]=i-1;
-            for(int j=0;j&lt;cnt&amp;&amp;i*prime[j]&lt;=1e6+1;j++)
-            {
-                mark[i*prime[j]]=true;
-                if(i%prime[j]==0)
-                {
-                    phi[i*prime[j]]=phi[i]*prime[j];
-                    break;
-                }
-                else
-                    phi[i*prime[j]]=phi[i]*(prime[j]-1);
-            }
-        }
-}
-</code></pre><h2 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h2><p>不用说，这也是个积性函数，求法如下</p>
-<pre><code>mu[1]=1;/mu[1]=1根据定义
-int tot=0;
-for(int i=2;i&lt;=50000;i++)
-{
-    if (!mark[i])
-    {
-        p[++tot]=i;
-        mu[i]=-1;
-    }
-    for(int j=1;j&lt;=tot;j++)
-    {
-        if (i*p[j]&gt;50000) break;
-        mark[i*p[j]]=1;
-        if (i%p[j]==0)
-        {
-            mu[i*p[j]]=0;
-            break;
-        }
-        else mu[i*p[j]]=-mu[i];
-    }
-}
-</code></pre>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">calphi</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">1e6</span>+<span class="number">1</span>;i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(mark[i]==<span class="literal">false</span>)</div><div class="line">                prime[cnt++]=i,phi[i]=i<span class="number">-1</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;cnt&amp;&amp;i*prime[j]&lt;=<span class="number">1e6</span>+<span class="number">1</span>;j++)</div><div class="line">            &#123;</div><div class="line">                mark[i*prime[j]]=<span class="literal">true</span>;</div><div class="line">                <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>)</div><div class="line">                &#123;</div><div class="line">                    phi[i*prime[j]]=phi[i]*prime[j];</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    phi[i*prime[j]]=phi[i]*(prime[j]<span class="number">-1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h2 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h2><p>不用说，这也是个积性函数，求法如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">mu[<span class="number">1</span>]=<span class="number">1</span>;/mu[<span class="number">1</span>]=<span class="number">1</span>根据定义</div><div class="line">       <span class="keyword">int</span> tot=<span class="number">0</span>;</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">50000</span>;i++)</div><div class="line">       &#123;</div><div class="line">           <span class="keyword">if</span> (!mark[i])</div><div class="line">           &#123;</div><div class="line">               p[++tot]=i;</div><div class="line">               mu[i]=<span class="number">-1</span>;</div><div class="line">           &#125;</div><div class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=tot;j++)</div><div class="line">           &#123;</div><div class="line">               <span class="keyword">if</span> (i*p[j]&gt;<span class="number">50000</span>) <span class="keyword">break</span>;</div><div class="line">               mark[i*p[j]]=<span class="number">1</span>;</div><div class="line">               <span class="keyword">if</span> (i%p[j]==<span class="number">0</span>)</div><div class="line">               &#123;</div><div class="line">                   mu[i*p[j]]=<span class="number">0</span>;</div><div class="line">                   <span class="keyword">break</span>;</div><div class="line">               &#125;</div><div class="line">               <span class="keyword">else</span> mu[i*p[j]]=-mu[i];</div><div class="line">           &#125;</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
       
     </div>
 

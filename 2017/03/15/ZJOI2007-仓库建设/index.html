@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://pb0207.github.io/2017/03/15/ZJOI2007-仓库建设/index.html">
 <meta property="og:site_name" content="pb0207">
 <meta property="og:description" content="ZJOI2007 仓库建设题目题目描述L公司有$N$个工厂，由高到底分布在一座山上。如图所示，工厂$1$在山顶，工厂$N$在山脚。 【没有图请大家自行脑补】 由于这座山处于高原内陆地区（干燥少雨），L公司一般把产品直接堆放在露天，以节省费用。突然有一天，L公司的总裁L先生接到气象部门的电话，被告知三天之后将有一场暴雨，于是L先生决定紧急在某些工厂建立一些仓库以免产品被淋坏。 由于地形的不同，在不同">
-<meta property="og:updated_time" content="2017-03-16T01:56:27.987Z">
+<meta property="og:updated_time" content="2017-06-23T07:23:18.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZJOI2007 仓库建设">
 <meta name="twitter:description" content="ZJOI2007 仓库建设题目题目描述L公司有$N$个工厂，由高到底分布在一座山上。如图所示，工厂$1$在山顶，工厂$N$在山脚。 【没有图请大家自行脑补】 由于这座山处于高原内陆地区（干燥少雨），L公司一般把产品直接堆放在露天，以节省费用。突然有一天，L公司的总裁L先生接到气象部门的电话，被告知三天之后将有一场暴雨，于是L先生决定紧急在某些工厂建立一些仓库以免产品被淋坏。 由于地形的不同，在不同">
@@ -408,70 +408,13 @@
 <p>其中$w(i,j)$表示将$i+1…j-1$的货物都转移到$i$的费用。</p>
 <hr>
 <h3 id="O-n-3"><a href="#O-n-3" class="headerlink" title="$O(n^3)$"></a>$O(n^3)$</h3><p>枚举$i,j$，对于每个$(i,j)$,分别去计算$w(i,j)$，显然算法时间复杂度是$O(n^3)$</p>
-<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-using namespace std;
-
-const int N=1e6+1e3;
-
-int n,x[N],p[N],c[N],f[N],ans;
-
-int w(int i,int j)
-{
-    int ret=0;
-    for(int k=i+1;k&lt;j;k++)
-        ret+=(x[j]-x[k])*p[k];
-    return ret;
-}
-
-int main()
-{
-//    freopen(&quot;storage.in&quot;,&quot;r&quot;,stdin);
-//    freopen(&quot;storage.out&quot;,&quot;w&quot;,stdout);
-    memset(f,0x3f,sizeof(f));
-    scanf(&quot;%d&quot;,&amp;n);
-    for(int i=1;i&lt;=n;i++)
-        scanf(&quot;%d%d%d&quot;,&amp;x[i],&amp;p[i],&amp;c[i]);
-    f[0]=0;
-    for(int i=1;i&lt;=n;i++)
-        for(int j=0;j&lt;i;j++)
-            f[i]=min(f[i],f[j]+w(j,i)+c[i]);
-    printf(&quot;%d&quot;,f[n]);
-}
-</code></pre><p>对于原题数据，显然本算法只有20分，但是由于时间是3s，且cogs开启了O2优化，水到了30分。</p>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">1e3</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,x[N],p[N],c[N],f[N],ans;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">w</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k=i+<span class="number">1</span>;k&lt;j;k++)</div><div class="line">        ret+=(x[j]-x[k])*p[k];</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">//	freopen("storage.in","r",stdin);</span></div><div class="line"><span class="comment">//	freopen("storage.out","w",stdout);</span></div><div class="line">    <span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(f));</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;x[i],&amp;p[i],&amp;c[i]);</div><div class="line">    f[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</div><div class="line">            f[i]=min(f[i],f[j]+w(j,i)+c[i]);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,f[n]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于原题数据，显然本算法只有20分，但是由于时间是3s，且cogs开启了O2优化，水到了30分。</p>
 <hr>
 <h3 id="O-n-2"><a href="#O-n-2" class="headerlink" title="$O(n^2)$"></a>$O(n^2)$</h3><p>通过观察可以发现，对于每次循环的$i,j$，$w(i,j)$中变量$i$是一个定值，做了大量重复计算，我们可以通过前缀和的思想，通过后缀和来计算$w(i,j)$，但是由于空间问题$O(n^2)$的空间不被接受，于是采用滚动数组实现。</p>
 <p>$w[j]$计算递推式如下：<br>$$w[j]=w[j+1]+(x[i]-x[j])*p[j]$$</p>
-<h4 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h4><pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-using namespace std;
-
-const int N=1e6+1e3;
-
-long long n,x[N],p[N],c[N],f[N],ans,w[N];
-
-int main()
-{
-    //freopen(&quot;storage.in&quot;,&quot;r&quot;,stdin);
-    //freopen(&quot;storage.out&quot;,&quot;w&quot;,stdout);
-    memset(f,0x3f,sizeof(f));
-    scanf(&quot;%lld&quot;,&amp;n);
-    for(int i=1;i&lt;=n;i++)
-        scanf(&quot;%lld%lld%lld&quot;,&amp;x[i],&amp;p[i],&amp;c[i]);
-    f[0]=0;
-    for(int i=1;i&lt;=n;i++)
-    {
-
-        for(int j=i-1;j&gt;=1;j--)
-            w[j]=w[j+1]+(x[i]-x[j])*p[j];
-        for(int j=0;j&lt;i;j++)
-            f[i]=min(f[i],f[j]+w[j+1]+c[i]);
-    }
-    printf(&quot;%lld&quot;,f[n]);
-}
-</code></pre><p>同样的好运气，水到了50分。。。</p>
+<h4 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">1e3</span>;</div><div class="line"></div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,x[N],p[N],c[N],f[N],ans,w[N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//freopen("storage.in","r",stdin);</span></div><div class="line">    <span class="comment">//freopen("storage.out","w",stdout);</span></div><div class="line">    <span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(f));</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;x[i],&amp;p[i],&amp;c[i]);</div><div class="line">    f[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">1</span>;j--)</div><div class="line">            w[j]=w[j+<span class="number">1</span>]+(x[i]-x[j])*p[j];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</div><div class="line">            f[i]=min(f[i],f[j]+w[j+<span class="number">1</span>]+c[i]);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,f[n]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样的好运气，水到了50分。。。</p>
 <hr>
 <h3 id="O-n"><a href="#O-n" class="headerlink" title="$O(n)$"></a>$O(n)$</h3><p>本题的数据显然是接近线性的算法，我们并没有对最初始的式子进行任何的变形，现在对其进行一个展开。<br>$$f[i]=min(f[j]+w(j,i)+c[i]),j\in[1,j)$$<br>$$==&gt;$$<br>$$f[i]=min(f[j]+\sum_{k=j+1}^i(x[k]-x[j])×p[k]+c[i])$$</p>
 <p>对中间求和部分展开得：</p>
@@ -493,42 +436,7 @@ int main()
 <h4 id="维护一个下凸的函数图像"><a href="#维护一个下凸的函数图像" class="headerlink" title="维护一个下凸的函数图像"></a><strong>维护一个下凸的函数图像</strong></h4><p>$$k= \frac{f[i]+sumx[i]-f[j]-sumx[j]}{sump[i]-sump[j]}$$</p>
 <p>则</p>
 <p>$$k&lt;x[j]$$<br>单调队列维护即可</p>
-<h3 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h3><pre><code>#include &lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;iostream&gt;
-using namespace std;
-#define N 1000500
-long long int f[N],x[N],c[N],sumx[N],sump[N],p[N],q[N]; 
-long long int calf(int i,int j) 
-{
-    return f[i]+sumx[i]-f[j]-sumx[j];
-}
-int main()
-{
-//    freopen(&quot;storage.in&quot;,&quot;r&quot;,stdin);
-//    freopen(&quot;storage.out&quot;,&quot;w&quot;,stdout);
-    int i,j,n;
-    scanf(&quot;%d&quot;,&amp;n);
-    for(i=1;i&lt;=n;i++)
-    {
-        scanf(&quot;%lld%lld%lld&quot;,&amp;x[i],&amp;p[i],&amp;c[i]);
-        sumx[i]=sumx[i-1]+x[i]*p[i];
-        sump[i]=sump[i-1]+p[i];
-    }
-    int head=0,tail=1;
-    for(i=1;i&lt;=n;i++)
-    {
-        while(head&lt;tail&amp;&amp;calf(q[head+1],q[head])&lt;x[i]*(sump[q[head+1]]-sump[q[head]])) 
-            head++; 
-        f[i]=f[q[head]]+sumx[q[head]]-x[i]*sump[q[head]]+x[i]*sump[i]-sumx[i]+c[i];
-        while(head&lt;tail&amp;&amp;calf(q[tail],i)*(sump[q[tail-1]]-sump[q[tail]])&lt;=calf(q[tail-1],q[tail])*(sump[q[tail]]-sump[i])) 
-            tail--;//避免了实数型的使用，加快了速度 
-        q[++tail]=i; 
-    }
-    printf(&quot;%lld\n&quot;,f[n]);
-    return 0;
-}
-</code></pre>
+<h3 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> N 1000500</span></div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> f[N],x[N],c[N],sumx[N],sump[N],p[N],q[N]; </div><div class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> <span class="title">calf</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> f[i]+sumx[i]-f[j]-sumx[j];</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">//	freopen("storage.in","r",stdin);</span></div><div class="line"><span class="comment">//	freopen("storage.out","w",stdout);</span></div><div class="line">    <span class="keyword">int</span> i,j,n;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;x[i],&amp;p[i],&amp;c[i]);</div><div class="line">        sumx[i]=sumx[i<span class="number">-1</span>]+x[i]*p[i];</div><div class="line">        sump[i]=sump[i<span class="number">-1</span>]+p[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> head=<span class="number">0</span>,tail=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">while</span>(head&lt;tail&amp;&amp;calf(q[head+<span class="number">1</span>],q[head])&lt;x[i]*(sump[q[head+<span class="number">1</span>]]-sump[q[head]])) </div><div class="line">            head++; </div><div class="line">        f[i]=f[q[head]]+sumx[q[head]]-x[i]*sump[q[head]]+x[i]*sump[i]-sumx[i]+c[i];</div><div class="line">        <span class="keyword">while</span>(head&lt;tail&amp;&amp;calf(q[tail],i)*(sump[q[tail<span class="number">-1</span>]]-sump[q[tail]])&lt;=calf(q[tail<span class="number">-1</span>],q[tail])*(sump[q[tail]]-sump[i])) </div><div class="line">            tail--;<span class="comment">//避免了实数型的使用，加快了速度 </span></div><div class="line">        q[++tail]=i; </div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,f[n]);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
